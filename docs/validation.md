@@ -3,7 +3,37 @@
 Recorded on 2026-09-21. Local checks used an Apple Silicon Mac with Python
 3.12.10; the Colab checks below used a Tesla T4.
 
-## MLX cache benchmark
+## Shared-prefix batching on MLX
+
+Current implementation, Qwen3.5-0.8B 4-bit, seven candidates across three questions.
+Five measured iterations followed warmup; each strategy alternated with its own
+independent full-prompt baseline. Mac M3 Pro, MLX 0.32.2, MLX-LM 0.31.3.
+
+| Mode | Median latency | Candidate batches | Real tokens evaluated | Padding tokens |
+|---|---:|---|---:|---:|
+| Shared prefix, batch size 8 (default) | 144.66 ms | `[7]` | 431 | 49 |
+| Question-level tree, batch size 8 | 158.80 ms | `[1, 3, 3]` | 371 | 7 |
+| Shared prefix, batch size 1 | 190.19 ms | seven singleton batches | 431 | 0 |
+| Independent full prompts (default comparison) | 309.29 ms | seven singleton batches | 959 | 0 |
+
+The default was **2.14×** faster than its independent baseline on this short
+example. It reused 528 input tokens and generated zero tokens. Discrete choices
+agreed; maximum absolute candidate-support difference was **0.0318**. The tree
+and batch-size-1 comparisons differed from their baselines by 0.0617 and 0.0587.
+Reducing model calls can be faster even when it processes more real tokens.
+These are local measurements, not guaranteed improvements on other hardware.
+
+Mixed-length text and image checks used one four-candidate batch, with no score
+change when question/candidate order was reversed. Single-question text and image
+checks used one three-candidate batch with no prefix prefill. Against independent
+scoring, the largest observed support difference was 0.0708 on the quantized image
+fixture. The selected color remained correct. Scores are not calibrated and
+should be evaluated on the intended task.
+
+Reproduce using the commands in [development](development.md). Model snapshot:
+`da28692b5f139cb0ec58a356b437486b7dac7462`. MLX-VLM 0.7.1 supplied image support.
+
+## Earlier MLX tree-cache benchmark
 
 Command (three measured iterations after warming both execution paths):
 
@@ -29,13 +59,21 @@ The default model was `mlx-community/Qwen3.5-0.8B-4bit`, snapshot
 
 ## Correctness checks
 
-- Unit tests validate exact prompt reconstruction, both cache levels, candidate
+- Unit tests validate exact prompt reconstruction, both cache strategies, single-question
+  prefill bypass, cross-question batching, candidate
   order independence, changed content, stable normalization, schema validation,
   tokenizer-boundary checks, context limits, and cleanup.
 - MLX and GGUF cached scores matched full-prompt scores exactly in the diagnostic
   using singleton batches and one-token prefill chunks. These settings keep the
   numerical operations consistent so the check isolates cache behavior.
 - Optimized MLX two-row projection was compared against the full output head.
+- Tiny FP32 Qwen3.5 text and vision models check real PyTorch padded batches
+  against independent scoring at 1e-5 tolerance, including cache isolation,
+  multimodal positions, candidate ordering, and one forward pass for a single
+  question. A separate CI job runs these without model downloads.
+- The current shared and single-question paths also passed mixed-length text
+  and image tests with the full Qwen3.5-0.8B weights on CPU, using PyTorch 2.14.0
+  and Transformers 5.17.0, at 0.002 absolute support tolerance.
 - MLX image tests matched cached and uncached evaluation and correctly changed
   the selected color between red and blue fixtures. MLX-VLM version: 0.7.1.
 - GGUF used llama-cpp-python 0.3.35 on CPU with
@@ -55,11 +93,13 @@ calibration or general accuracy.
 
 ## Colab CUDA notebook
 
-### Current 0.8B NF4 default
+### Earlier 0.8B runs (before shared batching)
 
 The [published quickstart](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Quickstart.ipynb)
 uses `Qwen/Qwen3.5-0.8B` with `USE_4BIT=True` and images enabled. This configuration
-was validated on a Colab Tesla T4 before restoring it as the default. Both
+was validated on a Colab Tesla T4 before restoring it as the default. The timings
+below use the earlier sequential Transformers implementation and do not validate
+the new shared batching path. Both
 `USE_4BIT=False` and `USE_4BIT=True` (bitsandbytes NF4) completed **Run all**.
 Both runs used the `yes`/`no` verdicts, PyTorch 2.11.0+cu128, Transformers 5.17.0,
 and `Qwen/Qwen3.5-0.8B` with images enabled. Installation, model loading, text

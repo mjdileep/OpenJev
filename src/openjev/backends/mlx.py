@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from ..types import MLX_MODEL, ModelConfig, TokenScore
-from .base import HFTokenizer, verdict_ids
+from .base import BatchStats, HFTokenizer, verdict_ids
 from .vision import QwenVisionTokenizer, open_images
 
 
@@ -96,6 +96,7 @@ class MLXBackend:
         mx.eval(self.model.parameters())
 
     def prepare_request(self, images):
+        self.stats = BatchStats()
         self.image_data = None
         if self.config.vision:
             self.tokenizer.image_counts = []
@@ -153,13 +154,19 @@ class MLXBackend:
             return logits, True
         return (self.head.as_linear(hidden) if self.tied else self.head(hidden)), False
 
-    def _forward(self, rows, snapshot, *, want_scores=False):
+    def _forward(self, rows, snapshot, *, want_scores=False, lengths=None):
         mx = self.mx
         x = mx.array(rows)
         embeds = positions = None
         if self.config.vision:
             if snapshot.length == 0:
-                features = self.model.get_input_embeddings(x, **(self.image_data or {}))
+                image_data = self.image_data or {}
+                if x.shape[0] > 1:
+                    image_data = {
+                        key: mx.concatenate([value] * x.shape[0], axis=0)
+                        for key, value in image_data.items()
+                    }
+                features = self.model.get_input_embeddings(x, **image_data)
                 embeds = features.inputs_embeds
                 positions = features.position_ids
                 snapshot.rope_delta = features.rope_deltas
@@ -168,7 +175,14 @@ class MLXBackend:
                 positions = mx.arange(x.shape[1])[None, :] + snapshot.length + delta
                 positions = mx.broadcast_to(positions, (x.shape[0], x.shape[1]))
                 positions = mx.broadcast_to(positions[None], (3, *positions.shape))
-        chunk = self.config.prefill_chunk_size
+        # Right padding appears only after each verdict. These causal branches
+        # are terminal: their padded recurrent states are never reused. Evaluate
+        # a padded scoring batch intact so every row's last real hidden state is
+        # available for the one-position vocabulary projection.
+        # Score complete branches in one pass. The explicit chunk-size=1
+        # diagnostic retains token-by-token arithmetic for singleton checks.
+        single_pass = lengths is not None or (want_scores and self.config.prefill_chunk_size != 1)
+        chunk = x.shape[1] if single_pass else self.config.prefill_chunk_size
         logits = None
         selected = False
         for start in range(0, x.shape[1], chunk):
@@ -182,7 +196,12 @@ class MLXBackend:
                         kwargs["inputs_embeds"] = embeds[:, start:end]
                 hidden = self.decoder(tokens, **kwargs)
                 if want_scores and end == x.shape[1]:
-                    logits, selected = self._head(hidden[:, -1, :])
+                    last = (
+                        hidden[:, -1, :]
+                        if lengths is None
+                        else hidden[mx.arange(x.shape[0]), mx.array(lengths) - 1, :]
+                    )
+                    logits, selected = self._head(last)
             else:
                 all_logits = self.model(tokens, cache=snapshot.cache)
                 if want_scores and end == x.shape[1]:
@@ -214,16 +233,15 @@ class MLXBackend:
         return snapshot
 
     def score(self, parent, suffixes):
-        # Equal-length groups avoid padding changing recurrent state or verdict
-        # positions. Unsupported cache merge implementations fall back to singleton.
+        # Qwen decoder scoring can gather each row's real verdict before right
+        # padding. Generic models retain equal-length groups.
         groups = defaultdict(list)
         for i, suffix in enumerate(suffixes):
-            groups[len(suffix)].append((i, suffix))
+            groups[0 if self.decoder is not None else len(suffix)].append((i, suffix))
         result = [None] * len(suffixes)
         for group in groups.values():
+            group.sort(key=lambda item: len(item[1]))
             size = self.config.batch_size
-            if self.config.vision and parent is None and self.image_data:
-                size = 1  # uncached reference: each row runs its own vision encoder
             seed = parent or self._empty()
             if not all(hasattr(c, "merge") for c in seed.cache):
                 size = 1
@@ -234,7 +252,19 @@ class MLXBackend:
                     snapshot.cache = [
                         type(c).merge([copy.deepcopy(c) for _ in batch]) for c in seed.cache
                     ]
-                scores = self._forward([row for _, row in batch], snapshot, want_scores=True)
+                rows = [row for _, row in batch]
+                lengths = [len(row) for row in rows]
+                width = max(lengths)
+                padded = min(lengths) != width
+                if padded:
+                    pad = getattr(self.tokenizer.raw, "pad_token_id", None)
+                    pad = 0 if pad is None else pad
+                    rows = [row + [pad] * (width - len(row)) for row in rows]
+                scores = self._forward(
+                    rows, snapshot, want_scores=True, lengths=lengths if padded else None
+                )
+                self.stats.sizes.append(len(batch))
+                self.stats.padding_tokens += len(batch) * width - sum(lengths)
                 for (index, _), score in zip(batch, scores, strict=True):
                     result[index] = score
         return result

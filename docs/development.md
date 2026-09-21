@@ -14,12 +14,17 @@ OPENJEV_TEST_BACKEND=gguf OPENJEV_TEST_DEVICE=cpu pytest -m integration
 OPENJEV_TEST_BACKEND=transformers OPENJEV_TEST_DEVICE=cuda pytest -m integration
 
 openjev benchmark examples/triage.json --backend mlx --iterations 5
+openjev benchmark examples/triage.json --backend mlx --cache-strategy tree --iterations 5
+openjev benchmark examples/triage.json --backend mlx --batch-size 1 --iterations 5
 openjev benchmark examples/image.json --backend mlx --image /path/to/picture.jpg
 ```
 
 Benchmarks warm both paths, alternate their execution order, exclude model load
-and image file preprocessing, and report median latency, evaluated/reused token counts, and the maximum
-candidate-score difference. They measure this implementation's cache behavior;
+and image file preprocessing, and report median latency, evaluated/reused token
+counts, actual candidate batches, padding, and the maximum candidate-score
+difference. The default compares shared caching plus batching with independent
+full prompts. Run with `--batch-size 1` to isolate prefix reuse, or
+`--cache-strategy tree` to compare the extra question-level cache. These measure this implementation;
 they do not compare against Jev or establish classification accuracy.
 
 Quantized prefill, singleton decode, and batched decode may select different
@@ -28,6 +33,12 @@ variation between execution shapes. Strict cache tests use
 `--prefill-chunk-size 1 --batch-size 1` to keep arithmetic consistent; these are
 verification settings, not recommended throughput settings. Always benchmark
 your intended model, quantization, hardware, and candidate count.
+
+`tests/test_torch_batching.py` uses tiny randomly initialized Qwen3.5 text and vision
+models to check mixed-length padding, final-token gathering, recurrent/KV cache
+isolation, image positions, ordering, and single-pass scoring against independent
+FP32 evaluation. No model weights or GPU are required. CI runs these in a separate
+CPU PyTorch job; locally they are skipped if PyTorch/Transformers are absent.
 
 The engine serializes calls to one loaded model. Caches are ephemeral and are
 not persisted to disk or shared across requests. Inputs exceeding `--n-ctx` are

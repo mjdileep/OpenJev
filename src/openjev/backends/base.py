@@ -1,9 +1,16 @@
 from __future__ import annotations
 
+from dataclasses import dataclass, field
 from typing import Any, Protocol
 
 from ..prompt import Tokenizer
 from ..types import ModelConfig, TokenScore
+
+
+@dataclass
+class BatchStats:
+    sizes: list[int] = field(default_factory=list)
+    padding_tokens: int = 0
 
 
 class Backend(Protocol):
@@ -11,6 +18,7 @@ class Backend(Protocol):
     model_id: str
     tokenizer: Tokenizer
     config: ModelConfig
+    stats: BatchStats
 
     def prefill(self, tokens: list[int], parent: Any = None) -> Any: ...
     def score(self, parent: Any, suffixes: list[list[int]]) -> list[TokenScore]: ...

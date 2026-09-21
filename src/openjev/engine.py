@@ -72,16 +72,31 @@ class DecisionEngine:
     def _decide(self, state, questions, use_cache):
         started = time.perf_counter()
         plan = compile_plan(state, questions, self.backend.tokenizer, self.config)
-        usage = Usage(content_prefix_tokens=len(plan.prefix) if use_cache else 0)
+        prefix_length = len(plan.prefix) if use_cache and len(plan.questions) > 1 else 0
+        usage = Usage(content_prefix_tokens=prefix_length)
         root = None
-        if use_cache:
+        if prefix_length:
             root = self.backend.prefill(plan.prefix)
             usage.evaluated_input_tokens += len(plan.prefix)
+        # Flatten every question's candidates into one scoring call. The backend
+        # can batch across question boundaries while preserving the original order.
+        shared_scores = None
+        if use_cache and (self.config.cache_strategy == "shared" or len(plan.questions) == 1):
+            suffixes = [p[prefix_length:] for q in plan.questions for p in q.prompts]
+            shared_scores = self.backend.score(root, suffixes)
+            if len(shared_scores) != len(suffixes):
+                raise RuntimeError("Backend returned the wrong number of candidate scores")
+            usage.evaluated_input_tokens += sum(map(len, suffixes))
+        offset = 0
         answers = {}
         for q in plan.questions:
             usage.candidates += len(q.prompts)
             usage.uncached_input_tokens += sum(map(len, q.prompts))
-            if use_cache:
+            if shared_scores is not None:
+                scores = shared_scores[offset : offset + len(q.prompts)]
+                offset += len(q.prompts)
+                usage.question_prefix_tokens[q.key] = 0
+            elif use_cache:
                 question_suffix = q.prefix[len(plan.prefix) :]
                 parent = self.backend.prefill(question_suffix, root)
                 usage.evaluated_input_tokens += len(question_suffix)
@@ -91,8 +106,21 @@ class DecisionEngine:
                 parent = None
                 suffixes = q.prompts
                 usage.question_prefix_tokens[q.key] = 0
-            usage.evaluated_input_tokens += sum(map(len, suffixes))
-            scores = self.backend.score(parent, suffixes)
+            if shared_scores is None:
+                usage.evaluated_input_tokens += sum(map(len, suffixes))
+                if use_cache:
+                    scores = self.backend.score(parent, suffixes)
+                else:
+                    # A genuinely independent baseline: full prompts, one row
+                    # per model call, with no shared prefix or candidate batch.
+                    scores = []
+                    for suffix in suffixes:
+                        one = self.backend.score(None, [suffix])
+                        if len(one) != 1:
+                            raise RuntimeError(
+                                "Backend returned the wrong number of candidate scores"
+                            )
+                        scores.extend(one)
             if len(scores) != len(q.labels):
                 raise RuntimeError("Backend returned the wrong number of candidate scores")
             log_support = [score.log_support(self.config.score_mode) for score in scores]
@@ -120,6 +148,10 @@ class DecisionEngine:
                 answer["choice"] = max(probabilities, key=probabilities.get)
             answers[q.key] = answer
         usage.reused_input_tokens = usage.uncached_input_tokens - usage.evaluated_input_tokens
+        stats = getattr(self.backend, "stats", None)
+        if stats is not None:
+            usage.candidate_batches = list(stats.sizes)
+            usage.padding_tokens = stats.padding_tokens
         usage.elapsed_seconds = time.perf_counter() - started
         return DecisionResult(
             self.backend.model_id,
@@ -127,6 +159,11 @@ class DecisionEngine:
             self.config.score_mode,
             answers,
             usage,
+            cache_strategy=(
+                ("single" if len(plan.questions) == 1 else self.config.cache_strategy)
+                if use_cache
+                else "none"
+            ),
         )
 
     def close(self):

@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from ..types import GGUF_FILE, GGUF_MODEL, TOKENIZER_MODEL, ModelConfig, TokenScore
-from .base import HFTokenizer, verdict_ids
+from .base import BatchStats, HFTokenizer, verdict_ids
 
 
 @dataclass(frozen=True)
@@ -89,6 +89,7 @@ class GGUFBackend:
             raise
 
     def prepare_request(self, images):
+        self.stats = BatchStats()
         if images:
             raise ValueError("GGUF image input is not supported; select an image-capable backend")
 
@@ -133,6 +134,7 @@ class GGUFBackend:
             if not suffix:
                 raise ValueError("Candidate suffix must not be empty")
             self.llama.eval(suffix)
+            self.stats.sizes.append(1)
             # Read the live final-position logits before ANY sampling, grammar,
             # logit bias, temperature, top-k, or vocabulary restriction.
             ptr = self.native.llama_get_logits_ith(self.llama._ctx.ctx, -1)

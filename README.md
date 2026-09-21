@@ -3,8 +3,9 @@
 Turn text and images into typed decisions using a small local model.
 
 OpenJev scores each possible answer using the model's probability of the token
-`yes`. It shares the content cache across questions and each question's cache across
-answers. No generated text, JSON parsing, or API key is needed.
+`yes`. Multiple questions share one content cache, then their candidates are scored
+in batches. A single question goes straight to scoring, without a separate cache
+prefill. No generated text, JSON parsing, or API key is needed.
 
 The local default is **Qwen3.5-0.8B**, with 4-bit weights for MLX and GGUF.
 The Colab notebook also uses **Qwen3.5-0.8B with 4-bit weights**. You can swap in
@@ -17,7 +18,7 @@ another supported Hugging Face model.
 Choose a GPU under **Runtime → Change runtime type**, then **Run all**. The
 notebook installs everything and includes text decisions, an image example,
 and a cache benchmark. No API key is needed.
-See the [Colab T4 validation results](docs/validation.md#colab-cuda-notebook).
+See the [validation results](docs/validation.md), including earlier Colab T4 runs.
 
 ## Get started
 
@@ -75,6 +76,10 @@ with DecisionEngine.from_pretrained() as engine:
 
 The automatic backend uses MLX on Apple Silicon and Transformers elsewhere.
 Use `device="cuda"` to require a GPU instead of permitting a CPU fallback.
+`batch_size=8` is the default on MLX and Transformers; lower it if memory is tight.
+One yes/no question needs one scoring pass. One multiple-choice question batches
+its complete candidate prompts, splitting only when they exceed the batch size.
+GGUF evaluates candidates sequentially.
 `Score("How frustrated?", ["Calm", "Frustrated", "Very angry"])` adds an ordered
 rating: its score is a weighted average from 0 to 2, with the full distribution
 included. Questions can also be plain dictionaries; see [the triage request](examples/triage.json).
@@ -116,9 +121,10 @@ to pin its version. See [backend setup](docs/backends.md) for GGUF, CPU, and CUD
 openjev benchmark examples/triage.json --backend mlx
 ```
 
-This compares cached and uncached runs and reports latency, reused tokens, and
-score differences. [Local validation results](docs/validation.md) include a
-seven-candidate MLX run at approximately **185 ms cached vs 305 ms uncached**.
+This compares shared caching plus batching with independent full-prompt scoring.
+It reports latency, actual batch sizes, padding, reused tokens, and score differences.
+[Local validation results](docs/validation.md) include a seven-candidate MLX run
+at approximately **145 ms batched vs 309 ms independent**.
 Results depend on the model, hardware, and input.
 
 Scores are **not calibrated probabilities of correctness**. Choice distributions

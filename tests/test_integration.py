@@ -75,7 +75,10 @@ def test_image_cache_and_image_changes(tmp_path):
     red, blue = tmp_path / "red.png", tmp_path / "blue.png"
     Image.new("RGB", (112, 112), (255, 0, 0)).save(red)
     Image.new("RGB", (112, 112), (0, 0, 255)).save(blue)
-    questions = {"color": Choice("What is the main color?", {"red": "Red", "blue": "Blue"})}
+    questions = {
+        "color": Choice("What is the main color?", {"red": "Red", "blue": "Blue"}),
+        "red": Noul("Is the image primarily red?"),
+    }
     with DecisionEngine.from_pretrained(
         backend=backend,
         vision=True,
@@ -90,4 +93,54 @@ def test_image_cache_and_image_changes(tmp_path):
         c = vision.decide("Inspect the image.", questions, images=[str(blue)])
         assert a.answers["color"]["choice"] == "red"
         assert c.answers["color"]["choice"] == "blue"
+        assert a.usage.reused_input_tokens > 0
         assert a.usage.generated_tokens == 0
+
+
+@pytest.mark.parametrize("vision", [False, True], ids=["text", "image"])
+def test_real_mixed_length_batches_and_single_question(vision):
+    backend = os.environ["OPENJEV_TEST_BACKEND"]
+    if backend == "gguf":
+        pytest.skip("GGUF scores branches serially")
+    questions = {
+        "color": Choice(
+            "What is the main color?", {"red": "Red", "blue": "Blue", "green": "Mostly green"}
+        ),
+        "red": Noul("Is it primarily red?"),
+    }
+    images = ["examples/images/red-square.png"] if vision else []
+    state = "Inspect the image." if vision else "The square is red."
+    # This checks the normal batched execution path. Quantized MLX kernels
+    # differ by shape; the strict singleton cache test above isolates that from
+    # correctness, while tiny FP32 hybrid-model tests check padding to 1e-5.
+    tolerance = 0.08 if backend == "mlx" else 0.002
+    with DecisionEngine.from_pretrained(
+        backend=backend,
+        vision=vision,
+        device=os.getenv("OPENJEV_TEST_DEVICE", "auto"),
+    ) as engine:
+        batched = engine.decide(state, questions, images=images)
+        independent = engine.decide(state, questions, images=images, use_cache=False)
+        assert batched.usage.candidate_batches == [4]
+        assert batched.usage.padding_tokens > 0
+        assert batched.usage.content_prefix_tokens > 0
+        assert batched.answers["color"]["choice"] == "red"
+        assert compare_results(batched, independent)["max_candidate_support_difference"] < tolerance
+        swapped = {
+            "red": questions["red"],
+            "color": Choice(
+                questions["color"].instructions,
+                dict(reversed(list(questions["color"].criteria.items()))),
+            ),
+        }
+        reordered = engine.decide(state, swapped, images=images)
+        assert compare_results(batched, reordered)["max_candidate_support_difference"] < 1e-5
+        single = engine.decide(state, {"color": questions["color"]}, images=images)
+        reference = engine.decide(
+            state, {"color": questions["color"]}, images=images, use_cache=False
+        )
+        assert single.cache_strategy == "single"
+        assert single.usage.content_prefix_tokens == single.usage.reused_input_tokens == 0
+        assert single.usage.candidate_batches == [3]
+        assert single.answers["color"]["choice"] == "red"
+        assert compare_results(single, reference)["max_candidate_support_difference"] < tolerance

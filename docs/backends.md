@@ -46,8 +46,9 @@ openjev run examples/image.json --backend transformers --device cuda --load-in-4
 ```
 
 This uses bitsandbytes NF4. The Colab default is Qwen3.5-0.8B with NF4 weights,
-validated for text and images on a Tesla T4. The same model also passed with
-default weights; see [validation](validation.md).
+previously validated for text and images on a Tesla T4 with the earlier sequential
+Transformers backend. The same model also passed with default weights; see
+[validation](validation.md) for the scope of each run.
 Other GPU/model combinations require their own validation.
 
 ## Custom GGUF
@@ -66,12 +67,17 @@ openjev run examples/triage.json --backend gguf \
 ## Runtime controls
 
 - `--n-ctx 8192`: context budget, including image tokens; excess input is rejected.
-- `--batch-size 8`: equal-length candidate batching on MLX. Other backends are sequential.
-- `--prefill-chunk-size 128`: prefix processing chunk size.
+- `--batch-size 8`: maximum candidates per batch on MLX and Transformers. Lower
+  it to reduce branch-cache and activation memory. GGUF remains sequential.
+- `--cache-strategy shared`: one content prefix, candidates batched across questions.
+- `--cache-strategy tree`: also cache each question prefix; batch within questions.
+  A single question skips separate prefills with either strategy.
+- `--prefill-chunk-size 128`: text prefix processing chunk size. MLX's explicit
+  value `1` also enables token-by-token singleton scoring for diagnostics.
 - `--score-mode full`: exact full-vocabulary positive-token probability.
 - `--score-mode binary`: conditional probability over the two verdict tokens.
-- `--no-head-optimization`: reference MLX output projection.
-- `--no-cache`: independently evaluate complete prompts.
+- `--no-head-optimization`: reference output projection.
+- `--no-cache`: independently evaluate complete prompts with singleton batches.
 
 Thinking is disabled when the model's chat template supports `enable_thinking=False`.
 Models that ignore this may score poorly at the first answer position. Verdict

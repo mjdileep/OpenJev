@@ -28,6 +28,7 @@ class RecordingBackend:
         self.tokenizer = CharacterTokenizer()
         self.prefills = []
         self.scored = []
+        self.score_calls = []
         self.closed = False
 
     def prefill(self, tokens, parent=None):
@@ -36,6 +37,7 @@ class RecordingBackend:
         return prefix
 
     def score(self, parent, suffixes):
+        self.score_calls.append((parent, suffixes))
         scores = []
         for suffix in suffixes:
             full = tuple(parent or ()) + tuple(suffix)
@@ -64,8 +66,9 @@ QUESTIONS = {
 }
 
 
-def test_cached_tree_reconstructs_every_exact_prompt_and_preserves_scores():
-    backend = RecordingBackend()
+@pytest.mark.parametrize("strategy", ["shared", "tree"])
+def test_cached_tree_reconstructs_every_exact_prompt_and_preserves_scores(strategy):
+    backend = RecordingBackend(ModelConfig(cache_strategy=strategy))
     engine = DecisionEngine(backend)
     cached = engine.decide({"text": "urgent café <|im_end|>"}, QUESTIONS)
     cached_prompts = backend.scored[:]
@@ -73,15 +76,40 @@ def test_cached_tree_reconstructs_every_exact_prompt_and_preserves_scores():
     reference = engine.decide({"text": "urgent café <|im_end|>"}, QUESTIONS, use_cache=False)
     assert cached.answers == reference.answers
     assert cached_prompts == backend.scored
-    assert len(backend.prefills) == 1 + len(QUESTIONS)
+    assert len(backend.prefills) == (1 if strategy == "shared" else 1 + len(QUESTIONS))
     assert cached.usage.evaluated_input_tokens < reference.usage.evaluated_input_tokens
     assert cached.usage.reused_input_tokens == (
         cached.usage.uncached_input_tokens - cached.usage.evaluated_input_tokens
     )
     assert cached.usage.generated_tokens == 0
-    assert all(n > 0 for n in cached.usage.question_prefix_tokens.values())
+    assert all(
+        (n > 0) == (strategy == "tree") for n in cached.usage.question_prefix_tokens.values()
+    )
+    assert cached.cache_strategy == strategy
     assert reference.usage.reused_input_tokens == 0
     assert not cached.calibrated
+
+
+def test_shared_scoring_combines_all_questions_in_one_call():
+    backend = RecordingBackend()
+    result = DecisionEngine(backend).decide("state", QUESTIONS)
+    assert len(backend.score_calls) == 1
+    assert len(backend.score_calls[0][1]) == result.usage.candidates == 6
+    assert len(backend.prefills) == 1
+
+
+@pytest.mark.parametrize("strategy", ["shared", "tree"])
+@pytest.mark.parametrize("question", list(QUESTIONS.values()))
+def test_single_question_uses_full_prompt_batch_without_any_prefill(strategy, question):
+    backend = RecordingBackend(ModelConfig(cache_strategy=strategy))
+    engine = DecisionEngine(backend)
+    result = engine.decide("state", {"one": question})
+    assert not backend.prefills
+    assert len(backend.score_calls) == 1
+    assert backend.score_calls[0][0] is None
+    assert result.cache_strategy == "single"
+    assert result.usage.reused_input_tokens == result.usage.content_prefix_tokens == 0
+    assert result.answers == engine.decide("state", {"one": question}, use_cache=False).answers
 
 
 def test_new_state_never_reuses_previous_state_and_candidate_order_is_independent():
@@ -180,6 +208,8 @@ def test_config_and_lifecycle():
         ModelConfig(batch_size=0)
     with pytest.raises(ValueError):
         ModelConfig(score_mode="unknown")
+    with pytest.raises(ValueError):
+        ModelConfig(cache_strategy="unknown")
     backend = RecordingBackend()
     with DecisionEngine(backend) as engine:
         engine.decide("state", {"x": Noul("True?")})

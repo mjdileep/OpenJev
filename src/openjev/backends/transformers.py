@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from ..types import TOKENIZER_MODEL, ModelConfig, TokenScore
-from .base import HFTokenizer, verdict_ids
+from .base import BatchStats, HFTokenizer, verdict_ids
 from .vision import QwenVisionTokenizer, open_images
 
 
@@ -20,8 +20,8 @@ class TorchSnapshot:
 class TransformersBackend:
     """CUDA safetensors backend, including Qwen images and optional bitsandbytes 4-bit.
 
-    Candidate branches are evaluated sequentially with full cache snapshots. This
-    conservative path supports hybrid recurrent caches, unlike generic KV slicing.
+    Candidate batches branch the complete hybrid cache. Padding is allowed only
+    on terminal scoring branches, whose mutated caches are never reused.
     """
 
     name = "transformers"
@@ -90,9 +90,17 @@ class TransformersBackend:
             )
         self.positive_id, self.negative_id = verdict_ids(self.tokenizer, config)
         self.keep_logits = "logits_to_keep" in inspect.signature(self.model.forward).parameters
+        self.decoder = (
+            self.model.model
+            if config.optimize_head
+            and type(self.model).__name__
+            in {"Qwen3_5ForCausalLM", "Qwen3_5ForConditionalGeneration"}
+            else None
+        )
         self.image_data = None
 
     def prepare_request(self, images):
+        self.stats = BatchStats()
         self.image_data = None
         if self.config.vision:
             self.tokenizer.image_counts = []
@@ -124,32 +132,80 @@ class TransformersBackend:
             self.tokenizer.image_counts = []
             self.model.model.rope_deltas = None
 
-    def _forward(self, tokens, snapshot):
+    def _forward(self, rows, snapshot, *, want_scores=True):
         torch = self.torch
-        if not tokens:
+        if not rows or any(not row for row in rows):
             raise ValueError("Forward evaluation needs at least one new token")
-        x = torch.tensor([tokens], device=self.device)
+        lengths = [len(row) for row in rows]
+        width = max(lengths)
+        pad = getattr(self.tokenizer.raw, "pad_token_id", None)
+        if pad is None:
+            pad = getattr(self.tokenizer.raw, "eos_token_id", None)
+        pad = 0 if pad is None else pad
+        x = torch.tensor([row + [pad] * (width - len(row)) for row in rows], device=self.device)
         options = dict(
             input_ids=x, past_key_values=snapshot.cache, use_cache=True, return_dict=True
         )
-        if self.keep_logits:
-            options["logits_to_keep"] = 1
+        if min(lengths) != width:
+            options["attention_mask"] = torch.tensor(
+                [[1] * (snapshot.length + n) + [0] * (width - n) for n in lengths],
+                device=self.device,
+            )
         if self.config.vision:
             # RoPE offsets live outside past_key_values in Qwen. Restore them
             # together with the recurrent/KV state for every branch.
             self.model.model.rope_deltas = snapshot.rope_delta
+            if snapshot.length and snapshot.rope_delta is not None:
+                # Explicit suffix positions avoid reconstructing positions for
+                # the entire prefix from a padded attention mask.
+                positions = torch.arange(
+                    snapshot.length, snapshot.length + width, device=self.device
+                )[None, :] + snapshot.rope_delta.reshape(-1, 1)
+                options["position_ids"] = positions[None, ...].expand(3, len(rows), width)
             if snapshot.length == 0 and self.image_data:
-                options.update(self.image_data)
+                # Full-prompt candidate batches repeat the same image groups
+                # for each row. Shared-prefix scoring runs the vision tower once.
+                options.update(
+                    {
+                        name: value.repeat((len(rows),) + (1,) * (value.ndim - 1))
+                        if len(rows) > 1
+                        else value
+                        for name, value in self.image_data.items()
+                    }
+                )
                 if self.model.config.model_type in {"qwen3_5", "qwen3_5_moe"}:
                     options["mm_token_type_ids"] = (x == self.tokenizer.image_id).long()
         with torch.inference_mode():
-            output = self.model(**options)
+            if self.decoder is not None:
+                output = self.decoder(**options)
+                logits = None
+                if want_scores:
+                    hidden = output.last_hidden_state
+                    last = torch.tensor(lengths, device=self.device) - 1
+                    logits = self.model.lm_head(
+                        hidden[torch.arange(len(rows), device=self.device), last]
+                    )
+            else:
+                # Generic models keep the smallest tail covering all verdict
+                # positions. Qwen's direct decoder above projects exactly B rows.
+                keep = width - min(lengths) + 1
+                if self.keep_logits:
+                    options["logits_to_keep"] = keep
+                output = self.model(**options)
+                last = torch.tensor(lengths, device=self.device) - 1
+                if self.keep_logits:
+                    last -= width - keep
+                logits = (
+                    output.logits[torch.arange(len(rows), device=self.device), last]
+                    if want_scores
+                    else None
+                )
         snapshot.cache = output.past_key_values
-        snapshot.length += len(tokens)
+        snapshot.length += width
         if self.config.vision:
             delta = getattr(self.model.model, "rope_deltas", None)
             snapshot.rope_delta = None if delta is None else delta.clone()
-        return output.logits[0, -1].float()
+        return None if logits is None else logits.float()
 
     def prefill(self, tokens, parent=None):
         snapshot = TorchSnapshot(None, 0) if parent is None else copy.deepcopy(parent)
@@ -157,29 +213,62 @@ class TransformersBackend:
             # Vision prefixes are evaluated intact so image groups and their
             # multidimensional position IDs cannot be split across chunks.
             if self.config.vision:
-                self._forward(tokens, snapshot)
+                self._forward([tokens], snapshot, want_scores=False)
             else:
                 n = self.config.prefill_chunk_size
                 for offset in range(0, len(tokens), n):
-                    self._forward(tokens[offset : offset + n], snapshot)
+                    self._forward([tokens[offset : offset + n]], snapshot, want_scores=False)
+        return snapshot
+
+    def _fork(self, parent, batch_size):
+        snapshot = TorchSnapshot(None, 0) if parent is None else copy.deepcopy(parent)
+        if batch_size > 1 and snapshot.cache is not None:
+            # Reorder supports duplicated indices and includes conv/recurrent
+            # states. batch_repeat_interleave is not implemented by every hybrid
+            # layer, so it cannot be used as a generic KV-only shortcut.
+            indices = self.torch.zeros(batch_size, dtype=self.torch.long, device=self.device)
+            snapshot.cache.reorder_cache(indices)
+        if batch_size > 1 and snapshot.rope_delta is not None:
+            snapshot.rope_delta = snapshot.rope_delta.repeat_interleave(batch_size, dim=0)
         return snapshot
 
     def score(self, parent, suffixes):
-        result = []
+        result = [None] * len(suffixes)
         torch = self.torch
-        for suffix in suffixes:
-            snapshot = TorchSnapshot(None, 0) if parent is None else copy.deepcopy(parent)
-            logits = self._forward(suffix, snapshot)
-            pair = logits[[self.positive_id, self.negative_id]]
+        size = self.config.batch_size
+        # Unknown cache implementations stay serial. With no parent, candidates
+        # can be batched directly for the single-question path.
+        if parent is not None and (
+            parent.cache is not None and not callable(getattr(parent.cache, "reorder_cache", None))
+        ):
+            size = 1
+        ordered = sorted(enumerate(suffixes), key=lambda item: len(item[1]))
+        pending = []
+        for start in range(0, len(ordered), size):
+            batch = ordered[start : start + size]
+            rows = [row for _, row in batch]
+            snapshot = self._fork(parent, len(batch))
+            logits = self._forward(rows, snapshot)
+            self.stats.sizes.append(len(batch))
+            self.stats.padding_tokens += len(batch) * max(map(len, rows)) - sum(map(len, rows))
+            pair = logits[:, [self.positive_id, self.negative_id]]
             z = torch.logsumexp(logits, dim=-1)
             values = torch.stack(
-                [pair[0] - z, pair[1] - z, pair[0] - torch.logsumexp(pair, dim=-1)]
+                [pair[:, 0] - z, pair[:, 1] - z, pair[:, 0] - torch.logsumexp(pair, dim=-1)],
+                dim=-1,
             )
-            result.append(TokenScore(*values.tolist()))
+            pending.append(([index for index, _ in batch], values))
+        # One device-to-host transfer after all batches, rather than one sync
+        # per candidate. Preserve caller order after sorting by suffix length.
+        if pending:
+            values = torch.cat([value for _, value in pending]).tolist()
+            indices = [index for batch, _ in pending for index in batch]
+            for index, value in zip(indices, values, strict=True):
+                result[index] = TokenScore(*value)
         return result
 
     def close(self):
         self.finish_request()
-        self.model = self.processor = None
+        self.model = self.decoder = self.processor = None
         if self.device.type == "cuda":
             self.torch.cuda.empty_cache()

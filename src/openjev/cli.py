@@ -26,6 +26,7 @@ def build_parser():
     parser.add_argument("--n-ctx", type=int, default=8192)
     parser.add_argument("--n-gpu-layers", type=int, default=-1)
     parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument("--cache-strategy", choices=["shared", "tree"], default="shared")
     parser.add_argument("--prefill-chunk-size", type=int, default=128)
     parser.add_argument("--score-mode", choices=["full", "binary"], default="full")
     parser.add_argument(
@@ -75,6 +76,8 @@ def benchmark(engine, request, images, iterations):
         "model": results[True].model,
         "backend": engine.backend.name,
         "score_mode": engine.config.score_mode,
+        "cache_strategy": results[True].cache_strategy,
+        "batch_size": engine.config.batch_size,
         "images": len(images),
         "iterations": iterations,
         "cached_median_seconds": cached_time,
@@ -111,6 +114,7 @@ def main(argv=None):
             n_ctx=args.n_ctx,
             n_gpu_layers=args.n_gpu_layers,
             batch_size=args.batch_size,
+            cache_strategy=args.cache_strategy,
             prefill_chunk_size=args.prefill_chunk_size,
             score_mode=args.score_mode,
             vision=args.vision or bool(images),

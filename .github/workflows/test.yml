@@ -15,3 +15,13 @@ jobs:
       - run: ruff check .
       - run: pytest -m 'not integration'
       - run: python -m build
+  torch-batching:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -e '.[dev]' 'transformers==5.17.0' 'pillow>=10,<13'
+      - run: pytest tests/test_torch_batching.py

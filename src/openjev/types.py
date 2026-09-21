@@ -24,6 +24,7 @@ class ModelConfig:
     n_gpu_layers: int = -1
     prefill_chunk_size: int = 128
     batch_size: int = 8
+    cache_strategy: Literal["shared", "tree"] = "shared"
     positive_token: str = "yes"
     negative_token: str = "no"
     score_mode: ScoreMode = "full"
@@ -38,6 +39,8 @@ class ModelConfig:
             raise ValueError("device must be auto, cpu, cuda, or metal")
         if self.score_mode not in {"full", "binary"}:
             raise ValueError("score_mode must be full or binary")
+        if self.cache_strategy not in {"shared", "tree"}:
+            raise ValueError("cache_strategy must be shared or tree")
         for name in ("n_ctx", "prefill_chunk_size", "batch_size"):
             value = getattr(self, name)
             if isinstance(value, bool) or not isinstance(value, int) or value < 1:
@@ -153,6 +156,8 @@ class Usage:
     content_prefix_tokens: int = 0
     question_prefix_tokens: dict[str, int] = field(default_factory=dict)
     candidates: int = 0
+    candidate_batches: list[int] = field(default_factory=list)
+    padding_tokens: int = 0
     generated_tokens: int = 0
     elapsed_seconds: float = 0.0
 
@@ -164,6 +169,7 @@ class DecisionResult:
     score_mode: ScoreMode
     answers: dict[str, dict[str, Any]]
     usage: Usage
+    cache_strategy: str = "shared"
     calibrated: bool = False
     probability_semantics: str = "normalized_independent_candidate_support"
 
