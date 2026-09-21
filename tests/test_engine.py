@@ -14,7 +14,9 @@ class CharacterTokenizer:
         return f"<system>{system}</system><user>{user}</user><assistant>"
 
     def encode(self, text):
-        return list(text.encode())
+        # Model the two single-token verdict words while keeping all other bytes
+        # visible to the prompt-reconstruction tests. UTF-8 never uses FE or FF.
+        return list(text.encode().replace(b"yes", b"\xfe").replace(b"no", b"\xff"))
 
 
 class RecordingBackend:
@@ -157,7 +159,7 @@ def test_verdict_boundary_validation_detects_bpe_merge():
     class BoundaryTokenizer(CharacterTokenizer):
         def encode(self, text):
             tokens = super().encode(text)
-            if text.endswith(">1"):
+            if text.endswith(">yes"):
                 return tokens[:-2] + [999]
             return tokens
 
@@ -173,7 +175,7 @@ def test_common_prefix_uses_tokens_and_handles_singletons():
 
 def test_config_and_lifecycle():
     with pytest.raises(ValueError):
-        replace(ModelConfig(), positive_token="0")
+        replace(ModelConfig(), positive_token="no")
     with pytest.raises(ValueError):
         ModelConfig(batch_size=0)
     with pytest.raises(ValueError):

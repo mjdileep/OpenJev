@@ -12,13 +12,14 @@ openjev benchmark examples/triage.json --backend mlx --iterations 3
 
 | Measurement | Cached | Uncached |
 |---|---:|---:|
-| Median latency | 190.93 ms | 333.68 ms |
-| Evaluated input tokens | 373 | 973 |
-| Reused input tokens | 600 | 0 |
+| Median latency | 185.11 ms | 305.32 ms |
+| Evaluated input tokens | 371 | 959 |
+| Reused input tokens | 588 | 0 |
 | Generated tokens | 0 | 0 |
 
-Seven candidates across three questions. Observed speedup: **1.75×**. The maximum
-absolute candidate-support difference was **0.0152**; discrete choices agreed.
+Seven candidates across three questions, using the default `yes`/`no` verdicts.
+Observed speedup: **1.65×**. The maximum absolute candidate-support difference was
+**0.0593**; discrete choices agreed.
 The benchmark excludes model loading and image file preprocessing. These are
 local observations, not a throughput guarantee or a comparison against Jev.
 
@@ -42,7 +43,8 @@ The default model was `mlx-community/Qwen3.5-0.8B-4bit`, snapshot
 - Transformers passed the text cache/order and red/blue image tests on CPU with
   PyTorch 2.14.0 and Transformers 5.17.0. Model: `Qwen/Qwen3.5-0.8B`, snapshot
   `2fc06364715b967f1860aea9cf38778875588b17`. The image comparison uses a 0.002
-  absolute support tolerance because visual prefixes must stay intact.
+  absolute support tolerance because visual prefixes must stay intact. This CPU
+  run used the earlier `1`/`0` verdicts.
 
 Optimized batching and larger prefill chunks can produce different floating-point
 results, particularly with quantized hybrid models. Observed differences on the

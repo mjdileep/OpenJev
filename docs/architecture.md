@@ -2,13 +2,13 @@
 
 ## Score semantics
 
-The model is instructed to emit `1` for a correct candidate and `0` otherwise.
+The model is instructed to emit `yes` for a correct candidate and `no` otherwise.
 Neither token is sampled. No output grammar, logit bias, temperature, or top-k
 filter is applied.
 
-- **`full` (default):** support is `P("1")` under the complete vocabulary. This
+- **`full` (default):** support is `P("yes")` under the complete vocabulary. This
   implements the proposed single-positive-token method.
-- **`binary`:** support is `P("1") / (P("1") + P("0"))`. This is conditional on a
+- **`binary`:** support is `P("yes") / (P("yes") + P("no"))`. This is conditional on a
   binary verdict and can differ substantially when the model prefers other tokens.
 
 Candidate records include the raw log probability, positive and negative
@@ -39,7 +39,7 @@ scores use the first option as a deterministic tie break.
 
 No decoder layers, input vocabulary, or attention heads are deleted. Those are
 part of interpreting the input, including when the answer is one token. The
-full vocabulary projection is necessary for exact `P("1")` normalization. With
+full vocabulary projection is necessary for exact `P("yes")` normalization. With
 tied embeddings, the embedding matrix is still needed to read arbitrary input
 even in binary mode. Quantization can alter scores and should be evaluated on
 your task; removing more model capacity requires retraining or distillation.

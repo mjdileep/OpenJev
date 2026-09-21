@@ -24,8 +24,8 @@ class ModelConfig:
     n_gpu_layers: int = -1
     prefill_chunk_size: int = 128
     batch_size: int = 8
-    positive_token: str = "1"
-    negative_token: str = "0"
+    positive_token: str = "yes"
+    negative_token: str = "no"
     score_mode: ScoreMode = "full"
     optimize_head: bool = True
     vision: bool = False

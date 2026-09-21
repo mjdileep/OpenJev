@@ -73,7 +73,9 @@ openjev run examples/triage.json --backend gguf \
 
 Thinking is disabled when the model's chat template supports `enable_thinking=False`.
 Models that ignore this may score poorly at the first answer position. Verdict
-markers must each be one token; this is checked at the actual prompt boundary.
+markers default to `yes` and `no` and must each be one token; this is checked at the
+actual prompt boundary. Python callers can override `positive_token` and
+`negative_token` when a model needs different single-token labels.
 
 Set `HF_HOME="$PWD/.cache/huggingface"` for a project-local cache, or use Hugging
 Face's default. Set `HF_HUB_OFFLINE=1` after download for offline execution. Weights
