@@ -45,8 +45,9 @@ openjev run examples/image.json --backend transformers --device cuda --load-in-4
   --image examples/images/red-square.png
 ```
 
-This uses bitsandbytes NF4. CUDA and bitsandbytes require validation on your GPU;
-the development Mac can verify the Transformers implementation only on CPU.
+This uses bitsandbytes NF4. The Colab quickstart passed text and image examples
+on a Tesla T4 with both default and NF4 weights; see [validation](validation.md).
+Other GPU/model combinations require their own validation.
 
 ## Custom GGUF
 

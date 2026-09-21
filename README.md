@@ -16,6 +16,7 @@ in another supported Hugging Face model.
 Choose a GPU under **Runtime → Change runtime type**, then **Run all**. The
 notebook installs everything and includes text decisions, an image example,
 optional 4-bit weights, and a cache benchmark. No API key is needed.
+Both weight settings were [tested on a Colab T4](docs/validation.md#colab-cuda-notebook).
 
 ## Get started
 

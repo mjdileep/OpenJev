@@ -1,6 +1,7 @@
-# Local validation
+# Validation
 
-Recorded on 2026-09-21 on an Apple Silicon Mac, Python 3.12.10.
+Recorded on 2026-09-21. Local checks used an Apple Silicon Mac with Python
+3.12.10; the Colab checks below used a Tesla T4.
 
 ## MLX cache benchmark
 
@@ -52,6 +53,32 @@ small smoke fixtures were a few percentage points. Use the benchmark command to
 measure this on your own workload; matching argmax decisions is not proof of
 calibration or general accuracy.
 
-**NVIDIA CUDA execution and bitsandbytes NF4 have not been tested on this Mac.**
-GGUF image inference is deliberately unsupported. No calibrated-accuracy or
-Jev-comparison benchmark is claimed.
+## Colab CUDA notebook
+
+The [published quickstart](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Quickstart.ipynb)
+completed **Run all** on a Colab Tesla T4 with both `USE_4BIT=False` and
+`USE_4BIT=True` (bitsandbytes NF4). Both runs used the `yes`/`no` verdicts,
+PyTorch 2.11.0+cu128, Transformers 5.17.0, and `Qwen/Qwen3.5-0.8B` with images
+enabled. Installation, model loading, text scoring, image scoring, benchmarking,
+JSON export, and model cleanup all completed.
+
+Both runs chose `billing` for the support message and `red` for the sample image.
+Text scoring reused 582 input tokens; image scoring reused 643. No answer tokens
+were generated.
+
+| Text benchmark | Default weights | NF4 weights |
+|---|---:|---:|
+| Cached median | 739.9 ms | 1005.7 ms |
+| Uncached median | 770.2 ms | 860.9 ms |
+| Observed speedup | 1.04× | 0.86× |
+| Maximum absolute support difference | 0.0136 | 0.0308 |
+| Same cached/uncached choices | Yes | Yes |
+
+Three measured iterations followed warmup. Transformers used its reference
+PyTorch convolution and DeltaNet implementations; optional optimized kernels
+were not installed. NF4 caching was slower on this short example, so reducing
+weight memory does not imply lower latency. These are smoke checks, not an
+accuracy evaluation or a general performance claim.
+
+CUDA GGUF execution remains untested. GGUF image inference is deliberately
+unsupported. No calibrated-accuracy or Jev-comparison benchmark is claimed.
