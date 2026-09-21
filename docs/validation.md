@@ -55,8 +55,34 @@ calibration or general accuracy.
 
 ## Colab CUDA notebook
 
+### Current 4B NF4 default
+
 The [published quickstart](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Quickstart.ipynb)
-completed **Run all** on a Colab Tesla T4 with both `USE_4BIT=False` and
+completed **Run all** with `Qwen/Qwen3.5-4B`, `USE_4BIT=True`, and images enabled
+on a Colab Tesla T4. This used PyTorch 2.11.0+cu128, Transformers 5.17.0, and the
+default `yes`/`no` verdicts. Model loading, text and image scoring, benchmarking,
+JSON export, and cleanup all completed.
+
+The support message selected `billing`; the sample image selected `red`.
+Text scoring reused 582 input tokens and generated zero answer tokens.
+
+| Text benchmark | 4B NF4 |
+|---|---:|
+| Cached median | 4071.4 ms |
+| Uncached median | 5677.3 ms |
+| Observed speedup | 1.39× |
+| Maximum absolute support difference | 0.0279 |
+| Same cached/uncached choices | Yes |
+
+Three measured iterations followed warmup. These results use the reference
+PyTorch convolution and DeltaNet implementations, without optional optimized
+kernels. They verify this small example runs on a T4; they are not a model-quality
+benchmark or a guarantee for other inputs.
+
+### Earlier 0.8B configuration
+
+The quickstart's earlier 0.8B configuration completed **Run all** on a Colab
+Tesla T4 with both `USE_4BIT=False` and
 `USE_4BIT=True` (bitsandbytes NF4). Both runs used the `yes`/`no` verdicts,
 PyTorch 2.11.0+cu128, Transformers 5.17.0, and `Qwen/Qwen3.5-0.8B` with images
 enabled. Installation, model loading, text scoring, image scoring, benchmarking,

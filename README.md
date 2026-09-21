@@ -76,7 +76,8 @@ with DecisionEngine.from_pretrained() as engine:
 The automatic backend uses MLX on Apple Silicon and Transformers elsewhere.
 Use `device="cuda"` to require a GPU instead of permitting a CPU fallback.
 `Score("How frustrated?", ["Calm", "Frustrated", "Very angry"])` adds an ordered
-rating. Questions can also be plain dictionaries; see [the triage request](examples/triage.json).
+rating: its score is a weighted average from 0 to 2, with the full distribution
+included. Questions can also be plain dictionaries; see [the triage request](examples/triage.json).
 
 ## Images
 
