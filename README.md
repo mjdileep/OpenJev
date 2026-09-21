@@ -18,7 +18,7 @@ another supported Hugging Face model.
 Choose a GPU under **Runtime → Change runtime type**, then **Run all**. The
 notebook installs everything and includes text decisions, an image example,
 and a cache benchmark. No API key is needed.
-See the [validation results](docs/validation.md), including earlier Colab T4 runs.
+See the [validation results](docs/validation.md), including the current Colab T4 run.
 
 ## Get started
 

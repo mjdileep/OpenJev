@@ -93,6 +93,36 @@ calibration or general accuracy.
 
 ## Colab CUDA notebook
 
+### Current 0.8B NF4 shared batching
+
+The updated quickstart completed **Run all** on a Tesla T4 with
+`Qwen/Qwen3.5-0.8B`, `USE_4BIT=True`, `ENABLE_IMAGES=True`, and `BATCH_SIZE=8`.
+It installed core commit `c4cf18d6bae7197810d57181d442c141d4428767`, using
+PyTorch 2.11.0+cu128 and Transformers 5.17.0. Installation, loading, all examples,
+benchmarking, JSON export, and cleanup completed.
+
+| Text benchmark | Shared batching | Independent full prompts |
+|---|---:|---:|
+| Median latency | 338.8 ms | 825.2 ms |
+| Candidate batches | `[7]` | seven singleton batches |
+| Reused input tokens | 522 | 0 |
+| Padding tokens | 49 | 0 |
+| Generated tokens | 0 | 0 |
+
+Three measured iterations followed warmup. Observed speedup was **2.44×**;
+maximum absolute candidate-support difference was **0.0249**. Both paths chose
+`billing`. These compare the new implementation's two execution modes, not an
+isolated before/after measurement against an older commit.
+
+The single-question example reported `cache_strategy="single"`, batch `[1]`,
+and zero separately prepared prefix tokens. Its urgency support matched the
+multi-question run at the displayed precision (0.5595). The image example chose
+`red`, scored five candidates in batch `[5]`, and reused 592 input tokens.
+
+Transformers used reference PyTorch convolution and DeltaNet kernels; optional
+optimized kernels were not installed. This is a smoke and performance check on
+one small example, not an accuracy evaluation or a general speed guarantee.
+
 ### Earlier 0.8B runs (before shared batching)
 
 The [published quickstart](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Quickstart.ipynb)

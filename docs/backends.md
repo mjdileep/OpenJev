@@ -46,9 +46,9 @@ openjev run examples/image.json --backend transformers --device cuda --load-in-4
 ```
 
 This uses bitsandbytes NF4. The Colab default is Qwen3.5-0.8B with NF4 weights,
-previously validated for text and images on a Tesla T4 with the earlier sequential
-Transformers backend. The same model also passed with default weights; see
-[validation](validation.md) for the scope of each run.
+validated for batched text and image scoring and the single-question path on a
+Tesla T4. Earlier runs also used default weights; see [validation](validation.md)
+for the scope of each run.
 Other GPU/model combinations require their own validation.
 
 ## Custom GGUF
