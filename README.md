@@ -54,66 +54,103 @@ The model downloads on first use. Later runs use the local cache.
 ```python
 from openjev import Choice, DecisionEngine, Noul
 
-with DecisionEngine.from_pretrained() as engine:
-    result = engine.decide(
-        state="Help! My payouts have been failing for three days.",
-        questions={
-            "urgent": Noul("Does the message convey urgency?"),
-            "team": Choice(
-                "Which team should handle this?",
-                {
-                    "billing": "Payments, invoices, refunds",
-                    "technical": "Bugs, outages, integrations",
-                    "sales": "Pricing and upgrades",
-                },
-            ),
+state = "Help! My payouts have been failing for three days."
+questions = {
+    "urgent": Noul("Does the message convey urgency?"),
+    "team": Choice(
+        "Which team should handle this?",
+        {
+            "billing": "Payments, invoices, refunds",
+            "technical": "Bugs, outages, integrations",
+            "sales": "Pricing and upgrades",
         },
-    )
+    ),
+}
+
+with DecisionEngine.from_pretrained() as engine:
+    result = engine.decide(state, questions)
     print(result.answers["team"]["choice"])
     print(result.answers["team"]["probabilities"])
     print(result.answers["urgent"]["noul"])
 ```
 
 The automatic backend uses MLX on Apple Silicon and Transformers elsewhere.
-Use `device="cuda"` to require a GPU instead of permitting a CPU fallback.
-`batch_size=8` is the default on MLX and Transformers; lower it if memory is tight.
-One yes/no question needs one scoring pass. One multiple-choice question batches
-its complete candidate prompts, splitting only when they exceed the batch size.
-GGUF evaluates candidates sequentially.
-`Score("How frustrated?", ["Calm", "Frustrated", "Very angry"])` adds an ordered
-rating: its score is a weighted average from 0 to 2, with the full distribution
-included. Questions can also be plain dictionaries; see [the triage request](examples/triage.json).
+`Noul` asks a yes/no question; `Choice` picks from your options. Import `Score`
+from `openjev` for ratings such as
+`Score("How frustrated?", ["Calm", "Frustrated", "Very angry"])`.
+That returns an average from 0 to 2 and the full distribution.
 
-## Images
+## Choose a model in Python
 
-Try the included sample, then replace its path with your own image:
+Run the example above first. Then pick **one** of the blocks below to use the
+same `state` and `questions` with a model you choose. The repository name is the
+first argument to `from_pretrained()`.
 
-```bash
-openjev run examples/image.json --backend mlx --image examples/images/red-square.png
+**Apple Silicon — a model converted for MLX:**
 
-# With the CUDA installation:
-openjev run examples/image.json --backend transformers --device cuda \
-  --image examples/images/red-square.png
+```python
+from openjev import DecisionEngine
+
+with DecisionEngine.from_pretrained(
+    "mlx-community/Qwen3.5-0.8B-4bit",  # Replace with another supported MLX repo.
+    backend="mlx",
+) as engine:
+    result = engine.decide(state, questions)
+    print(result.answers["team"]["choice"])
 ```
 
-In Python, load with `vision=True` and pass `images=["picture.jpg"]` to `decide()`.
-Image scoring supports Qwen3.5 through MLX or Transformers. GGUF is
-text-only in this version.
+**NVIDIA GPU — switch to a larger model with 4-bit weights:**
 
-## Use another model
+Install `pip install -e '.[cuda,cuda-4bit]'` first, alongside CUDA-enabled PyTorch.
 
-```bash
-# MLX model repository or local model directory
-openjev run examples/triage.json --backend mlx --model YOUR_ORG/YOUR_MLX_MODEL
+```python
+from openjev import DecisionEngine
 
-# Original Hugging Face model on CUDA
-openjev run examples/triage.json --backend transformers --device cuda \
-  --model YOUR_ORG/YOUR_MODEL
+with DecisionEngine.from_pretrained(
+    "Qwen/Qwen3.5-4B",  # Use Qwen/Qwen3.5-0.8B to keep the smaller model.
+    backend="transformers",
+    device="cuda",
+    load_in_4bit=True,
+) as engine:
+    result = engine.decide(state, questions)
+    print(result.answers["team"]["choice"])
 ```
 
-Choose an instruction model supported by that backend. Use `--revision COMMIT_SHA`
-to pin its version. See [backend setup](docs/backends.md) for GGUF, CPU, and CUDA
-4-bit installation.
+Change the repository name to another instruction model supported by your backend.
+MLX needs an MLX-converted model; Transformers uses the original Hugging Face model.
+For CPU, use the smaller model with `device="cpu"` and `load_in_4bit=False`.
+
+Keep the model loaded while calling `engine.decide(...)` for more inputs. The
+`with` block releases it when finished. Caching and batching work automatically;
+add `batch_size=4` to the model settings if GPU memory is tight.
+See [backend setup](docs/backends.md) for a GGUF Python example, local model files,
+version pinning, and other settings.
+
+## Images in Python
+
+Load with `vision=True` and pass local image paths to `decide()`. This example
+uses the default 0.8B model and selects MLX on Apple Silicon or Transformers elsewhere:
+
+```python
+from openjev import Choice, DecisionEngine
+
+with DecisionEngine.from_pretrained(vision=True) as engine:
+    result = engine.decide(
+        "Inspect the supplied image.",
+        {
+            "color": Choice(
+                "Which color covers most of the image?",
+                {"red": "Red", "blue": "Blue", "green": "Green"},
+            ),
+        },
+        images=["examples/images/red-square.png"],  # Replace with your image path.
+    )
+    print(result.answers["color"]["choice"])
+```
+
+To choose a different Qwen3.5 vision model, add `vision=True` to its MLX or CUDA
+configuration above. Image scoring currently supports Qwen3.5 through those two
+backends; GGUF is text-only.
 
 ## Check the cache benefit
 

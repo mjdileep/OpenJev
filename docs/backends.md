@@ -64,6 +64,34 @@ openjev run examples/triage.json --backend gguf \
 `--model /path/to/model.gguf` accepts a local file. Use `--revision` and
 `--tokenizer-revision` for independently pinned model/tokenizer commits.
 
+The same setup in Python, with a complete example:
+
+```python
+from openjev import DecisionEngine, Noul
+
+with DecisionEngine.from_pretrained(
+    "unsloth/Qwen3.5-0.8B-GGUF",
+    backend="gguf",
+    filename="Qwen3.5-0.8B-Q4_K_M.gguf",
+    tokenizer="Qwen/Qwen3.5-0.8B",
+    device="cpu",
+) as engine:
+    result = engine.decide(
+        "Please help me today!",
+        {"urgent": Noul("Does the message convey urgency?")},
+    )
+    print(result.answers["urgent"]["noul"])
+```
+
+To change the model, change the repository, filename, and matching tokenizer
+together. For a local GGUF, pass its path as the first argument and omit
+`filename`. Quantization is part of the GGUF file or MLX weights;
+`load_in_4bit=True` is only for CUDA Transformers loading.
+
+For Transformers and MLX, the first argument can also be a local model directory
+in the backend's format. In Python, use `revision="COMMIT_SHA"` to pin a Hugging
+Face model and `tokenizer_revision="COMMIT_SHA"` to pin a separate tokenizer.
+
 ## Runtime controls
 
 - `--n-ctx 8192`: context budget, including image tokens; excess input is rejected.
