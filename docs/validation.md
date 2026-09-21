@@ -106,5 +106,32 @@ were not installed. NF4 caching was slower on this short example, so reducing
 weight memory does not imply lower latency. These are smoke checks, not an
 accuracy evaluation or a general performance claim.
 
-CUDA GGUF execution remains untested. GGUF image inference is deliberately
-unsupported. No calibrated-accuracy or Jev-comparison benchmark is claimed.
+## Bonsai 2 27B GGUF
+
+The [Bonsai notebook](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Bonsai.ipynb)
+is published with these pinned components:
+
+- GGUF: `prism-ml/Ternary-Bonsai-2-27B-gguf`, revision
+  `6ed5e12bf84b7a63069882c91dd9e9218647d17b`, file
+  `Ternary-Bonsai-2-27B-PTQ1_0.gguf`.
+- Tokenizer: `prism-ml/Ternary-Bonsai-2-27B-mlx-2bit`, revision
+  `3f926b415992eaa2ae9dd7b573706494d6bbf787`.
+- Runtime: Prism release `prism-b10709-9a9394a`; CUDA 12.4 archive for Colab.
+- Python bindings: llama-cpp-python 0.3.35, with the pinned fork's
+  `dspark_head_source` and `path_kv_mean_center` struct fields added.
+
+Local verification passed: the real Bonsai tokenizer maps `yes` to 9405 and
+`no` to 2083, and disables thinking through its chat template. The adapted
+bindings loaded the same Prism release's macOS library and passed the existing
+real-model cache and candidate-order integration test with the previously
+downloaded Qwen3.5-0.8B GGUF on CPU. This verifies the bindings and state handling
+on that fixture; it does not verify inference with Bonsai's 27B weights.
+
+The published notebook was opened in signed-in Colab and **Run all** was
+requested, but the Chrome connection was lost before execution output could be
+read. **Bonsai T4 inference, memory usage, and latency are not yet verified.**
+The notebook records these measurements, raw candidate evidence, and a cache
+comparison when run. No Bonsai output or performance result is claimed here.
+
+CUDA GGUF execution remains unverified. GGUF image inference is unsupported.
+No calibrated-accuracy or Jev-comparison benchmark is claimed.

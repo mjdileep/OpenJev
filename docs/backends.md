@@ -63,6 +63,26 @@ openjev run examples/triage.json --backend gguf \
 `--model /path/to/model.gguf` accepts a local file. Use `--revision` and
 `--tokenizer-revision` for independently pinned model/tokenizer commits.
 
+### Ternary Bonsai 2 27B
+
+Use the [Bonsai Colab notebook](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Bonsai.ipynb)
+for `prism-ml/Ternary-Bonsai-2-27B-gguf` and
+`Ternary-Bonsai-2-27B-PTQ1_0.gguf`. This format needs
+[Prism's runtime](https://github.com/PrismML-Eng/llama.cpp/tree/9a9394a895b96003ca842a6041cb28ac49a108f7);
+installing stock `llama-cpp-python` is insufficient.
+
+The notebook downloads the pinned CUDA 12.4 release, verifies its checksum, and
+uses an isolated copy of llama-cpp-python 0.3.35 with the two struct fields added
+by that Prism release. The [setup helper](../examples/bonsai_runtime.py) does not
+modify system packages. Do not change the runtime or wrapper revision without
+rechecking their native ABI. Start with a fresh Colab session.
+
+The GGUF and tokenizer revisions are pinned separately. The matching tokenizer
+comes from `prism-ml/Ternary-Bonsai-2-27B-mlx-2bit`; this does not load MLX weights.
+The example uses a 2,048-token context and full GPU offload. OpenJev currently
+supports text only through this backend, although Bonsai has a separate vision
+projector. See [validation status](validation.md#bonsai-2-27b-gguf).
+
 ## Runtime controls
 
 - `--n-ctx 8192`: context budget, including image tokens; excess input is rejected.
