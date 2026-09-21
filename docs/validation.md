@@ -55,38 +55,15 @@ calibration or general accuracy.
 
 ## Colab CUDA notebook
 
-### Current 4B NF4 default
+### Current 0.8B NF4 default
 
 The [published quickstart](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Quickstart.ipynb)
-completed **Run all** with `Qwen/Qwen3.5-4B`, `USE_4BIT=True`, and images enabled
-on a Colab Tesla T4. This used PyTorch 2.11.0+cu128, Transformers 5.17.0, and the
-default `yes`/`no` verdicts. Model loading, text and image scoring, benchmarking,
-JSON export, and cleanup all completed.
-
-The support message selected `billing`; the sample image selected `red`.
-Text scoring reused 582 input tokens and generated zero answer tokens.
-
-| Text benchmark | 4B NF4 |
-|---|---:|
-| Cached median | 4071.4 ms |
-| Uncached median | 5677.3 ms |
-| Observed speedup | 1.39× |
-| Maximum absolute support difference | 0.0279 |
-| Same cached/uncached choices | Yes |
-
-Three measured iterations followed warmup. These results use the reference
-PyTorch convolution and DeltaNet implementations, without optional optimized
-kernels. They verify this small example runs on a T4; they are not a model-quality
-benchmark or a guarantee for other inputs.
-
-### Earlier 0.8B configuration
-
-The quickstart's earlier 0.8B configuration completed **Run all** on a Colab
-Tesla T4 with both `USE_4BIT=False` and
-`USE_4BIT=True` (bitsandbytes NF4). Both runs used the `yes`/`no` verdicts,
-PyTorch 2.11.0+cu128, Transformers 5.17.0, and `Qwen/Qwen3.5-0.8B` with images
-enabled. Installation, model loading, text scoring, image scoring, benchmarking,
-JSON export, and model cleanup all completed.
+uses `Qwen/Qwen3.5-0.8B` with `USE_4BIT=True` and images enabled. This configuration
+was validated on a Colab Tesla T4 before restoring it as the default. Both
+`USE_4BIT=False` and `USE_4BIT=True` (bitsandbytes NF4) completed **Run all**.
+Both runs used the `yes`/`no` verdicts, PyTorch 2.11.0+cu128, Transformers 5.17.0,
+and `Qwen/Qwen3.5-0.8B` with images enabled. Installation, model loading, text
+scoring, image scoring, benchmarking, JSON export, and model cleanup all completed.
 
 Both runs chose `billing` for the support message and `red` for the sample image.
 Text scoring reused 582 input tokens; image scoring reused 643. No answer tokens
@@ -106,32 +83,29 @@ were not installed. NF4 caching was slower on this short example, so reducing
 weight memory does not imply lower latency. These are smoke checks, not an
 accuracy evaluation or a general performance claim.
 
-## Bonsai 2 27B GGUF
+### Earlier 4B NF4 configuration
 
-The [Bonsai notebook](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Bonsai.ipynb)
-is published with these pinned components:
+Before the default was restored to 0.8B, the quickstart completed **Run all** with
+`Qwen/Qwen3.5-4B`, `USE_4BIT=True`, and images enabled on a Colab Tesla T4. This
+used PyTorch 2.11.0+cu128, Transformers 5.17.0, and the default `yes`/`no` verdicts.
+Model loading, text and image scoring, benchmarking, JSON export, and cleanup
+all completed.
 
-- GGUF: `prism-ml/Ternary-Bonsai-2-27B-gguf`, revision
-  `6ed5e12bf84b7a63069882c91dd9e9218647d17b`, file
-  `Ternary-Bonsai-2-27B-PTQ1_0.gguf`.
-- Tokenizer: `prism-ml/Ternary-Bonsai-2-27B-mlx-2bit`, revision
-  `3f926b415992eaa2ae9dd7b573706494d6bbf787`.
-- Runtime: Prism release `prism-b10709-9a9394a`; CUDA 12.4 archive for Colab.
-- Python bindings: llama-cpp-python 0.3.35, with the pinned fork's
-  `dspark_head_source` and `path_kv_mean_center` struct fields added.
+The support message selected `billing`; the sample image selected `red`.
+Text scoring reused 582 input tokens and generated zero answer tokens.
 
-Local verification passed: the real Bonsai tokenizer maps `yes` to 9405 and
-`no` to 2083, and disables thinking through its chat template. The adapted
-bindings loaded the same Prism release's macOS library and passed the existing
-real-model cache and candidate-order integration test with the previously
-downloaded Qwen3.5-0.8B GGUF on CPU. This verifies the bindings and state handling
-on that fixture; it does not verify inference with Bonsai's 27B weights.
+| Text benchmark | 4B NF4 |
+|---|---:|
+| Cached median | 4071.4 ms |
+| Uncached median | 5677.3 ms |
+| Observed speedup | 1.39× |
+| Maximum absolute support difference | 0.0279 |
+| Same cached/uncached choices | Yes |
 
-The published notebook was opened in signed-in Colab and **Run all** was
-requested, but the Chrome connection was lost before execution output could be
-read. **Bonsai T4 inference, memory usage, and latency are not yet verified.**
-The notebook records these measurements, raw candidate evidence, and a cache
-comparison when run. No Bonsai output or performance result is claimed here.
+Three measured iterations followed warmup. These results use the reference
+PyTorch convolution and DeltaNet implementations, without optional optimized
+kernels. They verify this small example runs on a T4; they are not a model-quality
+benchmark or a guarantee for other inputs.
 
-CUDA GGUF execution remains unverified. GGUF image inference is unsupported.
-No calibrated-accuracy or Jev-comparison benchmark is claimed.
+CUDA GGUF execution remains untested. GGUF image inference is deliberately
+unsupported. No calibrated-accuracy or Jev-comparison benchmark is claimed.

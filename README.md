@@ -7,8 +7,8 @@ OpenJev scores each possible answer using the model's probability of the token
 answers. No generated text, JSON parsing, or API key is needed.
 
 The local default is **Qwen3.5-0.8B**, with 4-bit weights for MLX and GGUF.
-Colab examples use **Qwen3.5-4B with 4-bit weights** or **Ternary Bonsai 2 27B**.
-You can swap in another supported Hugging Face model.
+The Colab notebook also uses **Qwen3.5-0.8B with 4-bit weights**. You can swap in
+another supported Hugging Face model.
 
 ## Try it in Colab
 
@@ -18,12 +18,6 @@ Choose a GPU under **Runtime → Change runtime type**, then **Run all**. The
 notebook installs everything and includes text decisions, an image example,
 and a cache benchmark. No API key is needed.
 See the [Colab T4 validation results](docs/validation.md#colab-cuda-notebook).
-
-**Try Bonsai 2 27B:** [Open the Bonsai Colab](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Bonsai.ipynb).
-It uses the 5.95 GB `PTQ1_0` GGUF, installs Prism's required CUDA runtime, and
-includes text decisions and the cache benchmark. Choose a T4 GPU and **Run all**
-in a fresh session. This experimental notebook is text-only; its T4 run has not
-yet been verified. The Qwen notebook above also supports images.
 
 ## Get started
 
