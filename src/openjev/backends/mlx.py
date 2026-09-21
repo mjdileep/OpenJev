@@ -1,11 +1,9 @@
 from __future__ import annotations
 
 import copy
-import json
 import platform
 from collections import defaultdict
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Any
 
 from ..types import MLX_MODEL, ModelConfig, TokenScore
@@ -43,18 +41,9 @@ class MLXBackend:
         self.make_cache = make_prompt_cache
         self.processor = None
         self.image_data = None
-        from huggingface_hub import hf_hub_download, snapshot_download
-
-        config_path = Path(self.model_id) / "config.json"
-        if not config_path.is_file():
-            config_path = Path(
-                hf_hub_download(self.model_id, "config.json", revision=config.revision)
-            )
-        is_bonsai = json.loads(config_path.read_text()).get("model_type") == "prism_hadamard_qwen35"
-        if is_bonsai and config.vision:
-            raise ValueError("Bonsai Hadamard MLX support currently scores text only")
         if config.vision:
             try:
+                from huggingface_hub import snapshot_download
                 from mlx_vlm import load
             except ImportError as exc:
                 raise ImportError(
@@ -72,30 +61,17 @@ class MLXBackend:
         else:
             from mlx_lm import load
 
-            if is_bonsai:
-                from .bonsai import load_bonsai
-
-                path = self.model_id
-                if not Path(path).is_dir():
-                    path = snapshot_download(
-                        path,
-                        revision=config.revision,
-                        allow_patterns=["*.json", "*.jinja", "*.safetensors"],
-                    )
-                self.model, tokenizer = load_bonsai(path)
-            else:
-                self.model, tokenizer = load(
-                    self.model_id,
-                    revision=config.revision,
-                    tokenizer_config={"trust_remote_code": False},
-                )
+            self.model, tokenizer = load(
+                self.model_id,
+                revision=config.revision,
+                tokenizer_config={"trust_remote_code": False},
+            )
             self.tokenizer = HFTokenizer(tokenizer)
             self.language_model = getattr(self.model, "language_model", self.model)
             safe_types = {"qwen2", "qwen3", "qwen3_5", "qwen3_5_moe"}
             self.decoder = (
                 self.language_model.model
-                if config.optimize_head
-                and (is_bonsai or getattr(self.model, "model_type", None) in safe_types)
+                if config.optimize_head and getattr(self.model, "model_type", None) in safe_types
                 else None
             )
         if config.tokenizer:
@@ -158,8 +134,6 @@ class MLXBackend:
         mx = self.mx
         if self.config.score_mode == "binary" and self.config.optimize_head:
             ids = mx.array([self.positive_id, self.negative_id])
-            if hasattr(self.head, "project_selected"):
-                return self.head.project_selected(hidden, ids), True
             if hasattr(self.head, "scales"):
                 biases = self.head.get("biases")
                 logits = mx.quantized_matmul(

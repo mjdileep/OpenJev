@@ -31,42 +31,6 @@ python examples/game_2048/server.py --model Qwen/Qwen3.5-0.8B --backend transfor
 Use `--revision COMMIT` to pin weights, `--batch-size 2` to reduce batch memory,
 or `--port 8766` if the default port is occupied.
 
-To try **Qwen3.5-4B in 4-bit MLX** on Apple Silicon:
-
-```bash
-python examples/game_2048/server.py \
-  --model mlx-community/Qwen3.5-4B-4bit \
-  --revision 0e7ffd5c629ef7719d4cbc04069232580bfa9d9c \
-  --backend mlx --batch-size 4
-```
-
-The model download is approximately 3.03 GB. Thinking stays disabled and OpenJev
-scores the next `yes` token without generating text. The 0.8B model remains the
-default for the fastest setup.
-
-On this project's M3 Pro (18 GiB), three saved boards took **1.02–2.00 seconds**
-per decision with up to four candidates per batch. A four-action board measured
-**2.00 s median** across three warm batched trials, versus **2.12 s** independently.
-Peak MLX allocation was **4.09 GB**. All trials selected the same move; the largest
-raw candidate-support difference between execution shapes was 0.023.
-These are timing and consistency checks, not a playing-strength benchmark.
-[Raw 4B results](../../docs/qwen4b-validation.json).
-
-To try **Bonsai 2 27B on Apple Silicon**, use its supported MLX pack:
-
-```bash
-python examples/game_2048/server.py \
-  --model prism-ml/Ternary-Bonsai-2-27B-mlx-2bit \
-  --revision 3f926b415992eaa2ae9dd7b573706494d6bbf787 \
-  --backend mlx --batch-size 1
-```
-
-This is substantially larger and slower than 0.8B. The download is about 8.60 GB,
-and the text model uses approximately 7.68 GB before inference allocations.
-OpenJev includes the required Hadamard loader. Use this MLX repository on a Mac;
-the GGUF files need a separate custom llama.cpp runtime.
-[Bonsai setup details](../../docs/backends.md#bonsai-2-27b-on-apple-silicon).
-
 ## What the model sees
 
 The browser sends a 4×4 board to `POST /api/decide`. The adapter removes swipes

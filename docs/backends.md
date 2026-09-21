@@ -58,53 +58,6 @@ openjev run examples/triage.json --backend gguf --device cpu
 The default GGUF is `Qwen3.5-0.8B-Q4_K_M.gguf`. An explicit `cuda` or `metal`
 request fails if the installed library lacks that backend. `auto` permits a CPU fallback.
 
-## Bonsai 2 27B on Apple Silicon
-
-Use Prism's [MLX 2-bit pack](https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-mlx-2bit).
-OpenJev recognizes its `prism_hadamard_qwen35` format and applies the required
-Hadamard transforms, including the inverse embedding transform and the output
-head. The loader is included in OpenJev; no remote Python is executed. It loads
-only the language model, leaving the bundled vision tower unused. Bonsai image
-scoring is not supported by this adapter yet.
-
-```python
-from openjev import DecisionEngine, Choice
-
-with DecisionEngine.from_pretrained(
-    "prism-ml/Ternary-Bonsai-2-27B-mlx-2bit",
-    revision="3f926b415992eaa2ae9dd7b573706494d6bbf787",
-    backend="mlx",
-    batch_size=1,
-) as engine:
-    result = engine.decide(
-        "The apple is red.",
-        {"color": Choice("What color is the apple?", {"red": "Red", "blue": "Blue"})},
-    )
-    print(result.answers["color"]["choice"])
-```
-
-Install the usual `.[mlx]` dependencies. The complete download is approximately
-8.60 GB; the loaded language weights use about 7.68 GB. Inference needs additional
-memory. This revision was tested on an M3 Pro with 18 GiB unified memory. Begin
-with `batch_size=1` on that machine; larger batches use more memory. The default
-OpenJev model remains Qwen3.5-0.8B. Thinking is disabled: the published chat
-template emits an empty, closed `<think>` block before OpenJev reads verdict
-logits. No reasoning or answer tokens are generated.
-
-On one recorded four-action game board, batch sizes 1, 2, and 4 took **17.13 s**,
-**16.28 s**, and **19.33 s** respectively. Peak MLX allocation was **9.87 GB**,
-**10.93 GB**, and **12.68 GB**. These are exploratory single measurements, not
-repeated benchmarks. Disabling thinking does not remove prompt-processing cost.
-The loader's logits matched Prism's reference loader within 0.000021 across two
-fixed prompts; cache, tokenizer, and binary-head tests also passed.
-[Raw validation results](bonsai-validation.json).
-
-The [GGUF version](https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf)
-uses custom PQ2_0/PTQ1_0 packing and needs Prism's llama.cpp fork. It cannot be
-substituted into the stock `llama-cpp-python` installation above. The MLX path
-is the Bonsai integration validated here. Weights retain Prism's Apache-2.0
-license; adapted runtime code carries its [MIT notice](../src/openjev/backends/bonsai-LICENSE.txt).
-
 ## CUDA 4-bit safetensors
 
 After installing a CUDA-enabled PyTorch build:
