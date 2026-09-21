@@ -6,8 +6,9 @@ OpenJev scores each possible answer using the model's probability of the token
 `yes`. It shares the content cache across questions and each question's cache across
 answers. No generated text, JSON parsing, or API key is needed.
 
-The default is **Qwen3.5-0.8B**, with 4-bit weights for MLX and GGUF. You can swap
-in another supported Hugging Face model.
+The local default is **Qwen3.5-0.8B**, with 4-bit weights for MLX and GGUF.
+The Colab notebook uses **Qwen3.5-4B with 4-bit weights**. You can swap in another
+supported Hugging Face model.
 
 ## Try it in Colab
 
@@ -15,8 +16,8 @@ in another supported Hugging Face model.
 
 Choose a GPU under **Runtime → Change runtime type**, then **Run all**. The
 notebook installs everything and includes text decisions, an image example,
-optional 4-bit weights, and a cache benchmark. No API key is needed.
-Both weight settings were [tested on a Colab T4](docs/validation.md#colab-cuda-notebook).
+and a cache benchmark. No API key is needed.
+See the [Colab T4 validation results](docs/validation.md#colab-cuda-notebook).
 
 ## Get started
 
