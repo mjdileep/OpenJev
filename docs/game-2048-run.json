@@ -1,0 +1,8247 @@
+{
+  "summary": {
+    "model": "mlx-community/Qwen3.5-0.8B-4bit",
+    "revision": "da28692b5f139cb0ec58a356b437486b7dac7462",
+    "hardware": "Apple M3 Pro, 18 GiB unified memory",
+    "date": "2026-09-21",
+    "moves": 162,
+    "score": 1584,
+    "largest_tile": 128,
+    "outcome": "game_over",
+    "average_decision_ms": 350.33970132698647,
+    "median_decision_ms": 379.959083016729,
+    "p95_decision_ms": 396.25528961914824,
+    "first_decision_ms": 513.1096669938415,
+    "peak_mlx_memory_gb": 1.834624412,
+    "generated_tokens": 0,
+    "final_board": [
+      [
+        4,
+        8,
+        32,
+        128
+      ],
+      [
+        2,
+        32,
+        64,
+        2
+      ],
+      [
+        4,
+        2,
+        32,
+        4
+      ],
+      [
+        2,
+        4,
+        8,
+        32
+      ]
+    ],
+    "versions": {
+      "mlx": "0.32.2",
+      "mlx-lm": "0.31.3",
+      "transformers": "5.17.0"
+    },
+    "notes": "One unseeded live browser run, default full-vocabulary yes support. Decision latency includes tokenization and scoring, excludes loading, HTTP, animation, and 0.5 s between moves. Every recorded transition checked against the original game rules plus one random 2 or 4."
+  },
+  "decisions": [
+    {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          4,
+          0,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.32964147707247304,
+        "right": 0.3703693545291661,
+        "left": 0.29998916839836093
+      },
+      "usage": {
+        "uncached_input_tokens": 933,
+        "evaluated_input_tokens": 933,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.5131096669938415
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2458708509237394,
+        "right": 0.3137014004365604,
+        "down": 0.2458792923744101,
+        "left": 0.1945484562652901
+      },
+      "usage": {
+        "uncached_input_tokens": 1256,
+        "evaluated_input_tokens": 1256,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.389282332995208
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2592539736708633,
+        "right": 0.2885316285064347,
+        "down": 0.23757289325581407,
+        "left": 0.21464150456688796
+      },
+      "usage": {
+        "uncached_input_tokens": 1256,
+        "evaluated_input_tokens": 1256,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.36278525000670925
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.269366455750308,
+        "right": 0.27930563370232747,
+        "down": 0.24858072504874376,
+        "left": 0.20274718549862084
+      },
+      "usage": {
+        "uncached_input_tokens": 1256,
+        "evaluated_input_tokens": 1256,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.375556333019631
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25407110596965005,
+        "right": 0.28761213373314554,
+        "down": 0.2341930067253759,
+        "left": 0.22412375357182857
+      },
+      "usage": {
+        "uncached_input_tokens": 1256,
+        "evaluated_input_tokens": 1256,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.372558790986659
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2512830852644458,
+        "right": 0.28476656621374097,
+        "down": 0.2421498111685218,
+        "left": 0.22180053735329144
+      },
+      "usage": {
+        "uncached_input_tokens": 1256,
+        "evaluated_input_tokens": 1256,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37385441598598845
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26613675455524,
+        "right": 0.27608943287124327,
+        "down": 0.24554778429443802,
+        "left": 0.21222602827907872
+      },
+      "usage": {
+        "uncached_input_tokens": 1256,
+        "evaluated_input_tokens": 1256,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3769900419865735
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2687225528904062,
+        "right": 0.26897740982157375,
+        "down": 0.24811661733568216,
+        "left": 0.2141834199523379
+      },
+      "usage": {
+        "uncached_input_tokens": 1258,
+        "evaluated_input_tokens": 1258,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3889937089988962
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.36322479360664384,
+        "down": 0.351606642779679,
+        "left": 0.2851685636136772
+      },
+      "usage": {
+        "uncached_input_tokens": 932,
+        "evaluated_input_tokens": 932,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 1,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.28860745902056806
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          4,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26614797120368616,
+        "right": 0.27613161469443537,
+        "down": 0.24561574884579668,
+        "left": 0.2121046652560818
+      },
+      "usage": {
+        "uncached_input_tokens": 1256,
+        "evaluated_input_tokens": 1256,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3826031659846194
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          2,
+          0,
+          0,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2661351793218634,
+        "right": 0.2759219709090684,
+        "down": 0.23443560563535545,
+        "left": 0.22350724413371278
+      },
+      "usage": {
+        "uncached_input_tokens": 1256,
+        "evaluated_input_tokens": 1256,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.368774166010553
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25879685116032775,
+        "right": 0.2701398171408107,
+        "down": 0.24739685016243515,
+        "left": 0.2236664815364264
+      },
+      "usage": {
+        "uncached_input_tokens": 1260,
+        "evaluated_input_tokens": 1260,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3731104589824099
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3763917686735166,
+        "down": 0.3443906773206858,
+        "left": 0.2792175540057977
+      },
+      "usage": {
+        "uncached_input_tokens": 936,
+        "evaluated_input_tokens": 936,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 3,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2874639159999788
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          2,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2561079209764684,
+        "right": 0.28543668841618336,
+        "down": 0.2348601041144225,
+        "left": 0.22359528649292576
+      },
+      "usage": {
+        "uncached_input_tokens": 1264,
+        "evaluated_input_tokens": 1264,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38611091699567623
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          2,
+          4,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2581692169023907,
+        "right": 0.27641466430777517,
+        "down": 0.2485447157429014,
+        "left": 0.21687140304693273
+      },
+      "usage": {
+        "uncached_input_tokens": 1264,
+        "evaluated_input_tokens": 1264,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3753446670016274
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3725003270378472,
+        "down": 0.3350209765681502,
+        "left": 0.29247869639400265
+      },
+      "usage": {
+        "uncached_input_tokens": 943,
+        "evaluated_input_tokens": 943,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.29718104100902565
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          2,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26164660078441393,
+        "right": 0.28208519274858906,
+        "down": 0.2397329607477676,
+        "left": 0.2165352457192294
+      },
+      "usage": {
+        "uncached_input_tokens": 1272,
+        "evaluated_input_tokens": 1272,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3857034590037074
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          2,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.2778942153465365,
+        "right": 0.2677104748436721,
+        "down": 0.24490843256699157,
+        "left": 0.20948687724279982
+      },
+      "usage": {
+        "uncached_input_tokens": 1272,
+        "evaluated_input_tokens": 1272,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37573408300522715
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          0,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.27244367677336606,
+        "right": 0.28251364184394706,
+        "down": 0.24017128173019675,
+        "left": 0.20487139965249007
+      },
+      "usage": {
+        "uncached_input_tokens": 1264,
+        "evaluated_input_tokens": 1264,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.376962917012861
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          8,
+          32
+        ],
+        [
+          0,
+          2,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25620419611336154,
+        "right": 0.28539697594924446,
+        "down": 0.22338813796776577,
+        "left": 0.2350106899696282
+      },
+      "usage": {
+        "uncached_input_tokens": 1264,
+        "evaluated_input_tokens": 1264,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3692500420147553
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          2,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25198523735870987,
+        "right": 0.30120168201869707,
+        "down": 0.21744704350664137,
+        "left": 0.22936603711595174
+      },
+      "usage": {
+        "uncached_input_tokens": 1264,
+        "evaluated_input_tokens": 1264,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37909466700511985
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          2,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2652145494935116,
+        "right": 0.2770448082856221,
+        "down": 0.24140967521560022,
+        "left": 0.2163309670052661
+      },
+      "usage": {
+        "uncached_input_tokens": 1264,
+        "evaluated_input_tokens": 1264,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3752035410143435
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2664605826928524,
+        "right": 0.2857908793891216,
+        "down": 0.22375022364712893,
+        "left": 0.2239983142708971
+      },
+      "usage": {
+        "uncached_input_tokens": 1262,
+        "evaluated_input_tokens": 1262,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38229058298747987
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2717623353135018,
+        "right": 0.27213476235273476,
+        "down": 0.23960857818772816,
+        "left": 0.21649432414603523
+      },
+      "usage": {
+        "uncached_input_tokens": 1262,
+        "evaluated_input_tokens": 1262,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3739537080109585
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25360524823863617,
+        "right": 0.28194368102532946,
+        "down": 0.24332013587476906,
+        "left": 0.2211309348612653
+      },
+      "usage": {
+        "uncached_input_tokens": 1260,
+        "evaluated_input_tokens": 1260,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38035508300527
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2706503862860789,
+        "right": 0.27997184954436816,
+        "down": 0.24107615360527732,
+        "left": 0.2083016105642757
+      },
+      "usage": {
+        "uncached_input_tokens": 1260,
+        "evaluated_input_tokens": 1260,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3696599579998292
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26734123572565044,
+        "right": 0.27674660243289584,
+        "down": 0.2277554245941011,
+        "left": 0.22815673724735258
+      },
+      "usage": {
+        "uncached_input_tokens": 1262,
+        "evaluated_input_tokens": 1262,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37999958297587
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2697859538268046,
+        "right": 0.2853848000455717,
+        "down": 0.222314718736021,
+        "left": 0.2225145273916028
+      },
+      "usage": {
+        "uncached_input_tokens": 1260,
+        "evaluated_input_tokens": 1260,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37487291599973105
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2552854118424368,
+        "right": 0.2734162156864332,
+        "down": 0.24594145396787948,
+        "left": 0.22535691850325051
+      },
+      "usage": {
+        "uncached_input_tokens": 1260,
+        "evaluated_input_tokens": 1260,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39197075000265613
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          2,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2751473604939525,
+        "right": 0.2751678285309494,
+        "down": 0.24276806897019101,
+        "left": 0.20691674200490714
+      },
+      "usage": {
+        "uncached_input_tokens": 1260,
+        "evaluated_input_tokens": 1260,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3791389169928152
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          2,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2561460688604695,
+        "right": 0.28517879444127336,
+        "down": 0.234876718704036,
+        "left": 0.22379841799422112
+      },
+      "usage": {
+        "uncached_input_tokens": 1260,
+        "evaluated_input_tokens": 1260,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3734234169824049
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          2,
+          0,
+          4,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26726684874822737,
+        "right": 0.2673030449442057,
+        "down": 0.2380310099048685,
+        "left": 0.22739909640269837
+      },
+      "usage": {
+        "uncached_input_tokens": 1260,
+        "evaluated_input_tokens": 1260,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38068204099545255
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          2,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.27310394048925435,
+        "right": 0.27325139623546535,
+        "down": 0.23237877529410436,
+        "left": 0.22126588798117594
+      },
+      "usage": {
+        "uncached_input_tokens": 1264,
+        "evaluated_input_tokens": 1264,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3847848330042325
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          2,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.269225931799953,
+        "right": 0.27891989056456157,
+        "down": 0.23735506714889137,
+        "left": 0.21449911048659406
+      },
+      "usage": {
+        "uncached_input_tokens": 1266,
+        "evaluated_input_tokens": 1266,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38195845900918357
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          2,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.28198537047472466,
+        "right": 0.2620693568803196,
+        "down": 0.2511232132377844,
+        "left": 0.20482205940717138
+      },
+      "usage": {
+        "uncached_input_tokens": 1264,
+        "evaluated_input_tokens": 1264,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3764753750001546
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          2,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.264227108978262,
+        "right": 0.27498969278902885,
+        "down": 0.24204978708514852,
+        "left": 0.2187334111475606
+      },
+      "usage": {
+        "uncached_input_tokens": 1272,
+        "evaluated_input_tokens": 1272,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38200204199529253
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          2,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3746913662389716,
+        "down": 0.3398912469424444,
+        "left": 0.28541738681858403
+      },
+      "usage": {
+        "uncached_input_tokens": 946,
+        "evaluated_input_tokens": 946,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.29873770801350474
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          32
+        ],
+        [
+          0,
+          2,
+          0,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          2,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26870301509664923,
+        "right": 0.2688065621292501,
+        "down": 0.24819181770246085,
+        "left": 0.21429860507163992
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38445587499882095
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          16
+        ],
+        [
+          0,
+          2,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.2703575121631448,
+        "right": 0.27022501846922975,
+        "down": 0.24785561983220317,
+        "left": 0.2115618495354222
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37997733301017433
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          32
+        ],
+        [
+          0,
+          2,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          2,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26780347476502503,
+        "right": 0.2767723221840545,
+        "down": 0.23852758780561867,
+        "left": 0.21689661524530174
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38089025000226684
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          32
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3622733404345132,
+        "down": 0.33872669808579786,
+        "left": 0.2989999614796889
+      },
+      "usage": {
+        "uncached_input_tokens": 948,
+        "evaluated_input_tokens": 948,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.297680624993518
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          32
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2669561277772122,
+        "right": 0.2674407958747562,
+        "down": 0.25639986123159825,
+        "left": 0.20920321511643333
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37730966601520777
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          32
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          2,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.2803320577643432,
+        "right": 0.26892762856923763,
+        "down": 0.24446846353026003,
+        "left": 0.20627185013615906
+      },
+      "usage": {
+        "uncached_input_tokens": 1278,
+        "evaluated_input_tokens": 1278,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3867305409803521
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          4,
+          16,
+          32
+        ],
+        [
+          2,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.3573532731944433,
+        "down": 0.33440439637637126,
+        "left": 0.3082423304291855
+      },
+      "usage": {
+        "uncached_input_tokens": 948,
+        "evaluated_input_tokens": 948,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.29868891602382064
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          16,
+          32
+        ],
+        [
+          0,
+          2,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "down",
+      "probabilities": {
+        "down": 0.5094779104122594,
+        "left": 0.4905220895877407
+      },
+      "usage": {
+        "uncached_input_tokens": 626,
+        "evaluated_input_tokens": 626,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.1966695000010077
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          32
+        ],
+        [
+          0,
+          0,
+          16,
+          16
+        ],
+        [
+          2,
+          8,
+          8,
+          8
+        ],
+        [
+          2,
+          2,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2562110634232961,
+        "right": 0.27814100260532704,
+        "down": 0.2565357550450337,
+        "left": 0.2091121789263432
+      },
+      "usage": {
+        "uncached_input_tokens": 1278,
+        "evaluated_input_tokens": 1278,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3809848749951925
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          32
+        ],
+        [
+          0,
+          2,
+          8,
+          16
+        ],
+        [
+          2,
+          2,
+          4,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25838449251841183,
+        "right": 0.27866073025649446,
+        "down": 0.23708432729066192,
+        "left": 0.22587044993443176
+      },
+      "usage": {
+        "uncached_input_tokens": 1278,
+        "evaluated_input_tokens": 1278,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3745481249934528
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          2,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          32
+        ],
+        [
+          0,
+          2,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.37230658885623785,
+        "down": 0.33504605564575457,
+        "left": 0.2926473554980076
+      },
+      "usage": {
+        "uncached_input_tokens": 948,
+        "evaluated_input_tokens": 948,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.29782595799770206
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          2,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.36892986023649904,
+        "down": 0.3353376800203365,
+        "left": 0.2957324597431645
+      },
+      "usage": {
+        "uncached_input_tokens": 942,
+        "evaluated_input_tokens": 942,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2811809999984689
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          2,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25599962375611957,
+        "right": 0.28205865949210457,
+        "down": 0.23616155087506452,
+        "left": 0.22578016587671143
+      },
+      "usage": {
+        "uncached_input_tokens": 1268,
+        "evaluated_input_tokens": 1268,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38432845898205414
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          0,
+          4,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.35491369842158327,
+        "down": 0.3429387700427935,
+        "left": 0.3021475315356233
+      },
+      "usage": {
+        "uncached_input_tokens": 942,
+        "evaluated_input_tokens": 942,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.286056709010154
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          4,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          2,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2750859704881224,
+        "right": 0.27513634484546456,
+        "down": 0.23087502128367823,
+        "left": 0.21890266338273479
+      },
+      "usage": {
+        "uncached_input_tokens": 1268,
+        "evaluated_input_tokens": 1268,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.379921290994389
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          2,
+          4,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          2,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2637181830603508,
+        "right": 0.27181147128458183,
+        "down": 0.23704562344554328,
+        "left": 0.22742472220952414
+      },
+      "usage": {
+        "uncached_input_tokens": 1268,
+        "evaluated_input_tokens": 1268,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3801864159759134
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          4,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          2,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.24492781059123536,
+        "right": 0.2952787785462691,
+        "down": 0.22462168167556967,
+        "left": 0.23517172918692586
+      },
+      "usage": {
+        "uncached_input_tokens": 1268,
+        "evaluated_input_tokens": 1268,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38248087497777306
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          8,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          2,
+          4,
+          8
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.2920754733032208,
+        "right": 0.25195341730432713,
+        "down": 0.2627287063632801,
+        "left": 0.1932424030291719
+      },
+      "usage": {
+        "uncached_input_tokens": 1272,
+        "evaluated_input_tokens": 1272,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3829865000152495
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          16,
+          64
+        ],
+        [
+          0,
+          2,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.27811471254454206,
+        "right": 0.2677139650355896,
+        "down": 0.245157460137683,
+        "left": 0.2090138622821853
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37647879202268086
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          16,
+          64
+        ],
+        [
+          0,
+          4,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          2,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2656606314891557,
+        "right": 0.26568596806939193,
+        "down": 0.23419261742197073,
+        "left": 0.23446078301948176
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37703554099425673
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          16,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          2,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2612674317281984,
+        "right": 0.27166167069042607,
+        "down": 0.22769859020605496,
+        "left": 0.2393723073753205
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3755548750050366
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          16,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          4,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.3571306958647464,
+        "down": 0.3213521917409463,
+        "left": 0.32151711239430736
+      },
+      "usage": {
+        "uncached_input_tokens": 948,
+        "evaluated_input_tokens": 948,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.298604833020363
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3778739786309181,
+        "down": 0.3256458512452139,
+        "left": 0.29648017012386807
+      },
+      "usage": {
+        "uncached_input_tokens": 952,
+        "evaluated_input_tokens": 952,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2971440829860512
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          64
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          16
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2682996876524884,
+        "right": 0.26869811772901414,
+        "down": 0.2566680287741024,
+        "left": 0.20633416584439512
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.5006766660080757
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          64
+        ],
+        [
+          0,
+          2,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.37762285654473715,
+        "down": 0.31080425147282714,
+        "left": 0.31157289198243565
+      },
+      "usage": {
+        "uncached_input_tokens": 954,
+        "evaluated_input_tokens": 954,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2968860419932753
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          64
+        ],
+        [
+          0,
+          2,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2612765979038794,
+        "right": 0.28842459227785144,
+        "down": 0.23062988868884737,
+        "left": 0.2196689211294218
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3847054170037154
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          64
+        ],
+        [
+          0,
+          2,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.3794374493118874,
+        "down": 0.33155524077973375,
+        "left": 0.28900730990837886
+      },
+      "usage": {
+        "uncached_input_tokens": 948,
+        "evaluated_input_tokens": 948,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2982169160095509
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          64
+        ],
+        [
+          4,
+          2,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "down",
+      "probabilities": {
+        "down": 0.5313656385153934,
+        "left": 0.46863436148460647
+      },
+      "usage": {
+        "uncached_input_tokens": 626,
+        "evaluated_input_tokens": 626,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.21409033401869237
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          0,
+          64
+        ],
+        [
+          0,
+          0,
+          0,
+          32
+        ],
+        [
+          2,
+          4,
+          16,
+          8
+        ],
+        [
+          4,
+          2,
+          8,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2622582169293378,
+        "right": 0.2847877614817344,
+        "down": 0.2387838139348671,
+        "left": 0.2141702076540607
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3699905419780407
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          2,
+          64
+        ],
+        [
+          0,
+          0,
+          0,
+          32
+        ],
+        [
+          2,
+          4,
+          16,
+          8
+        ],
+        [
+          4,
+          2,
+          8,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2538520320992743,
+        "right": 0.28495007384864135,
+        "down": 0.2188458175110512,
+        "left": 0.24235207654103316
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38490941701456904
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          0,
+          4,
+          64
+        ],
+        [
+          0,
+          0,
+          0,
+          32
+        ],
+        [
+          2,
+          4,
+          16,
+          8
+        ],
+        [
+          4,
+          2,
+          8,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25876231477736517,
+        "right": 0.2687701727013726,
+        "down": 0.2585250261177749,
+        "left": 0.21394248640348737
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3751480829960201
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          4,
+          64
+        ],
+        [
+          0,
+          2,
+          0,
+          32
+        ],
+        [
+          2,
+          4,
+          16,
+          8
+        ],
+        [
+          4,
+          2,
+          8,
+          2
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.27485791675793986,
+        "right": 0.26466123452705387,
+        "down": 0.25359087088793425,
+        "left": 0.20688997782707208
+      },
+      "usage": {
+        "uncached_input_tokens": 1276,
+        "evaluated_input_tokens": 1276,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39036504199611954
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          4,
+          64
+        ],
+        [
+          4,
+          4,
+          16,
+          32
+        ],
+        [
+          0,
+          2,
+          8,
+          8
+        ],
+        [
+          2,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26093185876592917,
+        "right": 0.27915629104037304,
+        "down": 0.240908617706143,
+        "left": 0.21900323248755477
+      },
+      "usage": {
+        "uncached_input_tokens": 1280,
+        "evaluated_input_tokens": 1280,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3973765419796109
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          8,
+          64
+        ],
+        [
+          0,
+          8,
+          16,
+          32
+        ],
+        [
+          4,
+          0,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2563464173254308,
+        "right": 0.2780539609805716,
+        "down": 0.25647112785804255,
+        "left": 0.20912849383595503
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.37994083302328363
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          8,
+          64
+        ],
+        [
+          0,
+          8,
+          16,
+          32
+        ],
+        [
+          2,
+          4,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.36998586142430284,
+        "down": 0.329910595694819,
+        "left": 0.30010354288087815
+      },
+      "usage": {
+        "uncached_input_tokens": 954,
+        "evaluated_input_tokens": 954,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.29871125001227483
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          2,
+          8,
+          64
+        ],
+        [
+          0,
+          8,
+          16,
+          32
+        ],
+        [
+          2,
+          4,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2661628582023625,
+        "right": 0.2759485623176316,
+        "down": 0.23464654296488094,
+        "left": 0.22324203651512492
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.390837165992707
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          8,
+          64
+        ],
+        [
+          0,
+          8,
+          16,
+          32
+        ],
+        [
+          2,
+          4,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.36203760167412063,
+        "down": 0.3391324944836264,
+        "left": 0.298829903842253
+      },
+      "usage": {
+        "uncached_input_tokens": 954,
+        "evaluated_input_tokens": 954,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2887750419904478
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          4,
+          8,
+          64
+        ],
+        [
+          0,
+          8,
+          16,
+          32
+        ],
+        [
+          0,
+          4,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2608704477635075,
+        "right": 0.2793222474884956,
+        "down": 0.2407821022834756,
+        "left": 0.21902520246452128
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3903672090091277
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          8,
+          64
+        ],
+        [
+          0,
+          8,
+          16,
+          32
+        ],
+        [
+          0,
+          4,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26731418520249206,
+        "right": 0.26740903623679435,
+        "down": 0.2513216030482454,
+        "left": 0.21395517551246812
+      },
+      "usage": {
+        "uncached_input_tokens": 1292,
+        "evaluated_input_tokens": 1292,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3917114590003621
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          16,
+          64
+        ],
+        [
+          4,
+          8,
+          16,
+          32
+        ],
+        [
+          0,
+          4,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3649039516508018,
+        "down": 0.33905978707919004,
+        "left": 0.2960362612700082
+      },
+      "usage": {
+        "uncached_input_tokens": 960,
+        "evaluated_input_tokens": 960,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2899091659928672
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          0,
+          4,
+          0,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.3568136677260878,
+        "down": 0.34350778833530493,
+        "left": 0.29967854393860727
+      },
+      "usage": {
+        "uncached_input_tokens": 954,
+        "evaluated_input_tokens": 954,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2964554160134867
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2645176775247754,
+        "right": 0.27503230591351063,
+        "down": 0.25354325143555556,
+        "left": 0.20690676512615852
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38433345800149255
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          4,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25131810553006034,
+        "right": 0.2914151307722379,
+        "down": 0.22864929889906754,
+        "left": 0.22861746479863418
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3831880840007216
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          0,
+          0,
+          8,
+          16
+        ],
+        [
+          2,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2615489912892642,
+        "right": 0.2818439192642485,
+        "down": 0.23993989970973081,
+        "left": 0.2166671897367565
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38205924999783747
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          2,
+          0,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          4,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25109851101946346,
+        "right": 0.291646276590362,
+        "down": 0.2285140093046134,
+        "left": 0.22874120308556112
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3889538749936037
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          0,
+          2,
+          8,
+          16
+        ],
+        [
+          0,
+          2,
+          0,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2703465189422246,
+        "right": 0.27052241110325415,
+        "down": 0.24778834810817893,
+        "left": 0.2113427218463423
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39402179201715626
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          0,
+          2,
+          8,
+          16
+        ],
+        [
+          2,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25858885595709785,
+        "right": 0.27853825100208146,
+        "down": 0.23718180146395051,
+        "left": 0.22569109157687017
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3910557499912102
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          0,
+          2,
+          8,
+          16
+        ],
+        [
+          2,
+          0,
+          4,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2655616891882963,
+        "right": 0.2770251477982013,
+        "down": 0.25366670147959147,
+        "left": 0.20374646153391085
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.395849917025771
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          2,
+          2,
+          8,
+          16
+        ],
+        [
+          0,
+          2,
+          4,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2561013979179637,
+        "right": 0.285060000915167,
+        "down": 0.23511676692115976,
+        "left": 0.2237218342457095
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3901631660119165
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          0,
+          4,
+          8,
+          16
+        ],
+        [
+          2,
+          2,
+          4,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2536009627424141,
+        "right": 0.2849409445913969,
+        "down": 0.24252326306080607,
+        "left": 0.21893482960538294
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38432350000948645
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ],
+        [
+          0,
+          4,
+          4,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2559817694705254,
+        "right": 0.2852988111988421,
+        "down": 0.2349894599640335,
+        "left": 0.223729959366599
+      },
+      "usage": {
+        "uncached_input_tokens": 1286,
+        "evaluated_input_tokens": 1286,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.40087141701951623
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          32
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ],
+        [
+          2,
+          0,
+          8,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.26831581873921023,
+        "right": 0.25981915623307533,
+        "down": 0.2506972253205897,
+        "left": 0.22116779970712475
+      },
+      "usage": {
+        "uncached_input_tokens": 1292,
+        "evaluated_input_tokens": 1292,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3924156249850057
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          4,
+          8,
+          4,
+          32
+        ],
+        [
+          2,
+          4,
+          16,
+          16
+        ],
+        [
+          2,
+          0,
+          0,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2608549205599502,
+        "right": 0.2792997620163757,
+        "down": 0.2408853618477093,
+        "left": 0.21895995557596482
+      },
+      "usage": {
+        "uncached_input_tokens": 1294,
+        "evaluated_input_tokens": 1294,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39399249997222796
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          4,
+          8,
+          4,
+          32
+        ],
+        [
+          2,
+          2,
+          4,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2535877564199536,
+        "right": 0.2849146939396699,
+        "down": 0.23075383618132944,
+        "left": 0.230743713459047
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3897288750158623
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          4,
+          8,
+          4,
+          32
+        ],
+        [
+          0,
+          4,
+          4,
+          32
+        ],
+        [
+          0,
+          2,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.261837872305818,
+        "right": 0.28178358665368686,
+        "down": 0.2396676418343068,
+        "left": 0.21671089920618836
+      },
+      "usage": {
+        "uncached_input_tokens": 1286,
+        "evaluated_input_tokens": 1286,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39116175001254305
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          32,
+          64
+        ],
+        [
+          4,
+          8,
+          4,
+          32
+        ],
+        [
+          0,
+          0,
+          8,
+          32
+        ],
+        [
+          0,
+          2,
+          4,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3678280530094983,
+        "down": 0.33923027356544905,
+        "left": 0.2929416734250527
+      },
+      "usage": {
+        "uncached_input_tokens": 954,
+        "evaluated_input_tokens": 954,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2904349160089623
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          2,
+          32,
+          64
+        ],
+        [
+          0,
+          8,
+          4,
+          64
+        ],
+        [
+          0,
+          2,
+          8,
+          8
+        ],
+        [
+          0,
+          2,
+          4,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25362454230037,
+        "right": 0.2880703862647735,
+        "down": 0.24153064294281335,
+        "left": 0.21677442849204318
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38923404199886136
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          2,
+          32,
+          64
+        ],
+        [
+          0,
+          8,
+          4,
+          64
+        ],
+        [
+          2,
+          0,
+          2,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26173728859347356,
+        "right": 0.28193925571507844,
+        "down": 0.2395403918198817,
+        "left": 0.21678306387156634
+      },
+      "usage": {
+        "uncached_input_tokens": 1288,
+        "evaluated_input_tokens": 1288,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38441445800708607
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          2,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          4,
+          64
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.35692925409249365,
+        "down": 0.34320248185311514,
+        "left": 0.2998682640543912
+      },
+      "usage": {
+        "uncached_input_tokens": 958,
+        "evaluated_input_tokens": 958,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.28791970800375566
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          2,
+          32,
+          128
+        ],
+        [
+          2,
+          8,
+          8,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.3570476017059489,
+        "down": 0.3432855027176435,
+        "left": 0.2996668955764076
+      },
+      "usage": {
+        "uncached_input_tokens": 958,
+        "evaluated_input_tokens": 958,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.29858870900352485
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          2,
+          32,
+          128
+        ],
+        [
+          0,
+          2,
+          16,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26372251339555375,
+        "right": 0.28268644251957004,
+        "down": 0.2432372554301228,
+        "left": 0.21035378865475335
+      },
+      "usage": {
+        "uncached_input_tokens": 1294,
+        "evaluated_input_tokens": 1294,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3920289159868844
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          2,
+          32,
+          128
+        ],
+        [
+          0,
+          2,
+          2,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.261405741767508,
+        "right": 0.2820685915935079,
+        "down": 0.23989906740019584,
+        "left": 0.21662659923878827
+      },
+      "usage": {
+        "uncached_input_tokens": 1286,
+        "evaluated_input_tokens": 1286,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3813121250132099
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          2,
+          32,
+          128
+        ],
+        [
+          0,
+          0,
+          4,
+          32
+        ],
+        [
+          0,
+          2,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26913290560997305,
+        "right": 0.2792061511258766,
+        "down": 0.2371848200991589,
+        "left": 0.2144761231649915
+      },
+      "usage": {
+        "uncached_input_tokens": 1286,
+        "evaluated_input_tokens": 1286,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39343624998582527
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          2,
+          32,
+          128
+        ],
+        [
+          0,
+          2,
+          4,
+          32
+        ],
+        [
+          0,
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2680751317214376,
+        "right": 0.2769727662900716,
+        "down": 0.24878827010823604,
+        "left": 0.20616383188025475
+      },
+      "usage": {
+        "uncached_input_tokens": 1286,
+        "evaluated_input_tokens": 1286,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3896502919960767
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          2,
+          32,
+          128
+        ],
+        [
+          0,
+          2,
+          4,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3732569518240934,
+        "down": 0.3489018982252364,
+        "left": 0.27784114995067016
+      },
+      "usage": {
+        "uncached_input_tokens": 954,
+        "evaluated_input_tokens": 954,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.297305874992162
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          4,
+          32,
+          128
+        ],
+        [
+          0,
+          0,
+          4,
+          32
+        ],
+        [
+          0,
+          2,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.36507045115388226,
+        "down": 0.33879097373921657,
+        "left": 0.29613857510690117
+      },
+      "usage": {
+        "uncached_input_tokens": 954,
+        "evaluated_input_tokens": 954,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2920492090051994
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          4,
+          32,
+          128
+        ],
+        [
+          0,
+          2,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.28400398439192964,
+        "right": 0.272433545864687,
+        "down": 0.2476205625031197,
+        "left": 0.19594190724026359
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3909695000038482
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          4,
+          32,
+          128
+        ],
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.27218243033066875,
+        "right": 0.28416573431724534,
+        "down": 0.23475723384201175,
+        "left": 0.20889460151007413
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38508137498865835
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          4,
+          32,
+          128
+        ],
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          2,
+          0,
+          2,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26168849491768353,
+        "right": 0.2819082030100441,
+        "down": 0.23981479618292584,
+        "left": 0.21658850588934653
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.387352165998891
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          4,
+          32,
+          128
+        ],
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          4,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          4,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25657165143525484,
+        "right": 0.2883881912351267,
+        "down": 0.23343253864224464,
+        "left": 0.22160761868737378
+      },
+      "usage": {
+        "uncached_input_tokens": 1284,
+        "evaluated_input_tokens": 1284,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3881420830148272
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          4,
+          32,
+          128
+        ],
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          2,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3702320568901374,
+        "down": 0.32942689970066624,
+        "left": 0.30034104340919643
+      },
+      "usage": {
+        "uncached_input_tokens": 958,
+        "evaluated_input_tokens": 958,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2899119170033373
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          8,
+          32,
+          128
+        ],
+        [
+          2,
+          2,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.3760451286076397,
+        "down": 0.29953381530424616,
+        "left": 0.32442105608811417
+      },
+      "usage": {
+        "uncached_input_tokens": 964,
+        "evaluated_input_tokens": 964,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.30756174999987707
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          16,
+          32,
+          128
+        ],
+        [
+          2,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.37659844957588245,
+        "down": 0.3286674026873864,
+        "left": 0.29473414773673123
+      },
+      "usage": {
+        "uncached_input_tokens": 966,
+        "evaluated_input_tokens": 966,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2993176249729004
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          16,
+          32,
+          128
+        ],
+        [
+          0,
+          4,
+          8,
+          32
+        ],
+        [
+          0,
+          2,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "action": "left",
+      "probabilities": {
+        "down": 0.49951314941533476,
+        "left": 0.5004868505846654
+      },
+      "usage": {
+        "uncached_input_tokens": 638,
+        "evaluated_input_tokens": 638,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.1987449580046814
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          16,
+          32,
+          128
+        ],
+        [
+          4,
+          8,
+          32,
+          0
+        ],
+        [
+          2,
+          4,
+          16,
+          0
+        ],
+        [
+          0,
+          4,
+          0,
+          0
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.2784944876698886,
+        "right": 0.25913177796748355,
+        "down": 0.24812700486136768,
+        "left": 0.21424672950126017
+      },
+      "usage": {
+        "uncached_input_tokens": 1300,
+        "evaluated_input_tokens": 1300,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3951769169943873
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          16,
+          64,
+          128
+        ],
+        [
+          4,
+          8,
+          16,
+          0
+        ],
+        [
+          2,
+          8,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.2785305630732427,
+        "right": 0.2679578249855776,
+        "down": 0.2563952641155539,
+        "left": 0.19711634782562587
+      },
+      "usage": {
+        "uncached_input_tokens": 1296,
+        "evaluated_input_tokens": 1296,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.390706083009718
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          16,
+          64,
+          128
+        ],
+        [
+          4,
+          16,
+          16,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2657008680823212,
+        "right": 0.283154487495534,
+        "down": 0.24686247150311744,
+        "left": 0.20428217291902728
+      },
+      "usage": {
+        "uncached_input_tokens": 1300,
+        "evaluated_input_tokens": 1300,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3888497090083547
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          16,
+          64,
+          128
+        ],
+        [
+          0,
+          4,
+          32,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.264413487996933,
+        "right": 0.2914985258115744,
+        "down": 0.22191947960864075,
+        "left": 0.22216850658285178
+      },
+      "usage": {
+        "uncached_input_tokens": 1292,
+        "evaluated_input_tokens": 1292,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3919843749899883
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          16,
+          64,
+          128
+        ],
+        [
+          0,
+          4,
+          32,
+          2
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.36769313111761087,
+        "down": 0.33940673372615116,
+        "left": 0.2929001351562379
+      },
+      "usage": {
+        "uncached_input_tokens": 960,
+        "evaluated_input_tokens": 960,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2871390829968732
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          16,
+          64,
+          128
+        ],
+        [
+          2,
+          4,
+          32,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.37573751597665683,
+        "down": 0.3196424261862463,
+        "left": 0.3046200578370969
+      },
+      "usage": {
+        "uncached_input_tokens": 960,
+        "evaluated_input_tokens": 960,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2907552910037339
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          16,
+          64,
+          128
+        ],
+        [
+          2,
+          4,
+          32,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "action": "down",
+      "probabilities": {
+        "down": 0.510302515742903,
+        "left": 0.4896974842570971
+      },
+      "usage": {
+        "uncached_input_tokens": 634,
+        "evaluated_input_tokens": 634,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.21428795799147338
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          2,
+          128
+        ],
+        [
+          0,
+          0,
+          64,
+          2
+        ],
+        [
+          4,
+          16,
+          32,
+          4
+        ],
+        [
+          2,
+          4,
+          2,
+          2
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.33878482462232784,
+        "right": 0.36265632004964343,
+        "left": 0.2985588553280288
+      },
+      "usage": {
+        "uncached_input_tokens": 960,
+        "evaluated_input_tokens": 960,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.28782966602011584
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          2,
+          128
+        ],
+        [
+          0,
+          0,
+          64,
+          2
+        ],
+        [
+          4,
+          16,
+          32,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          4
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26503174154207576,
+        "right": 0.27378083956667587,
+        "down": 0.24628822749011883,
+        "left": 0.21489919140112945
+      },
+      "usage": {
+        "uncached_input_tokens": 1294,
+        "evaluated_input_tokens": 1294,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39188999999896623
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          128
+        ],
+        [
+          0,
+          0,
+          64,
+          2
+        ],
+        [
+          4,
+          16,
+          32,
+          4
+        ],
+        [
+          2,
+          0,
+          2,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26315294465514094,
+        "right": 0.27291958865356913,
+        "down": 0.24296945835579487,
+        "left": 0.2209580083354951
+      },
+      "usage": {
+        "uncached_input_tokens": 1292,
+        "evaluated_input_tokens": 1292,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3807888329902198
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          4,
+          128
+        ],
+        [
+          0,
+          0,
+          64,
+          2
+        ],
+        [
+          4,
+          16,
+          32,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.36208210468358076,
+        "down": 0.33395080461275006,
+        "left": 0.3039670907036692
+      },
+      "usage": {
+        "uncached_input_tokens": 960,
+        "evaluated_input_tokens": 960,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.27366441700723954
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          2,
+          4,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          0,
+          32,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ]
+      ],
+      "action": "down",
+      "probabilities": {
+        "down": 0.5183790332966298,
+        "left": 0.4816209667033701
+      },
+      "usage": {
+        "uncached_input_tokens": 634,
+        "evaluated_input_tokens": 634,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.21349087500129826
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          128
+        ],
+        [
+          0,
+          2,
+          64,
+          2
+        ],
+        [
+          4,
+          2,
+          32,
+          4
+        ],
+        [
+          2,
+          16,
+          4,
+          8
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.37255350235331275,
+        "down": 0.33505601999978624,
+        "left": 0.292390477646901
+      },
+      "usage": {
+        "uncached_input_tokens": 960,
+        "evaluated_input_tokens": 960,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2810120419890154
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          4,
+          4,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          0,
+          32,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2620484011833498,
+        "right": 0.2771681460106763,
+        "down": 0.24486703544393418,
+        "left": 0.2159164173620397
+      },
+      "usage": {
+        "uncached_input_tokens": 1292,
+        "evaluated_input_tokens": 1292,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.384609291999368
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          2,
+          32,
+          4
+        ],
+        [
+          0,
+          4,
+          4,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25256536717417316,
+        "right": 0.2726178102711804,
+        "down": 0.2319567304690776,
+        "left": 0.24286009208556875
+      },
+      "usage": {
+        "uncached_input_tokens": 1292,
+        "evaluated_input_tokens": 1292,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3848557500168681
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          2,
+          32,
+          4
+        ],
+        [
+          2,
+          0,
+          8,
+          8
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2558757087711656,
+        "right": 0.2755285406008678,
+        "down": 0.2453267284440852,
+        "left": 0.22326902218388142
+      },
+      "usage": {
+        "uncached_input_tokens": 1296,
+        "evaluated_input_tokens": 1296,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39764887499040924
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          2,
+          32,
+          4
+        ],
+        [
+          0,
+          0,
+          2,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25603366831837127,
+        "right": 0.2823502462235715,
+        "down": 0.24649677252949143,
+        "left": 0.21511931292856581
+      },
+      "usage": {
+        "uncached_input_tokens": 1300,
+        "evaluated_input_tokens": 1300,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39191066700732335
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          4,
+          32,
+          4
+        ],
+        [
+          2,
+          0,
+          2,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2673761501933149,
+        "right": 0.26740777079407496,
+        "down": 0.2484535662040344,
+        "left": 0.2167625128085758
+      },
+      "usage": {
+        "uncached_input_tokens": 1300,
+        "evaluated_input_tokens": 1300,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3962766250187997
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          4,
+          32,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.36446225016799866,
+        "down": 0.3248935517152888,
+        "left": 0.3106441981167125
+      },
+      "usage": {
+        "uncached_input_tokens": 966,
+        "evaluated_input_tokens": 966,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.31185779100633226
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          4,
+          8,
+          128
+        ],
+        [
+          0,
+          16,
+          64,
+          2
+        ],
+        [
+          4,
+          4,
+          32,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2635150119923417,
+        "right": 0.27166475512109306,
+        "down": 0.2370912601538564,
+        "left": 0.2277289727327088
+      },
+      "usage": {
+        "uncached_input_tokens": 1302,
+        "evaluated_input_tokens": 1302,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39462320899474435
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          8,
+          128
+        ],
+        [
+          0,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          8,
+          32,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.36388073533761933,
+        "down": 0.3181096810056799,
+        "left": 0.31800958365670084
+      },
+      "usage": {
+        "uncached_input_tokens": 970,
+        "evaluated_input_tokens": 970,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.30710599999292754
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          2,
+          16,
+          128
+        ],
+        [
+          0,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          8,
+          32,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.37749057595563545,
+        "down": 0.31119415755550417,
+        "left": 0.3113152664888603
+      },
+      "usage": {
+        "uncached_input_tokens": 972,
+        "evaluated_input_tokens": 972,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.30192262498894706
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          4,
+          16,
+          128
+        ],
+        [
+          0,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          0,
+          4,
+          16
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.27663874713691367,
+        "right": 0.265404816691471,
+        "down": 0.24155614067100684,
+        "left": 0.21640029550060852
+      },
+      "usage": {
+        "uncached_input_tokens": 1308,
+        "evaluated_input_tokens": 1308,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3929026659752708
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          128
+        ],
+        [
+          0,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          0,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2690356095490379,
+        "right": 0.26952713749342716,
+        "down": 0.25907962992029027,
+        "left": 0.2023576230372447
+      },
+      "usage": {
+        "uncached_input_tokens": 1308,
+        "evaluated_input_tokens": 1308,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39542679098667577
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          16,
+          128
+        ],
+        [
+          0,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          8,
+          32,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3700994752944183,
+        "down": 0.3297872670437245,
+        "left": 0.3001132576618572
+      },
+      "usage": {
+        "uncached_input_tokens": 972,
+        "evaluated_input_tokens": 972,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.30381699997815304
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          4,
+          16,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          8,
+          32,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.3721177509857177,
+        "down": 0.32111673411596986,
+        "left": 0.3067655148983125
+      },
+      "usage": {
+        "uncached_input_tokens": 972,
+        "evaluated_input_tokens": 972,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.30388929101172835
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          16,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          8,
+          32,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3704713867983415,
+        "down": 0.3442860974944358,
+        "left": 0.2852425157072227
+      },
+      "usage": {
+        "uncached_input_tokens": 972,
+        "evaluated_input_tokens": 972,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.296331082994584
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          8,
+          16,
+          128
+        ],
+        [
+          0,
+          16,
+          64,
+          2
+        ],
+        [
+          4,
+          8,
+          32,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.35684467782600465,
+        "down": 0.3435016054000988,
+        "left": 0.2996537167738965
+      },
+      "usage": {
+        "uncached_input_tokens": 972,
+        "evaluated_input_tokens": 972,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.30373849999159575
+      }
+    },
+    {
+      "board": [
+        [
+          8,
+          8,
+          16,
+          128
+        ],
+        [
+          0,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          8,
+          32,
+          4
+        ],
+        [
+          4,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.24834955444527823,
+        "right": 0.28840995332784514,
+        "down": 0.23738892790344765,
+        "left": 0.22585156432342895
+      },
+      "usage": {
+        "uncached_input_tokens": 1312,
+        "evaluated_input_tokens": 1312,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.400768584018806
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          16,
+          16,
+          128
+        ],
+        [
+          0,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          8,
+          32,
+          4
+        ],
+        [
+          4,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2643978743540888,
+        "right": 0.2646213731874759,
+        "down": 0.24576293100461194,
+        "left": 0.22521782145382338
+      },
+      "usage": {
+        "uncached_input_tokens": 1316,
+        "evaluated_input_tokens": 1316,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3875877080135979
+      }
+    },
+    {
+      "board": [
+        [
+          0,
+          2,
+          32,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          0,
+          8,
+          32,
+          4
+        ],
+        [
+          4,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.3617868968353337,
+        "down": 0.3339911714390979,
+        "left": 0.30422193172556833
+      },
+      "usage": {
+        "uncached_input_tokens": 972,
+        "evaluated_input_tokens": 972,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.29993604199262336
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          2,
+          32,
+          128
+        ],
+        [
+          4,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          8,
+          32,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.36418427449325935,
+        "down": 0.33068216387196864,
+        "left": 0.30513356163477207
+      },
+      "usage": {
+        "uncached_input_tokens": 972,
+        "evaluated_input_tokens": 972,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2984709999873303
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          32,
+          128
+        ],
+        [
+          4,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          8,
+          32,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "down",
+      "probabilities": {
+        "down": 0.5198274535086455,
+        "left": 0.4801725464913546
+      },
+      "usage": {
+        "uncached_input_tokens": 642,
+        "evaluated_input_tokens": 642,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.20904533300199546
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          32,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          4,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          2,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26167579707523797,
+        "right": 0.28854478556393287,
+        "down": 0.23021168399991765,
+        "left": 0.21956773336091148
+      },
+      "usage": {
+        "uncached_input_tokens": 1308,
+        "evaluated_input_tokens": 1308,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38161337497876957
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          32,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          4,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          4,
+          4,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2555624916068907,
+        "right": 0.2734129506899246,
+        "down": 0.235670623245868,
+        "left": 0.23535393445731675
+      },
+      "usage": {
+        "uncached_input_tokens": 1308,
+        "evaluated_input_tokens": 1308,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39377662498736754
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          32,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          4,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          2,
+          8,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2487497938751455,
+        "right": 0.2849554311309911,
+        "down": 0.2383054332751803,
+        "left": 0.22798934171868313
+      },
+      "usage": {
+        "uncached_input_tokens": 1308,
+        "evaluated_input_tokens": 1308,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39191983299679123
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          4,
+          32,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          4,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.5184676045933276,
+        "down": 0.48153239540667236
+      },
+      "usage": {
+        "uncached_input_tokens": 642,
+        "evaluated_input_tokens": 642,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.21447033298318274
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          4,
+          32,
+          128
+        ],
+        [
+          4,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26367627924566217,
+        "right": 0.28237393163757973,
+        "down": 0.23258656184085105,
+        "left": 0.22136322727590702
+      },
+      "usage": {
+        "uncached_input_tokens": 1310,
+        "evaluated_input_tokens": 1310,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 2,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.38548754100338556
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          32,
+          128
+        ],
+        [
+          4,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.5368360431596988,
+        "down": 0.46316395684030126
+      },
+      "usage": {
+        "uncached_input_tokens": 642,
+        "evaluated_input_tokens": 642,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.21224108297610655
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          32,
+          128
+        ],
+        [
+          4,
+          16,
+          64,
+          2
+        ],
+        [
+          4,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.5182004586278498,
+        "down": 0.48179954137215025
+      },
+      "usage": {
+        "uncached_input_tokens": 642,
+        "evaluated_input_tokens": 642,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.20729833299992606
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          32,
+          128
+        ],
+        [
+          8,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          8,
+          32,
+          4
+        ],
+        [
+          4,
+          4,
+          8,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.544555420215295,
+        "left": 0.45544457978470493
+      },
+      "usage": {
+        "uncached_input_tokens": 642,
+        "evaluated_input_tokens": 642,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.20711049999226816
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          32,
+          128
+        ],
+        [
+          8,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          8,
+          8,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2660441214378632,
+        "right": 0.2661415675468178,
+        "down": 0.24868376713575976,
+        "left": 0.21913054387955927
+      },
+      "usage": {
+        "uncached_input_tokens": 1316,
+        "evaluated_input_tokens": 1316,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39534058401477523
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          32,
+          128
+        ],
+        [
+          8,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          2,
+          16,
+          16
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25580098008164437,
+        "right": 0.2824430522489595,
+        "down": 0.22552322750042977,
+        "left": 0.23623274016896637
+      },
+      "usage": {
+        "uncached_input_tokens": 1316,
+        "evaluated_input_tokens": 1316,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3969494999910239
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          32,
+          128
+        ],
+        [
+          8,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          8,
+          32,
+          4
+        ],
+        [
+          2,
+          0,
+          4,
+          32
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.26613506047026136,
+        "right": 0.26599601102580395,
+        "down": 0.25619404732008516,
+        "left": 0.21167488118384947
+      },
+      "usage": {
+        "uncached_input_tokens": 1308,
+        "evaluated_input_tokens": 1308,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.3935281670128461
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          32,
+          128
+        ],
+        [
+          8,
+          16,
+          64,
+          2
+        ],
+        [
+          4,
+          8,
+          32,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          32
+        ]
+      ],
+      "action": "down",
+      "probabilities": {
+        "down": 0.510292983044983,
+        "left": 0.4897070169550169
+      },
+      "usage": {
+        "uncached_input_tokens": 642,
+        "evaluated_input_tokens": 642,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.219844709004974
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          32,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          8,
+          8,
+          32,
+          4
+        ],
+        [
+          4,
+          2,
+          4,
+          32
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.25316708684769296,
+        "right": 0.28197992251732507,
+        "down": 0.23226069427969512,
+        "left": 0.23259229635528691
+      },
+      "usage": {
+        "uncached_input_tokens": 1312,
+        "evaluated_input_tokens": 1312,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 4,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.4004057499987539
+      }
+    },
+    {
+      "board": [
+        [
+          2,
+          8,
+          32,
+          128
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          2,
+          16,
+          32,
+          4
+        ],
+        [
+          4,
+          2,
+          4,
+          32
+        ]
+      ],
+      "action": "up",
+      "probabilities": {
+        "up": 0.508770996521365,
+        "down": 0.491229003478635
+      },
+      "usage": {
+        "uncached_input_tokens": 646,
+        "evaluated_input_tokens": 646,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.20643066600314341
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          8,
+          32,
+          128
+        ],
+        [
+          2,
+          32,
+          64,
+          2
+        ],
+        [
+          4,
+          2,
+          32,
+          4
+        ],
+        [
+          2,
+          0,
+          4,
+          32
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.35966855569357314,
+        "down": 0.3343584068652765,
+        "left": 0.3059730374411503
+      },
+      "usage": {
+        "uncached_input_tokens": 972,
+        "evaluated_input_tokens": 972,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 3,
+        "candidate_batches": [
+          3
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.30776304099708796
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          8,
+          32,
+          128
+        ],
+        [
+          2,
+          32,
+          64,
+          2
+        ],
+        [
+          4,
+          2,
+          32,
+          4
+        ],
+        [
+          2,
+          2,
+          4,
+          32
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.2562876318126087,
+        "right": 0.28534892046550947,
+        "down": 0.23488508534941036,
+        "left": 0.2234783623724714
+      },
+      "usage": {
+        "uncached_input_tokens": 1308,
+        "evaluated_input_tokens": 1308,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39286699998774566
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          8,
+          32,
+          128
+        ],
+        [
+          2,
+          32,
+          64,
+          2
+        ],
+        [
+          4,
+          2,
+          32,
+          4
+        ],
+        [
+          2,
+          4,
+          4,
+          32
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "right": 0.5370006035753052,
+        "left": 0.46299939642469484
+      },
+      "usage": {
+        "uncached_input_tokens": 642,
+        "evaluated_input_tokens": 642,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 2,
+        "candidate_batches": [
+          2
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.2177575420064386
+      }
+    },
+    {
+      "board": [
+        [
+          4,
+          8,
+          32,
+          128
+        ],
+        [
+          2,
+          32,
+          64,
+          2
+        ],
+        [
+          4,
+          2,
+          32,
+          4
+        ],
+        [
+          2,
+          2,
+          8,
+          32
+        ]
+      ],
+      "action": "right",
+      "probabilities": {
+        "up": 0.26086129632600086,
+        "right": 0.27931298150135125,
+        "down": 0.24077687024957778,
+        "left": 0.21904885192307016
+      },
+      "usage": {
+        "uncached_input_tokens": 1308,
+        "evaluated_input_tokens": 1308,
+        "reused_input_tokens": 0,
+        "content_prefix_tokens": 0,
+        "question_prefix_tokens": {
+          "move": 0
+        },
+        "candidates": 4,
+        "candidate_batches": [
+          4
+        ],
+        "padding_tokens": 0,
+        "generated_tokens": 0,
+        "elapsed_seconds": 0.39297812498989515
+      }
+    }
+  ]
+}

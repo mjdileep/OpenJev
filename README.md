@@ -153,6 +153,18 @@ To choose a different Qwen3.5 vision model, add `vision=True` to its MLX or Tran
 configuration above. Image scoring currently supports Qwen3.5 through those two
 backends; GGUF is text-only.
 
+## Watch it play 2048
+
+After installation, run:
+
+```bash
+python examples/game_2048/server.py
+```
+
+Open **http://127.0.0.1:8765** and click **Play**. The local 0.8B model chooses
+each move, with live action scores and decision timings. You can pause, step,
+record the screen, or export a run. [Game demo details](examples/game_2048/README.md).
+
 ## Check the cache benefit
 
 ```bash
