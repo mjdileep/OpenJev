@@ -10,6 +10,30 @@ As checked on 2026-09-21, Qwen3.5-0.8B was the newest sub-billion Qwen instructi
 model found. Qwen3-0.6B and Qwen2.5-0.5B are smaller, older alternatives. A model
 must be supported by the selected inference library. Remote model code is disabled.
 
+## Automatic device selection and CPU
+
+`backend="auto"` and `device="auto"` are the defaults. OpenJev selects MLX on
+Apple Silicon and Transformers elsewhere. Transformers uses CUDA when available,
+otherwise CPU. Standard weights are the default on CPU and CUDA; no bitsandbytes
+installation is needed.
+
+```bash
+pip install -e '.[transformers]'
+openjev run examples/triage.json
+
+# Force CPU, even on a machine with a GPU:
+openjev run examples/triage.json --device cpu
+```
+
+On Apple Silicon, install `.[mlx,vision]` for automatic MLX selection. Install
+`.[transformers]` as well if you want to force CPU on that Mac. The older
+`.[cuda]` installation name remains an alias for `.[transformers]`.
+
+In Python, `DecisionEngine.from_pretrained(device="cpu")` forces the CPU path.
+An explicit `device="cuda"` still fails if CUDA is unavailable, and
+`backend="mlx"` requires Apple Silicon; use the automatic backend to switch
+between hardware types. Model files must match the selected backend.
+
 ## GGUF on CUDA
 
 Requires the CUDA toolkit, compatible driver, and a C++ build toolchain:
@@ -39,17 +63,20 @@ request fails if the installed library lacks that backend. `auto` permits a CPU 
 After installing a CUDA-enabled PyTorch build:
 
 ```bash
-pip install -e '.[cuda,cuda-4bit]'
+pip install -e '.[transformers,cuda-4bit]'
 openjev run examples/triage.json --backend transformers --device cuda --load-in-4bit
 openjev run examples/image.json --backend transformers --device cuda --load-in-4bit \
   --image examples/images/red-square.png
 ```
 
-This uses bitsandbytes NF4. The Colab default is Qwen3.5-0.8B with NF4 weights,
+This uses bitsandbytes NF4. Qwen3.5-0.8B with NF4 weights was
 validated for batched text and image scoring and the single-question path on a
 Tesla T4. Earlier runs also used default weights; see [validation](validation.md)
 for the scope of each run.
 Other GPU/model combinations require their own validation.
+The Colab notebook enables NF4 only when CUDA is available and `USE_4BIT=True`;
+on CPU it automatically uses standard weights. In the library API,
+`load_in_4bit=True` explicitly requests CUDA quantization and requires CUDA.
 
 ## Custom GGUF
 
@@ -94,6 +121,8 @@ Face model and `tokenizer_revision="COMMIT_SHA"` to pin a separate tokenizer.
 
 ## Runtime controls
 
+- `--device auto`: select an available device automatically (the default).
+- `--device cpu`: force CPU execution through the automatic or Transformers backend.
 - `--n-ctx 8192`: context budget, including image tokens; excess input is rejected.
 - `--batch-size 8`: maximum candidates per batch on MLX and Transformers. Lower
   it to reduce branch-cache and activation memory. GGUF remains sequential.

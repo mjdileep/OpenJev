@@ -15,7 +15,9 @@ dependencies = []
 mlx = ["mlx-lm>=0.31.3,<0.32", "huggingface-hub>=0.34,<2"]
 vision = ["mlx-vlm>=0.7.1,<0.8", "pillow>=10,<13"]
 gguf = ["llama-cpp-python>=0.3.35,<0.4", "transformers>=5.0,<6", "huggingface-hub>=0.34,<2"]
-cuda = ["torch>=2.8,<3", "transformers>=5.13,<6", "pillow>=10,<13", "torchvision>=0.23,<1"]
+transformers = ["torch>=2.8,<3", "transformers>=5.13,<6", "pillow>=10,<13", "torchvision>=0.23,<1"]
+# Retain the original installation name for existing users and notebooks.
+cuda = ["openjev[transformers]"]
 cuda-4bit = ["bitsandbytes>=0.48,<1", "accelerate>=1.0,<2"]
 dev = ["pytest>=8,<10", "ruff>=0.12,<1", "build>=1.2,<2"]
 

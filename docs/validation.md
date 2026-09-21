@@ -3,6 +3,19 @@
 Recorded on 2026-09-21. Local checks used an Apple Silicon Mac with Python
 3.12.10; the Colab checks below used a Tesla T4.
 
+## Automatic CPU fallback
+
+The notebook's Python cells were executed locally without CUDA using
+`Qwen/Qwen3.5-0.8B`, PyTorch 2.14.0, and Transformers 5.17.0. With
+`device="auto"` and the notebook's `USE_4BIT=True` setting unchanged, loading
+automatically selected CPU and standard FP32 weights. The check used cached
+model files and skipped the Colab installation cell.
+
+Text selected `billing`, the image selected `red`, and the single-question
+example used one batch with no separate prefix preparation. The benchmark,
+JSON export, and cleanup also completed. GPU availability and bitsandbytes
+are not required for this inference path.
+
 ## Shared-prefix batching on MLX
 
 Current implementation, Qwen3.5-0.8B 4-bit, seven candidates across three questions.

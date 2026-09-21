@@ -11,6 +11,7 @@ python -m build
 # Download the chosen default model first, or allow its first test to download it.
 OPENJEV_TEST_BACKEND=mlx pytest -m integration
 OPENJEV_TEST_BACKEND=gguf OPENJEV_TEST_DEVICE=cpu pytest -m integration
+OPENJEV_TEST_BACKEND=transformers OPENJEV_TEST_DEVICE=cpu pytest -m integration
 OPENJEV_TEST_BACKEND=transformers OPENJEV_TEST_DEVICE=cuda pytest -m integration
 
 openjev benchmark examples/triage.json --backend mlx --iterations 5

@@ -8,15 +8,16 @@ in batches. A single question goes straight to scoring, without a separate cache
 prefill. No generated text, JSON parsing, or API key is needed.
 
 The local default is **Qwen3.5-0.8B**, with 4-bit weights for MLX and GGUF.
-The Colab notebook also uses **Qwen3.5-0.8B with 4-bit weights**. You can swap in
-another supported Hugging Face model.
+Device selection is automatic: **MLX on Apple Silicon, CUDA when available,
+otherwise CPU**. You can swap in another supported Hugging Face model.
 
 ## Try it in Colab
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Quickstart.ipynb)
 
-Choose a GPU under **Runtime → Change runtime type**, then **Run all**. The
-notebook installs everything and includes text decisions, an image example,
+Choose **Run all**. The notebook defaults to Qwen3.5-0.8B. A GPU is optional;
+select one under **Runtime → Change runtime type** for faster inference.
+The notebook installs everything and includes text decisions, an image example,
 and a cache benchmark. No API key is needed.
 See the [validation results](docs/validation.md), including the current Colab T4 run.
 
@@ -35,18 +36,19 @@ source .venv/bin/activate
 
 ```bash
 pip install -e '.[mlx,vision]'
-openjev run examples/triage.json --backend mlx
+openjev run examples/triage.json
 ```
 
-**NVIDIA GPU with CUDA:**
-
-Install a [CUDA-enabled PyTorch build](https://pytorch.org/get-started/locally/), then:
+**CPU or NVIDIA GPU:**
 
 ```bash
-pip install -e '.[cuda]'
-openjev run examples/triage.json --backend transformers --device cuda
+pip install -e '.[transformers]'
+openjev run examples/triage.json
 ```
 
+No GPU is required. If your PyTorch installation supports CUDA and a GPU is
+available, OpenJev uses it automatically; otherwise it uses CPU. For CUDA setup,
+see the [PyTorch installer](https://pytorch.org/get-started/locally/).
 The model downloads on first use. Later runs use the local cache.
 
 ## Python example
@@ -67,14 +69,15 @@ questions = {
     ),
 }
 
-with DecisionEngine.from_pretrained() as engine:
+with DecisionEngine.from_pretrained(device="auto") as engine:
     result = engine.decide(state, questions)
     print(result.answers["team"]["choice"])
     print(result.answers["team"]["probabilities"])
     print(result.answers["urgent"]["noul"])
 ```
 
-The automatic backend uses MLX on Apple Silicon and Transformers elsewhere.
+`device="auto"` is already the default, so you can omit it. To force CPU, install
+the CPU/NVIDIA dependencies above and set `device="cpu"`.
 `Noul` asks a yes/no question; `Choice` picks from your options. Import `Score`
 from `openjev` for ratings such as
 `Score("How frustrated?", ["Calm", "Frustrated", "Very angry"])`.
@@ -99,18 +102,15 @@ with DecisionEngine.from_pretrained(
     print(result.answers["team"]["choice"])
 ```
 
-**NVIDIA GPU — switch to a larger model with 4-bit weights:**
-
-Install `pip install -e '.[cuda,cuda-4bit]'` first, alongside CUDA-enabled PyTorch.
+**Hugging Face model — automatically use CUDA or CPU:**
 
 ```python
 from openjev import DecisionEngine
 
 with DecisionEngine.from_pretrained(
-    "Qwen/Qwen3.5-4B",  # Use Qwen/Qwen3.5-0.8B to keep the smaller model.
+    "Qwen/Qwen3.5-0.8B",  # Change to Qwen/Qwen3.5-4B to try a larger model.
     backend="transformers",
-    device="cuda",
-    load_in_4bit=True,
+    device="auto",
 ) as engine:
     result = engine.decide(state, questions)
     print(result.answers["team"]["choice"])
@@ -118,7 +118,8 @@ with DecisionEngine.from_pretrained(
 
 Change the repository name to another instruction model supported by your backend.
 MLX needs an MLX-converted model; Transformers uses the original Hugging Face model.
-For CPU, use the smaller model with `device="cpu"` and `load_in_4bit=False`.
+Standard weights work on CPU and CUDA; 4-bit CUDA loading is an optional setting
+covered in [backend setup](docs/backends.md#cuda-4-bit-safetensors).
 
 Keep the model loaded while calling `engine.decide(...)` for more inputs. The
 `with` block releases it when finished. Caching and batching work automatically;
@@ -134,7 +135,7 @@ uses the default 0.8B model and selects MLX on Apple Silicon or Transformers els
 ```python
 from openjev import Choice, DecisionEngine
 
-with DecisionEngine.from_pretrained(vision=True) as engine:
+with DecisionEngine.from_pretrained(device="auto", vision=True) as engine:
     result = engine.decide(
         "Inspect the supplied image.",
         {
@@ -148,14 +149,14 @@ with DecisionEngine.from_pretrained(vision=True) as engine:
     print(result.answers["color"]["choice"])
 ```
 
-To choose a different Qwen3.5 vision model, add `vision=True` to its MLX or CUDA
+To choose a different Qwen3.5 vision model, add `vision=True` to its MLX or Transformers
 configuration above. Image scoring currently supports Qwen3.5 through those two
 backends; GGUF is text-only.
 
 ## Check the cache benefit
 
 ```bash
-openjev benchmark examples/triage.json --backend mlx
+openjev benchmark examples/triage.json
 ```
 
 This compares shared caching plus batching with independent full-prompt scoring.

@@ -18,7 +18,7 @@ class TorchSnapshot:
 
 
 class TransformersBackend:
-    """CUDA safetensors backend, including Qwen images and optional bitsandbytes 4-bit.
+    """CPU/CUDA safetensors backend, with Qwen images and optional CUDA 4-bit loading.
 
     Candidate batches branch the complete hybrid cache. Padding is allowed only
     on terminal scoring branches, whose mutated caches are never reused.
@@ -35,7 +35,9 @@ class TransformersBackend:
                 AutoTokenizer,
             )
         except ImportError as exc:
-            raise ImportError("Install this backend with pip install 'openjev[cuda]'") from exc
+            raise ImportError(
+                "Install this backend with pip install 'openjev[transformers]'"
+            ) from exc
         self.torch, self.config = torch, config
         device = config.device
         if device == "auto":
