@@ -3,11 +3,19 @@
 Turn text and images into typed decisions using a small local model.
 
 OpenJev scores each possible answer using the model's probability of the token
-`1`. It shares the content cache across questions and each question's cache across
+`yes`. It shares the content cache across questions and each question's cache across
 answers. No generated text, JSON parsing, or API key is needed.
 
 The default is **Qwen3.5-0.8B**, with 4-bit weights for MLX and GGUF. You can swap
 in another supported Hugging Face model.
+
+## Try it in Colab
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mjdileep/OpenJev/blob/main/notebooks/OpenJev_Quickstart.ipynb)
+
+Choose a GPU under **Runtime → Change runtime type**, then **Run all**. The
+notebook installs everything and includes text decisions, an image example,
+optional 4-bit weights, and a cache benchmark. No API key is needed.
 
 ## Get started
 
@@ -107,7 +115,7 @@ openjev benchmark examples/triage.json --backend mlx
 
 This compares cached and uncached runs and reports latency, reused tokens, and
 score differences. [Local validation results](docs/validation.md) include a
-seven-candidate MLX run at approximately **191 ms cached vs 334 ms uncached**.
+seven-candidate MLX run at approximately **185 ms cached vs 305 ms uncached**.
 Results depend on the model, hardware, and input.
 
 Scores are **not calibrated probabilities of correctness**. Choice distributions
