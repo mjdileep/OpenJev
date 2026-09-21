@@ -29,8 +29,22 @@ python examples/game_2048/server.py --model Qwen/Qwen3.5-0.8B --backend transfor
 ```
 
 Use `--revision COMMIT` to pin weights, `--batch-size 2` to reduce batch memory,
-or `--port 8766` if the default port is occupied. Custom formats requiring their
-own model runtime, including the Hadamard Bonsai pack, need a separate integration.
+or `--port 8766` if the default port is occupied.
+
+To try **Bonsai 2 27B on Apple Silicon**, use its supported MLX pack:
+
+```bash
+python examples/game_2048/server.py \
+  --model prism-ml/Ternary-Bonsai-2-27B-mlx-2bit \
+  --revision 3f926b415992eaa2ae9dd7b573706494d6bbf787 \
+  --backend mlx --batch-size 1
+```
+
+This is substantially larger and slower than 0.8B. The download is about 8.60 GB,
+and the text model uses approximately 7.68 GB before inference allocations.
+OpenJev includes the required Hadamard loader. Use this MLX repository on a Mac;
+the GGUF files need a separate custom llama.cpp runtime.
+[Bonsai setup details](../../docs/backends.md#bonsai-2-27b-on-apple-silicon).
 
 ## What the model sees
 

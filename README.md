@@ -120,6 +120,7 @@ Change the repository name to another instruction model supported by your backen
 MLX needs an MLX-converted model; Transformers uses the original Hugging Face model.
 Standard weights work on CPU and CUDA; 4-bit CUDA loading is an optional setting
 covered in [backend setup](docs/backends.md#cuda-4-bit-safetensors).
+For Bonsai 2 27B on a Mac, see the [MLX example](docs/backends.md#bonsai-2-27b-on-apple-silicon).
 
 Keep the model loaded while calling `engine.decide(...)` for more inputs. The
 `with` block releases it when finished. Caching and batching work automatically;
