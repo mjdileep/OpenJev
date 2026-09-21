@@ -1,0 +1,15 @@
+{
+  "state": "Evaluate the supplied image.",
+  "questions": {
+    "main_color": {
+      "type": "choice",
+      "instructions": "Which color covers most of the image?",
+      "criteria": {"red": "Red", "blue": "Blue", "green": "Green", "other": "Another color"}
+    },
+    "has_text": {
+      "type": "noul",
+      "instructions": "Does the image contain visible writing?",
+      "criteria": {"true": "Readable letters or words are visible", "false": "No writing is visible"}
+    }
+  }
+}

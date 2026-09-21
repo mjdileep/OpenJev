@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "openjev"
+version = "0.1.0"
+description = "Local typed decisions from candidate-token scoring and shared prefix caches"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = []
+
+[project.optional-dependencies]
+mlx = ["mlx-lm>=0.31.3,<0.32", "huggingface-hub>=0.34,<2"]
+vision = ["mlx-vlm>=0.7.1,<0.8", "pillow>=10,<13"]
+gguf = ["llama-cpp-python>=0.3.35,<0.4", "transformers>=5.0,<6", "huggingface-hub>=0.34,<2"]
+cuda = ["torch>=2.8,<3", "transformers>=5.13,<6", "pillow>=10,<13", "torchvision>=0.23,<1"]
+cuda-4bit = ["bitsandbytes>=0.48,<1", "accelerate>=1.0,<2"]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1", "build>=1.2,<2"]
+
+[project.scripts]
+openjev = "openjev.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/openjev"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = ["integration: requires real model weights and an inference backend"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
