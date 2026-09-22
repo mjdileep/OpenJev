@@ -165,6 +165,28 @@ Open **http://127.0.0.1:8765** and click **Play**. The local 0.8B model chooses
 each move, with live action scores and decision timings. You can pause, step,
 record the screen, or export a run. [Game demo details](examples/game_2048/README.md).
 
+### Also try Laya
+
+[Laya](https://huggingface.co/convaiinnovations/laya) is a 421M decision model.
+This separate example uses Laya's native choice head to score all legal moves in
+one forward pass. The OpenJev example above uses Qwen's next-token `yes` scores.
+
+From this repository, with your virtual environment active:
+
+```bash
+pip install -e '.[laya]'
+python examples/laya_2048/server.py
+```
+
+Open **http://127.0.0.1:8766** and click **Play**. The pinned model downloads on
+first use. Device selection is automatic: CUDA, Apple Silicon MPS, then CPU.
+Add `--device cpu` to run explicitly on CPU.
+
+One recorded M3 Pro game reached a **256 tile**, scored **2,792** over **238 moves**,
+and averaged **119 ms per decision**, with zero generated tokens. It did not reach
+2048. This is one unseeded game, not a controlled comparison with Qwen.
+[Laya setup, Python example, and recorded results](examples/laya_2048/README.md).
+
 ## Check the cache benefit
 
 ```bash

@@ -41,6 +41,16 @@ isolation, image positions, ordering, and single-pass scoring against independen
 FP32 evaluation. No model weights or GPU are required. CI runs these in a separate
 CPU PyTorch job; locally they are skipped if PyTorch/Transformers are absent.
 
+The optional Laya example has a recorded-game replay test that runs without
+model dependencies. To check native inference, forced moves, and input truncation
+with the real checkpoint:
+
+```bash
+pip install -e '.[laya,dev]'
+OPENJEV_TEST_LAYA=1 pytest tests/test_laya_2048.py
+# Add OPENJEV_TEST_DEVICE=cpu to test CPU explicitly.
+```
+
 The engine serializes calls to one loaded model. Caches are ephemeral and are
 not persisted to disk or shared across requests. Inputs exceeding `--n-ctx` are
 rejected rather than truncated. The default context budget is 8,192 tokens,

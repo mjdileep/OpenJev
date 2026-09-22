@@ -4,6 +4,9 @@ A live local demo using Gabriele Cirulli's original, MIT-licensed 2048 game logi
 Qwen3.5-0.8B chooses each swipe through OpenJev. The page shows the board, action
 scores, decision time, batch size, and generated token count.
 
+For a separate run using Laya's native decision head, see the
+[Laya 2048 example](../laya_2048/README.md).
+
 From the OpenJev repository, after the normal installation:
 
 ```bash

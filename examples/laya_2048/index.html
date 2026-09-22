@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Laya plays 2048 · local experiment</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+  <header><a class="brand" href="https://huggingface.co/convaiinnovations/laya">◈ Laya</a><span class="tag">LOCAL EXPERIMENT · LAYA</span><span id="status" role="status">Loading model…</span></header>
+  <section class="intro"><div><div class="eyebrow">A LOCAL MODEL AT PLAY</div><h1>One board. Four choices.</h1><p>Watch Laya choose a move with its native decision head.</p></div><div class="model"><span id="model">convaiinnovations/laya</span><small id="hardware">Running locally on this Mac</small></div></section>
+  <section class="arena">
+    <div class="game-panel">
+      <div class="game-heading"><h2>2048</h2><div class="score-box"><small>SCORE</small><strong id="score">0</strong></div><div class="score-box"><small>BEST TILE</small><strong id="best-tile">2</strong></div></div>
+      <div id="board" class="board" aria-label="2048 board"></div>
+      <div class="controls"><button id="play" class="primary" disabled>Play</button><button id="step" disabled>One move</button><button id="reset">New game</button></div>
+      <div class="pace"><label for="pace">Pause between moves</label><select id="pace"><option value="100">0.1 s</option><option value="500" selected>0.5 s</option><option value="1500">1.5 s</option></select><span id="moves">0 moves</span></div>
+    </div>
+    <aside>
+      <div class="decision-heading"><div><div class="eyebrow">MODEL'S DECISION</div><h2 id="action">Ready to play</h2></div><span id="thinking" class="indicator"></span></div>
+      <div id="actions" class="actions"></div>
+      <p class="fine">Laya’s choice scores over legal moves. These scores have not been calibrated for 2048 or winning. Bars describe the move just played.</p>
+      <div class="metrics"><div><small>LAST DECISION</small><strong id="latency">—</strong></div><div><small>AVERAGE</small><strong id="average">—</strong></div><div><small>FORWARD PASSES</small><strong id="batch">—</strong></div><div><small>GENERATED TOKENS</small><strong id="tokens">0</strong></div></div>
+      <div class="history-heading"><span>DECISION TIME</span><span id="memory">Live inference</span></div><div id="chart" class="chart" aria-label="Decision latency history"></div>
+      <div class="flow"><span>Board state</span><b>→</b><span>Score moves</span><b>→</b><span>Play move</span></div>
+    </aside>
+  </section>
+  <footer><span>Original game by <a href="https://github.com/gabrielecirulli/2048">Gabriele Cirulli</a> · MIT · Legal moves and one-step previews; no search solver.</span><button id="export" class="text-button" disabled>Export run ↓</button></footer>
+  <details><summary>Inspect the latest decision</summary><pre id="inspect">Play a move to see its input, scores, and token usage.</pre></details>
+  <div id="error" role="alert" hidden></div>
+</main>
+<script src="/vendor/grid.js"></script><script src="/vendor/tile.js"></script><script src="/vendor/game_manager.js"></script><script src="/app.js"></script>
+</body></html>

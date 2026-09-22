@@ -60,9 +60,10 @@ async function step() {
     $("action").textContent=`${arrows[data.action]} Swipe ${data.action}${data.forced?" · forced":""}`;
     scores(data.probabilities,data.action);$("latency").textContent=duration(data.usage.elapsed_seconds);
     $("average").textContent=duration(history.reduce((s,d)=>s+d.usage.elapsed_seconds,0)/history.length);
-    $("batch").textContent=data.usage.candidate_batches.join(" + ");$("tokens").textContent=data.usage.generated_tokens;
+    $("batch").textContent=data.usage.forward_passes??data.usage.candidate_batches.join(" + ");$("tokens").textContent=data.usage.generated_tokens;
     $("moves").textContent=`${moves} move${moves===1?"":"s"}`;
     if(data.peak_memory_gb)$("memory").textContent=`${data.peak_memory_gb.toFixed(2)} GB peak MLX`;
+    if(data.mps_allocated_gb)$("memory").textContent=`${data.mps_allocated_gb.toFixed(2)} GB MPS allocated`;
     $("inspect").textContent=JSON.stringify(data,null,2);$("export").disabled=false;
     const recent=history.slice(-24), max=Math.max(...recent.map(x=>x.usage.elapsed_seconds));$("chart").replaceChildren();
     for(const item of recent){const bar=document.createElement("div");bar.style.height=`${Math.max(4,item.usage.elapsed_seconds/max*100)}%`;bar.title=duration(item.usage.elapsed_seconds);$("chart").append(bar);}
@@ -73,7 +74,7 @@ async function step() {
 $("play").onclick=()=>{running=!running;clearTimeout(timer);controls();if(running)step();else $("status").textContent=pending?"Pausing after this move…":"Paused";};
 $("step").onclick=step;
 $("reset").onclick=()=>{running=false;clearTimeout(timer);history=[];moves=0;$("error").hidden=true;$("tokens").textContent="0";$("memory").textContent="Live inference";game.restart();scores();$("action").textContent="Ready to play";$("moves").textContent="0 moves";for(const id of ["latency","average","batch"])$(id).textContent="—";$("chart").replaceChildren();$("inspect").textContent="Play a move to inspect it.";$("export").disabled=true;$("status").textContent=ready?"Ready":"Loading model…";controls();};
-$("export").onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({metadata,history},null,2)],{type:"application/json"}));const a=document.createElement("a");a.href=url;a.download="openjev-2048-run.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$("export").onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({metadata,history},null,2)],{type:"application/json"}));const a=document.createElement("a");a.href=url;a.download=metadata.export_filename||"openjev-2048-run.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 scores();
 async function poll() {
   try {const response=await fetch("/api/status");metadata=await response.json();if(metadata.error)throw Error(metadata.error);
