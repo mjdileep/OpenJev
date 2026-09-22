@@ -215,6 +215,7 @@ This project is an independent experiment, not an official Jev implementation.
 Tested on **Apple M3 Pro, 18 GiB**, using identical **Qwen3.5-0.8B 4-bit** weights
 and the same MLX runtime. Each method played 10 games with seeds 42–51.
 Thinking was disabled; neither method generated answer tokens.
+Rerun after the tokenization and cache-branching optimizations in `da2eb27`.
 
 OpenJev used **adaptive caching**: generic instructions are computed once at model
 load, then each board and shared game question are cached before independently
@@ -224,18 +225,19 @@ prompt and full-vocabulary `P(yes)` scoring; the API default remains `shared`.
 
 OpenJev scored higher on **8/10 seeds**. Latency was measured on **24 identical
 boards, three repetitions each**, including per-request planning, prefill and
-cache copying. Model loading, warm-up and the one-time **54.4 ms** instruction
+cache copying. Model loading, warm-up and the one-time **68.6 ms** instruction
 cache are excluded. All **4,151 game moves and 144 timed decisions** were verified.
 Ten seeds are a small game experiment, not general decision-accuracy evidence.
 
-Compared with the earlier shared-prefix run, OpenJev's median latency fell
-**39.8%**, while its mean game score fell from **3,402.4 to 2,789.2**.
-Changes in quantized execution can alter scores and game trajectories.
+OpenJev's median latency was **20.4% lower than SemIf's** in this run.
+Both methods reproduced every action and probability from the previous adaptive
+run. OpenJev's median was essentially unchanged: **136.64 → 136.56 ms**.
+Historical timings come from separate runs.
 
-[Full report](reports/2048/2026-09-22-adaptive/report.md) ·
-[Per-game scores](reports/2048/2026-09-22-adaptive/games.csv) ·
+[Full report](reports/2048/2026-09-22-runtime-optimized/report.md) ·
+[Per-game scores](reports/2048/2026-09-22-runtime-optimized/games.csv) ·
 [Recorded replay and raw evidence](reports/2048/README.md) ·
-[Comparison with the previous run](reports/2048/2026-09-22-adaptive/previous-comparison.md) ·
+[Comparison with the previous run](reports/2048/2026-09-22-runtime-optimized/previous-comparison.md) ·
 [Run the benchmark](benchmarks/semif_2048/README.md)
 
 | Metric | OpenJev | SemIf |
@@ -243,5 +245,5 @@ Changes in quantized execution can alter scores and game trajectories.
 | Average score | **2,789.2** | 1,816.8 |
 | Median score | **2,526** | 1,522 |
 | Highest tile | **512** | 256 |
-| Median decision latency | **136.6 ms** | 162.4 ms |
+| Median decision latency | **136.6 ms** | 171.5 ms |
 | Games reaching 2048 | 0/10 | 0/10 |

@@ -5,7 +5,8 @@ on Apple Silicon. This benchmark uses upstream SemIf's native MLX scorer.
 It does not translate SemIf's method into OpenJev or generate answer text.
 
 [Published results, raw evidence, and offline replays](../../reports/2048/README.md)
-feature the adaptive-cache run, with earlier runs retained as historical evidence.
+feature a fresh adaptive-cache run with batched tokenization and faster MLX cache
+branching. Earlier runs remain available as historical evidence.
 
 ## Setup
 
