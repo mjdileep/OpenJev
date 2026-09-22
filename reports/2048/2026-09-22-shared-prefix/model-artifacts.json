@@ -1,0 +1,41 @@
+{
+  "source": "mlx-community/Qwen3.5-0.8B-4bit",
+  "revision": "da28692b5f139cb0ec58a356b437486b7dac7462",
+  "backend": "mlx",
+  "mlx_version": "0.32.2",
+  "mlx_lm_version": "0.32.0",
+  "transformers_version": "5.17.0",
+  "mlx_lm_source": {
+    "url": "https://github.com/ml-explore/mlx-lm.git",
+    "vcs_info": {
+      "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+      "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a",
+      "vcs": "git"
+    }
+  },
+  "allocator_cache_limit_bytes": 268435456,
+  "dtype": [
+    "mlx.core.bfloat16",
+    "mlx.core.float32",
+    "mlx.core.uint32"
+  ],
+  "quantization": {
+    "group_size": 64,
+    "bits": 4,
+    "mode": "affine"
+  },
+  "source_artifact_sha256": {
+    "chat_template.jinja": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80",
+    "config.json": "ba7770da23eae5ebd6827571f086e331956b33f4442a9e876fb4aa10969a6772",
+    "model.safetensors": "f5a0d9dd3efa73510542a8023d610ff26be2b4b020d181cfc4bedaa1fcc5dd9e",
+    "model.safetensors.index.json": "6e48f2fa5d6f033a6d77bf833abfa9698ca24d1715ecea4c67447bcfaee44650",
+    "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "processor_config.json": "14932921ca485d458a04dafd8069fbb0a4505622a48208d19ed247115801385b",
+    "tokenizer.json": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4",
+    "tokenizer_config.json": "e98f1901ac6f0adff67b1d540bfa0c36ac1a0cf59eb72ed78146ef89aafa1182",
+    "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+    "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+  },
+  "identical_loaded_parameters": true,
+  "parameter_arrays_checked": 694
+}

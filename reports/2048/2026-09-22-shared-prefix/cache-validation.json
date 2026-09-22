@@ -1,0 +1,6 @@
+{
+  "status": "verified",
+  "boards": 24,
+  "check": "saved prefix unchanged after batched candidate scoring",
+  "included_in_timing": false
+}

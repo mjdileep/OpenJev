@@ -30,6 +30,8 @@ def main():
     )
     parser.add_argument("--device", default="auto")
     parser.add_argument("--batch-size", type=int, default=4)
+    parser.add_argument("--prompt-style", choices=["full", "short"], default="full")
+    parser.add_argument("--score-mode", choices=["full", "binary"], default="full")
     parser.add_argument("--port", type=int, default=8765)
     args = parser.parse_args()
     revision = args.revision
@@ -37,6 +39,8 @@ def main():
         "ready": False,
         "model": args.model or "Qwen3.5-0.8B",
         "revision": revision,
+        "prompt_style": args.prompt_style,
+        "score_mode": args.score_mode,
         "hardware": f"{platform.system()} · {platform.machine()}",
         "error": None,
     }
@@ -57,6 +61,8 @@ def main():
                 device=args.device,
                 batch_size=args.batch_size,
                 n_ctx=4096,
+                prompt_style=args.prompt_style,
+                score_mode=args.score_mode,
             )
             if engine.backend.name == "mlx":
                 engine.backend.mx.set_cache_limit(512 * 1024**2)

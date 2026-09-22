@@ -1,0 +1,94 @@
+{
+  "previous_run": ".cache/semif-benchmark/runs/2048-10-pairs-20260922",
+  "current_run": ".cache/semif-benchmark/runs/2048-shared-prefix-batch-10-pairs-20260922",
+  "previous_openjev_config": {
+    "batch_size": 4,
+    "score_mode": "full",
+    "cache_strategy": "single"
+  },
+  "current_openjev_config": {
+    "batch_size": 4,
+    "score_mode": "full",
+    "prompt_style": "full",
+    "execution": "shared-prefix",
+    "cache_strategy": "shared_prefix_batch",
+    "verify_parent_cache_during_warmup": true,
+    "optimize_head": true,
+    "decoder_layers": 24
+  },
+  "semif_same_actions": true,
+  "semif_same_native_probabilities": true,
+  "openjev_median_latency_reduction_fraction": 0.33322689855691023,
+  "openjev_mean_score_change": 462.4,
+  "openjev_score_change_bootstrap_95_interval": [
+    -650.8,
+    1673.2
+  ],
+  "pairs": [
+    {
+      "seed": 42,
+      "openjev_previous": 4144,
+      "openjev_current": 6508,
+      "semif_current": 1616
+    },
+    {
+      "seed": 43,
+      "openjev_previous": 3896,
+      "openjev_current": 4348,
+      "semif_current": 1064
+    },
+    {
+      "seed": 44,
+      "openjev_previous": 5416,
+      "openjev_current": 3144,
+      "semif_current": 1336
+    },
+    {
+      "seed": 45,
+      "openjev_previous": 3188,
+      "openjev_current": 2904,
+      "semif_current": 1228
+    },
+    {
+      "seed": 46,
+      "openjev_previous": 3556,
+      "openjev_current": 2308,
+      "semif_current": 1464
+    },
+    {
+      "seed": 47,
+      "openjev_previous": 916,
+      "openjev_current": 3576,
+      "semif_current": 2628
+    },
+    {
+      "seed": 48,
+      "openjev_previous": 936,
+      "openjev_current": 4916,
+      "semif_current": 1356
+    },
+    {
+      "seed": 49,
+      "openjev_previous": 1672,
+      "openjev_current": 1708,
+      "semif_current": 2564
+    },
+    {
+      "seed": 50,
+      "openjev_previous": 2008,
+      "openjev_current": 1816,
+      "semif_current": 3332
+    },
+    {
+      "seed": 51,
+      "openjev_previous": 3668,
+      "openjev_current": 2796,
+      "semif_current": 1580
+    }
+  ],
+  "fixed_board_comparison": {
+    "openjev_choice_agreement": 0.9583333333333334,
+    "openjev_max_probability_delta": 0.025746583355985897,
+    "semif_same_probabilities": true
+  }
+}

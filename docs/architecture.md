@@ -24,6 +24,19 @@ A confident-looking normalized choice can arise even if all candidates have very
 low support; inspect `candidates`, not just the normalized distribution. Equal
 scores use the first option as a deterministic tie break.
 
+## Prompt styles
+
+`prompt_style="full"` is the original default. `prompt_style="short"` removes the
+long system instruction and uses a user message containing the state, complete
+question, candidate, and a short yes/no judging instruction. Explicit negative
+criteria for `Noul` are retained. State and candidate data still escape embedded
+chat delimiters. Both styles disable thinking and use all decoder layers.
+
+Combine `prompt_style="short"` with `score_mode="binary"` to try the short-instruction,
+existing yes/no head variant. Neither setting trains a model or fits a new head.
+Prompt style and scoring mode are separate options, and responses record both.
+Changing them can change choices; evaluate the combination on your own task.
+
 ## What is trimmed or optimized
 
 - No autoregressive generation, reasoning stream, JSON generation, or sampling.
@@ -34,10 +47,10 @@ scores use the first option as a deterministic tie break.
 - MLX text-only loading excludes the vision tower and MTP components through
   the inference library's supported model loader. Image-capable loading retains
   the vision tower. GGUF text loading does not download or load an `mmproj` file.
-- Supported MLX Qwen and Transformers Qwen3.5 models skip the vocabulary projection during prefix
+- Supported MLX Qwen/LFM2 and Transformers Qwen3.5 models skip the vocabulary projection during prefix
   prefill and project only the final position when scoring a candidate.
 - `--score-mode binary` additionally projects just the two verdict rows on
-  supported MLX Qwen models. `--no-head-optimization` runs the reference head.
+  supported MLX Qwen/LFM2 models. `--no-head-optimization` runs the reference head.
 - Other Transformers models use the smallest supported logits tail covering the
   last real token in each batch row.
 
@@ -46,7 +59,8 @@ part of interpreting the input, including when the answer is one token. The
 full vocabulary projection is necessary for exact `P("yes")` normalization. With
 tied embeddings, the embedding matrix is still needed to read arbitrary input
 even in binary mode. Quantization can alter scores and should be evaluated on
-your task; removing more model capacity requires retraining or distillation.
+your task. Removing more model capacity changes behavior and needs separate
+quality evaluation; the production scorer keeps every decoder layer.
 
 
 ## Implementation details
@@ -67,10 +81,10 @@ but adds model calls; it can help with long question instructions. Both strategi
 automatically use direct full-prompt scoring for a single question. `use_cache=False`
 is the diagnostic baseline: independent full prompts, one candidate at a time.
 
-Transformers and supported MLX Qwen decoders sort candidates by length and right-pad
+Transformers and supported MLX Qwen/LFM2 decoders sort candidates by length and right-pad
 each batch, then gather the last real token from every row. The padded states are
 discarded. Branches copy or merge the complete cache, including Qwen3.5's recurrent
-states, attention KV tensors, and multimodal position offsets. This reuses prefix
+states, LFM2's convolution states, attention KV tensors, and multimodal position offsets. This reuses prefix
 computation but duplicates cache memory; it is not a paged, zero-copy allocator.
 Image features enter the shared prefix once. A single-question image batch repeats
 the image inputs for its full candidate prompts.

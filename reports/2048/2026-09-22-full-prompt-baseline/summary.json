@@ -1,0 +1,1473 @@
+{
+  "games": [
+    {
+      "method": "openjev",
+      "seed": 42,
+      "initial_board": [
+        [
+          2,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          4,
+          8,
+          128,
+          256
+        ],
+        [
+          8,
+          16,
+          64,
+          128
+        ],
+        [
+          4,
+          8,
+          16,
+          64
+        ],
+        [
+          2,
+          4,
+          8,
+          32
+        ]
+      ],
+      "score": 4144,
+      "moves": 342,
+      "max_tile": 256,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 342,
+        "mean_ms": 319.6535690017698,
+        "median_ms": 348.23454200522974,
+        "p95_ms": 384.18654102133587
+      },
+      "decision_seconds": 109.32152059860528,
+      "wall_seconds": 109.42296633298974
+    },
+    {
+      "method": "semif",
+      "seed": 42,
+      "initial_board": [
+        [
+          2,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          4,
+          64,
+          128
+        ],
+        [
+          16,
+          2,
+          8,
+          64
+        ],
+        [
+          4,
+          32,
+          4,
+          16
+        ],
+        [
+          2,
+          4,
+          2,
+          8
+        ]
+      ],
+      "score": 1616,
+      "moves": 162,
+      "max_tile": 128,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 162,
+        "mean_ms": 158.23941821729,
+        "median_ms": 162.87179150094744,
+        "p95_ms": 175.17508400487714
+      },
+      "decision_seconds": 25.63478575120098,
+      "wall_seconds": 25.664939708978636
+    },
+    {
+      "method": "semif",
+      "seed": 43,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          16,
+          32,
+          2,
+          64
+        ],
+        [
+          8,
+          16,
+          4,
+          32
+        ],
+        [
+          4,
+          8,
+          64,
+          16
+        ],
+        [
+          2,
+          4,
+          8,
+          2
+        ]
+      ],
+      "score": 1064,
+      "moves": 130,
+      "max_tile": 64,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 130,
+        "mean_ms": 159.70640288455448,
+        "median_ms": 163.18077051255386,
+        "p95_ms": 174.49037500773557
+      },
+      "decision_seconds": 20.761832374992082,
+      "wall_seconds": 20.78723729099147
+    },
+    {
+      "method": "openjev",
+      "seed": 43,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          8,
+          128,
+          256
+        ],
+        [
+          8,
+          16,
+          32,
+          128
+        ],
+        [
+          4,
+          8,
+          16,
+          64
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ]
+      ],
+      "score": 3896,
+      "moves": 324,
+      "max_tile": 256,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 324,
+        "mean_ms": 319.61294686136824,
+        "median_ms": 347.0209994993638,
+        "p95_ms": 396.2546660040971
+      },
+      "decision_seconds": 103.5545947830833,
+      "wall_seconds": 103.6509838749771
+    },
+    {
+      "method": "openjev",
+      "seed": 44,
+      "initial_board": [
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          8,
+          32,
+          64
+        ],
+        [
+          8,
+          16,
+          64,
+          512
+        ],
+        [
+          4,
+          8,
+          32,
+          64
+        ],
+        [
+          2,
+          4,
+          8,
+          32
+        ]
+      ],
+      "score": 5416,
+      "moves": 392,
+      "max_tile": 512,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 392,
+        "mean_ms": 310.7670186122681,
+        "median_ms": 338.9219999953639,
+        "p95_ms": 380.81233398406766
+      },
+      "decision_seconds": 121.8206712960091,
+      "wall_seconds": 121.91230695799459
+    },
+    {
+      "method": "semif",
+      "seed": 44,
+      "initial_board": [
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          8,
+          64,
+          128
+        ],
+        [
+          8,
+          4,
+          16,
+          32
+        ],
+        [
+          4,
+          2,
+          8,
+          16
+        ],
+        [
+          2,
+          4,
+          2,
+          8
+        ]
+      ],
+      "score": 1336,
+      "moves": 139,
+      "max_tile": 128,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 139,
+        "mean_ms": 160.47775147318598,
+        "median_ms": 164.20020800433122,
+        "p95_ms": 177.32883300050162
+      },
+      "decision_seconds": 22.306407454772852,
+      "wall_seconds": 22.336298999987775
+    },
+    {
+      "method": "semif",
+      "seed": 45,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          16,
+          32,
+          128
+        ],
+        [
+          4,
+          8,
+          16,
+          32
+        ],
+        [
+          2,
+          16,
+          8,
+          16
+        ],
+        [
+          8,
+          2,
+          4,
+          8
+        ]
+      ],
+      "score": 1228,
+      "moves": 134,
+      "max_tile": 128,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 134,
+        "mean_ms": 162.98062000692988,
+        "median_ms": 163.75533348764293,
+        "p95_ms": 188.85787500767037
+      },
+      "decision_seconds": 21.839403080928605,
+      "wall_seconds": 21.86955475001014
+    },
+    {
+      "method": "openjev",
+      "seed": 45,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          4,
+          32,
+          128,
+          256
+        ],
+        [
+          2,
+          16,
+          32,
+          2
+        ],
+        [
+          4,
+          2,
+          16,
+          64
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ]
+      ],
+      "score": 3188,
+      "moves": 262,
+      "max_tile": 256,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 262,
+        "mean_ms": 317.32486274056953,
+        "median_ms": 347.8440210019471,
+        "p95_ms": 378.5959589877166
+      },
+      "decision_seconds": 83.13911403802922,
+      "wall_seconds": 83.20980958401924
+    },
+    {
+      "method": "openjev",
+      "seed": 46,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          32,
+          2,
+          256
+        ],
+        [
+          8,
+          16,
+          64,
+          128
+        ],
+        [
+          4,
+          8,
+          32,
+          64
+        ],
+        [
+          2,
+          4,
+          8,
+          32
+        ]
+      ],
+      "score": 3556,
+      "moves": 296,
+      "max_tile": 256,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 296,
+        "mean_ms": 330.3768009428569,
+        "median_ms": 357.0300209976267,
+        "p95_ms": 402.1931249881163
+      },
+      "decision_seconds": 97.79153307908564,
+      "wall_seconds": 97.88983487500809
+    },
+    {
+      "method": "semif",
+      "seed": 46,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          32,
+          4,
+          128
+        ],
+        [
+          8,
+          4,
+          32,
+          64
+        ],
+        [
+          4,
+          2,
+          8,
+          32
+        ],
+        [
+          2,
+          4,
+          2,
+          8
+        ]
+      ],
+      "score": 1464,
+      "moves": 148,
+      "max_tile": 128,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 148,
+        "mean_ms": 169.77016472948299,
+        "median_ms": 171.58160399412736,
+        "p95_ms": 197.7780419983901
+      },
+      "decision_seconds": 25.125984379963484,
+      "wall_seconds": 25.168678208021447
+    },
+    {
+      "method": "semif",
+      "seed": 47,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          8,
+          32,
+          16,
+          256
+        ],
+        [
+          4,
+          16,
+          32,
+          64
+        ],
+        [
+          2,
+          8,
+          16,
+          32
+        ],
+        [
+          4,
+          2,
+          8,
+          16
+        ]
+      ],
+      "score": 2628,
+      "moves": 227,
+      "max_tile": 256,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 227,
+        "mean_ms": 174.80818997009038,
+        "median_ms": 177.45095799909905,
+        "p95_ms": 197.90337499580346
+      },
+      "decision_seconds": 39.681459123210516,
+      "wall_seconds": 39.74895591699169
+    },
+    {
+      "method": "openjev",
+      "seed": 47,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          4,
+          2,
+          16,
+          32
+        ],
+        [
+          2,
+          16,
+          64,
+          2
+        ],
+        [
+          4,
+          32,
+          16,
+          32
+        ],
+        [
+          2,
+          16,
+          8,
+          16
+        ]
+      ],
+      "score": 916,
+      "moves": 117,
+      "max_tile": 64,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 1,
+      "latency": {
+        "n": 116,
+        "mean_ms": 311.27419432044104,
+        "median_ms": 338.74806250969414,
+        "p95_ms": 377.5918329774868
+      },
+      "decision_seconds": 36.10780654117116,
+      "wall_seconds": 36.13858700002311
+    },
+    {
+      "method": "openjev",
+      "seed": 48,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          4,
+          16,
+          64
+        ],
+        [
+          8,
+          16,
+          64,
+          4
+        ],
+        [
+          4,
+          8,
+          32,
+          2
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ]
+      ],
+      "score": 936,
+      "moves": 115,
+      "max_tile": 64,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 115,
+        "mean_ms": 323.8849627203308,
+        "median_ms": 356.9861249998212,
+        "p95_ms": 391.95679198019207
+      },
+      "decision_seconds": 37.24677071283804,
+      "wall_seconds": 37.29498212499311
+    },
+    {
+      "method": "semif",
+      "seed": 48,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          32,
+          2,
+          128
+        ],
+        [
+          16,
+          2,
+          16,
+          64
+        ],
+        [
+          4,
+          8,
+          2,
+          16
+        ],
+        [
+          2,
+          4,
+          8,
+          2
+        ]
+      ],
+      "score": 1356,
+      "moves": 141,
+      "max_tile": 128,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 141,
+        "mean_ms": 172.69694919124944,
+        "median_ms": 173.5815420106519,
+        "p95_ms": 192.4192089936696
+      },
+      "decision_seconds": 24.350269835966174,
+      "wall_seconds": 24.388023249979597
+    },
+    {
+      "method": "semif",
+      "seed": 49,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          4,
+          8,
+          16,
+          256
+        ],
+        [
+          8,
+          16,
+          32,
+          64
+        ],
+        [
+          4,
+          8,
+          16,
+          32
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ]
+      ],
+      "score": 2564,
+      "moves": 227,
+      "max_tile": 256,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 227,
+        "mean_ms": 173.91991339219294,
+        "median_ms": 177.72833397611976,
+        "p95_ms": 196.99758299975656
+      },
+      "decision_seconds": 39.4798203400278,
+      "wall_seconds": 39.54269804098294
+    },
+    {
+      "method": "openjev",
+      "seed": 49,
+      "initial_board": [
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          4,
+          2,
+          8,
+          32
+        ],
+        [
+          2,
+          32,
+          64,
+          128
+        ],
+        [
+          16,
+          8,
+          32,
+          2
+        ],
+        [
+          2,
+          4,
+          16,
+          32
+        ]
+      ],
+      "score": 1672,
+      "moves": 174,
+      "max_tile": 128,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 174,
+        "mean_ms": 330.14421673520366,
+        "median_ms": 368.62981248123106,
+        "p95_ms": 396.734333015047
+      },
+      "decision_seconds": 57.44509371192544,
+      "wall_seconds": 57.518500334001146
+    },
+    {
+      "method": "openjev",
+      "seed": 50,
+      "initial_board": [
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          32,
+          128,
+          4
+        ],
+        [
+          8,
+          16,
+          32,
+          128
+        ],
+        [
+          4,
+          8,
+          16,
+          2
+        ],
+        [
+          2,
+          4,
+          8,
+          32
+        ]
+      ],
+      "score": 2008,
+      "moves": 194,
+      "max_tile": 128,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 194,
+        "mean_ms": 336.3809679594664,
+        "median_ms": 367.2829165006988,
+        "p95_ms": 400.5252909846604
+      },
+      "decision_seconds": 65.25790778413648,
+      "wall_seconds": 65.33438549999846
+    },
+    {
+      "method": "semif",
+      "seed": 50,
+      "initial_board": [
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          16,
+          32,
+          64,
+          256
+        ],
+        [
+          2,
+          16,
+          32,
+          128
+        ],
+        [
+          4,
+          2,
+          8,
+          32
+        ],
+        [
+          2,
+          4,
+          2,
+          16
+        ]
+      ],
+      "score": 3332,
+      "moves": 281,
+      "max_tile": 256,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 281,
+        "mean_ms": 175.56832693287276,
+        "median_ms": 179.96462501469068,
+        "p95_ms": 198.71870800852776
+      },
+      "decision_seconds": 49.33469986813725,
+      "wall_seconds": 49.432151042012265
+    },
+    {
+      "method": "semif",
+      "seed": 51,
+      "initial_board": [
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          32,
+          128,
+          2
+        ],
+        [
+          8,
+          16,
+          32,
+          64
+        ],
+        [
+          4,
+          8,
+          16,
+          32
+        ],
+        [
+          2,
+          4,
+          8,
+          16
+        ]
+      ],
+      "score": 1580,
+      "moves": 162,
+      "max_tile": 128,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 0,
+      "latency": {
+        "n": 162,
+        "mean_ms": 171.1854822725276,
+        "median_ms": 176.11185400164686,
+        "p95_ms": 190.75716601219028
+      },
+      "decision_seconds": 27.732048128149472,
+      "wall_seconds": 27.78149300001678
+    },
+    {
+      "method": "openjev",
+      "seed": 51,
+      "initial_board": [
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "final_board": [
+        [
+          2,
+          64,
+          16,
+          2
+        ],
+        [
+          8,
+          16,
+          64,
+          256
+        ],
+        [
+          4,
+          8,
+          32,
+          128
+        ],
+        [
+          2,
+          4,
+          16,
+          64
+        ]
+      ],
+      "score": 3668,
+      "moves": 300,
+      "max_tile": 256,
+      "won": false,
+      "game_over": true,
+      "capped": false,
+      "forced_moves": 1,
+      "latency": {
+        "n": 299,
+        "mean_ms": 327.0571782908957,
+        "median_ms": 365.99058299907483,
+        "p95_ms": 399.5784579892643
+      },
+      "decision_seconds": 97.79009630897781,
+      "wall_seconds": 97.89736516698031
+    }
+  ],
+  "by_method": {
+    "openjev": {
+      "games": 10,
+      "mean_score": 2940,
+      "median_score": 3372.0,
+      "best_tile": 512,
+      "mean_moves": 251.6,
+      "wins_2048": 0,
+      "capped": 0,
+      "choice_latency_mean_ms": 321.98691680742303
+    },
+    "semif": {
+      "games": 10,
+      "mean_score": 1816.8,
+      "median_score": 1522.0,
+      "best_tile": 256,
+      "mean_moves": 175.1,
+      "wins_2048": 0,
+      "capped": 0,
+      "choice_latency_mean_ms": 169.18715610356895
+    }
+  },
+  "matched_boards": {
+    "openjev": {
+      "n": 72,
+      "mean_ms": 316.7025180025828,
+      "median_ms": 340.1910005195532,
+      "p95_ms": 380.9985000116285,
+      "mean_input_tokens": 1116.5
+    },
+    "semif": {
+      "n": 72,
+      "mean_ms": 161.58992358396063,
+      "median_ms": 163.10743750364054,
+      "p95_ms": 183.58058299054392,
+      "mean_input_tokens": 436.5833333333333
+    },
+    "same_move_fraction": 0.25
+  },
+  "paired_score_difference_openjev_minus_semif": {
+    "mean": 1123.2,
+    "bootstrap_95_percent_interval": [
+      -65.6,
+      2287.2
+    ],
+    "openjev_higher": 6,
+    "semif_higher": 4,
+    "ties": 0
+  }
+}

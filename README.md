@@ -205,3 +205,32 @@ This project is an independent experiment, not an official Jev implementation.
 
 [How scoring and trimming work](docs/architecture.md) ·
 [Development and tests](docs/development.md) · [MIT license](LICENSE)
+
+## OpenJev vs SemIf: 2048 results
+
+Tested on **Apple M3 Pro, 18 GiB**, using identical **Qwen3.5-0.8B 4-bit** weights
+and the same MLX runtime. Each method played 10 games with seeds 42–51.
+Thinking was disabled; neither method generated answer tokens.
+
+OpenJev used the experimental **shared-prefix** path: compute instructions +
+context once, then score all legal-move candidates in one batch from independent
+cache copies. It keeps the full prompt and full-vocabulary `P(yes)` scoring.
+This experiment is enabled in the benchmark; the normal API defaults are unchanged.
+
+| Metric | OpenJev | SemIf |
+| --- | ---: | ---: |
+| Average score | **3,402.4** | 1,816.8 |
+| Median score | **3,024** | 1,522 |
+| Highest tile | **512** | 256 |
+| Median decision latency | 226.8 ms | **162.9 ms** |
+| Games reaching 2048 | 0/10 | 0/10 |
+
+OpenJev scored higher on **8/10 seeds**. Latency was measured on **24 identical
+boards, three repetitions each**, including cache creation and copying, excluding
+model loading and warm-up. All **4,561 game moves and 144 timed decisions** were
+verified. Ten seeds are a small gameplay benchmark, not general decision-accuracy evidence.
+
+[Full report](reports/2048/2026-09-22-shared-prefix/report.md) ·
+[Per-game scores](reports/2048/2026-09-22-shared-prefix/games.csv) ·
+[Recorded replay and raw evidence](reports/2048/README.md) ·
+[Run the benchmark](benchmarks/semif_2048/README.md)

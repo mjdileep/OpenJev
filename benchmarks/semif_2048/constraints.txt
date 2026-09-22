@@ -1,0 +1,7 @@
+# Core versions used in the published September 22, 2026 comparison.
+# Upstream SemIf selects the exact MLX-LM Git commit recorded by the runner.
+mlx==0.32.2
+mlx-lm==0.32.0
+transformers==5.17.0
+torch==2.10.0
+numpy==2.2.6

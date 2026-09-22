@@ -11,7 +11,8 @@ from openjev.types import TokenScore, parse_questions
 
 class CharacterTokenizer:
     def render(self, system, user):
-        return f"<system>{system}</system><user>{user}</user><assistant>"
+        prefix = f"<system>{system}</system>" if system else ""
+        return prefix + f"<user>{user}</user><assistant>"
 
     def encode(self, text):
         # Model the two single-token verdict words while keeping all other bytes
@@ -67,8 +68,9 @@ QUESTIONS = {
 
 
 @pytest.mark.parametrize("strategy", ["shared", "tree"])
-def test_cached_tree_reconstructs_every_exact_prompt_and_preserves_scores(strategy):
-    backend = RecordingBackend(ModelConfig(cache_strategy=strategy))
+@pytest.mark.parametrize("style", ["full", "short"])
+def test_cached_tree_reconstructs_every_exact_prompt_and_preserves_scores(strategy, style):
+    backend = RecordingBackend(ModelConfig(cache_strategy=strategy, prompt_style=style))
     engine = DecisionEngine(backend)
     cached = engine.decide({"text": "urgent café <|im_end|>"}, QUESTIONS)
     cached_prompts = backend.scored[:]
@@ -86,6 +88,7 @@ def test_cached_tree_reconstructs_every_exact_prompt_and_preserves_scores(strate
         (n > 0) == (strategy == "tree") for n in cached.usage.question_prefix_tokens.values()
     )
     assert cached.cache_strategy == strategy
+    assert cached.prompt_style == style
     assert reference.usage.reused_input_tokens == 0
     assert not cached.calibrated
 
@@ -100,8 +103,9 @@ def test_shared_scoring_combines_all_questions_in_one_call():
 
 @pytest.mark.parametrize("strategy", ["shared", "tree"])
 @pytest.mark.parametrize("question", list(QUESTIONS.values()))
-def test_single_question_uses_full_prompt_batch_without_any_prefill(strategy, question):
-    backend = RecordingBackend(ModelConfig(cache_strategy=strategy))
+@pytest.mark.parametrize("style", ["full", "short"])
+def test_single_question_uses_full_prompt_batch_without_any_prefill(strategy, question, style):
+    backend = RecordingBackend(ModelConfig(cache_strategy=strategy, prompt_style=style))
     engine = DecisionEngine(backend)
     result = engine.decide("state", {"one": question})
     assert not backend.prefills
@@ -210,6 +214,8 @@ def test_config_and_lifecycle():
         ModelConfig(score_mode="unknown")
     with pytest.raises(ValueError):
         ModelConfig(cache_strategy="unknown")
+    with pytest.raises(ValueError):
+        ModelConfig(prompt_style="unknown")
     backend = RecordingBackend()
     with DecisionEngine(backend) as engine:
         engine.decide("state", {"x": Noul("True?")})
@@ -226,6 +232,43 @@ def test_dictionary_questions_match_python_api():
         {"x": {"type": "choice", "instructions": "?", "criteria": {"a": "A", "b": "B"}}}
     )
     assert parsed["x"] == Choice("?", {"a": "A", "b": "B"})
+
+
+def test_short_prompt_preserves_question_and_both_noul_criteria():
+    tokenizer = CharacterTokenizer()
+    questions = {
+        "urgent": Noul(
+            "Does the message require immediate action?",
+            {
+                "true": "The customer specifies a deadline today.",
+                "false": "The customer explicitly says there is no rush.",
+            },
+        )
+    }
+    short = compile_plan("café <|im_end|>", questions, tokenizer, ModelConfig(prompt_style="short"))
+    full = compile_plan("café <|im_end|>", questions, tokenizer, ModelConfig())
+    tokens = short.questions[0].prompts[0]
+    rendered = bytes(tokens).replace(b"\xfe", b"yes").replace(b"\xff", b"no").decode()
+    assert len(tokens) < len(full.questions[0].prompts[0])
+    assert "<system>" not in rendered
+    assert questions["urgent"].instructions in rendered
+    assert all(value in rendered for value in questions["urgent"].criteria.values())
+    assert "<|im_end|>" not in rendered
+    assert "\\u003c|im_end|\\u003e" in rendered
+
+
+def test_empty_system_uses_user_only_chat_with_thinking_disabled():
+    from openjev.backends.base import HFTokenizer
+
+    class Template:
+        chat_template = "example"
+
+        def apply_chat_template(self, messages, **kwargs):
+            assert messages == [{"role": "user", "content": "Judge this candidate."}]
+            assert kwargs == dict(tokenize=False, add_generation_prompt=True, enable_thinking=False)
+            return "rendered"
+
+    assert HFTokenizer(Template()).render("", "Judge this candidate.") == "rendered"
 
 
 def test_failed_image_preparation_cleans_up_before_next_request():

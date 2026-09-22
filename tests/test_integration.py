@@ -52,14 +52,17 @@ def test_real_cached_scores_match_independent_prompts(engine):
     assert compare_results(cached, changed)["max_candidate_support_difference"] < 1e-5
 
 
-def test_mlx_binary_projection_matches_full_projection():
+@pytest.mark.parametrize("style", ["full", "short"])
+def test_mlx_binary_projection_matches_full_projection(style):
     if os.environ["OPENJEV_TEST_BACKEND"] != "mlx":
         pytest.skip("Selected-row projection is MLX-specific")
     questions = {"color": Choice("What color?", {"red": "Red", "blue": "Blue"})}
-    with DecisionEngine.from_pretrained(backend="mlx", score_mode="binary") as selected:
+    with DecisionEngine.from_pretrained(
+        backend="mlx", score_mode="binary", prompt_style=style
+    ) as selected:
         a = selected.decide("The apple is red.", questions)
     with DecisionEngine.from_pretrained(
-        backend="mlx", score_mode="binary", optimize_head=False
+        backend="mlx", score_mode="binary", optimize_head=False, prompt_style=style
     ) as full:
         b = full.decide("The apple is red.", questions)
     assert compare_results(a, b)["max_candidate_support_difference"] < 0.02
@@ -98,7 +101,8 @@ def test_image_cache_and_image_changes(tmp_path):
 
 
 @pytest.mark.parametrize("vision", [False, True], ids=["text", "image"])
-def test_real_mixed_length_batches_and_single_question(vision):
+@pytest.mark.parametrize("style", ["full", "short"])
+def test_real_mixed_length_batches_and_single_question(vision, style):
     backend = os.environ["OPENJEV_TEST_BACKEND"]
     if backend == "gguf":
         pytest.skip("GGUF scores branches serially")
@@ -117,6 +121,8 @@ def test_real_mixed_length_batches_and_single_question(vision):
     with DecisionEngine.from_pretrained(
         backend=backend,
         vision=vision,
+        prompt_style=style,
+        score_mode="binary" if style == "short" else "full",
         device=os.getenv("OPENJEV_TEST_DEVICE", "auto"),
     ) as engine:
         batched = engine.decide(state, questions, images=images)

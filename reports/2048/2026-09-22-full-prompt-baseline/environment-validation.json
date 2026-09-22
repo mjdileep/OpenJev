@@ -1,0 +1,8 @@
+{
+  "upstream_tests": "78 passed, 1 skipped",
+  "openjev_shared_runtime_text_test": "passed",
+  "upstream_published_claims_verified": 69,
+  "upstream_raw_checksums_verified": 23,
+  "machdep.cpu.brand_string": "Apple M3 Pro",
+  "hw.memsize": "19327352832"
+}

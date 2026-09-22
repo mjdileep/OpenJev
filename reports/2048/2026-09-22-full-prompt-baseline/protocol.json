@@ -1,0 +1,71 @@
+{
+  "model": "mlx-community/Qwen3.5-0.8B-4bit",
+  "model_revision": "da28692b5f139cb0ec58a356b437486b7dac7462",
+  "semif_revision": "1f2dea3e25379f9dfc98cb83c324f00ab5deda37",
+  "openjev_revision": "f55d7438e7b3d522df438188f38d175d664847e2",
+  "runtime": {
+    "mlx": "0.32.2",
+    "mlx-lm": "0.32.0",
+    "transformers": "5.17.0",
+    "torch": "2.10.0",
+    "numpy": "2.2.6"
+  },
+  "mlx_lm_source": {
+    "url": "https://github.com/ml-explore/mlx-lm.git",
+    "vcs_info": {
+      "commit_id": "a63e24c389382619eb6d9af656e3b46024be217a",
+      "requested_revision": "a63e24c389382619eb6d9af656e3b46024be217a",
+      "vcs": "git"
+    }
+  },
+  "hardware": {
+    "system": "macOS-27.0-arm64-arm-64bit",
+    "machine": "arm64"
+  },
+  "seed_list": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "max_moves": 2000,
+  "fixed_board_repeats": 3,
+  "fixed_board_sha256": "c452042989cc059d03e0038d18cba33d52cb09eeaa8afa763f17ae71e66feb71",
+  "thinking": false,
+  "generated_tokens": 0,
+  "allocator_cache_limit_mib": 256,
+  "openjev": {
+    "batch_size": 4,
+    "score_mode": "full",
+    "cache_strategy": "single"
+  },
+  "semif": {
+    "mode": "direct",
+    "calibration": "none"
+  },
+  "forced_moves": "apply the only legal action for both; excluded from inference latency",
+  "tile_spawning": "Python Random(seed); value then position; x-major empty-cell ordering",
+  "game_order": "alternate which method plays first on successive seeds",
+  "latency_order": "alternate methods for each board/repeat; full untimed corpus warm-up",
+  "timing": "synchronized scoring API calls; exclude load, shared game preview, logging, and rendering",
+  "limitations": [
+    "Same seeded random stream, but boards diverge after different actions.",
+    "Same semantic input; each library retains its own prompt and readout.",
+    "Single-question gameplay does not test cross-question prefix caching.",
+    "OpenJev uses shared MLX-LM 0.32.0, outside its current <0.32 extra constraint.",
+    "Small local game experiment; no claim of general decision accuracy."
+  ],
+  "source_sha256": {
+    "benchmarks/semif_2048/run.py": "217e1f6d1f69199bf61c4a274f696fbc326f7d407cd94a1b2fbc5c2ab1a5ffc2",
+    "examples/game_2048/game.py": "05b1a69c6c43406b82236792f1b77b8e5506307fc232feff813538b825464909",
+    "src/openjev/engine.py": "0f70472de87526c00f801251c200cb7101276e89f584c81a15e2a6702893b777",
+    "src/openjev/prompt.py": "1d8ba079d80397de6dccbcf9826380b6c0950d7ee53d03be5df07ce54c0b1db5",
+    "src/openjev/backends/mlx.py": "224ef4455657cf03ab7c7518000988530367098e2154342d0ad43ad23735cb1d"
+  }
+}

@@ -19,6 +19,16 @@ Use **Pause**, **One move**, and **New game** while recording. **Export run**
 downloads the actual states, decisions, scores, and timings as JSON.
 Stop the server with Ctrl+C when finished.
 
+To try the shorter judging instruction and existing yes/no head, using all layers:
+
+```bash
+python examples/game_2048/server.py --prompt-style short --score-mode binary
+```
+
+The full prompt and full-vocabulary scoring remain the defaults. Both settings
+are recorded in the server status and exported decisions. For controlled seeded
+comparisons with SemIf, use the [benchmark runner](../../benchmarks/semif_2048/README.md).
+
 The default is Qwen3.5-0.8B: MLX on Apple Silicon, otherwise Transformers on
 CUDA or CPU. Install `pip install -e '.[mlx]'` on Apple Silicon, or
 `pip install -e '.[transformers]'` elsewhere. No additional web dependencies,

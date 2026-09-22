@@ -1,0 +1,98 @@
+[
+  {
+    "id": "route-0-short",
+    "length_group": "short",
+    "context": "Help! My payouts have been failing for three days. I need the money transferred.",
+    "question": "Which department should handle the new customer message?",
+    "candidates": {
+      "billing": "Payments, invoices, refunds, and failed payouts.",
+      "technical": "Software bugs, login failures, and broken integrations.",
+      "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+      "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+    }
+  },
+  {
+    "id": "route-0-long",
+    "length_group": "long",
+    "context": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nHelp! My payouts have been failing for three days. I need the money transferred.",
+    "question": "Which department should handle the new customer message?",
+    "candidates": {
+      "billing": "Payments, invoices, refunds, and failed payouts.",
+      "technical": "Software bugs, login failures, and broken integrations.",
+      "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+      "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+    }
+  },
+  {
+    "id": "route-1-short",
+    "length_group": "short",
+    "context": "The mobile app closes every time I open the settings page after the latest update.",
+    "question": "Which department should handle the new customer message?",
+    "candidates": {
+      "billing": "Payments, invoices, refunds, and failed payouts.",
+      "technical": "Software bugs, login failures, and broken integrations.",
+      "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+      "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+    }
+  },
+  {
+    "id": "route-1-long",
+    "length_group": "long",
+    "context": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nThe mobile app closes every time I open the settings page after the latest update.",
+    "question": "Which department should handle the new customer message?",
+    "candidates": {
+      "billing": "Payments, invoices, refunds, and failed payouts.",
+      "technical": "Software bugs, login failures, and broken integrations.",
+      "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+      "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+    }
+  },
+  {
+    "id": "route-2-short",
+    "length_group": "short",
+    "context": "Our team is growing to twenty people. Which plan includes shared workspaces, and what does it cost?",
+    "question": "Which department should handle the new customer message?",
+    "candidates": {
+      "billing": "Payments, invoices, refunds, and failed payouts.",
+      "technical": "Software bugs, login failures, and broken integrations.",
+      "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+      "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+    }
+  },
+  {
+    "id": "route-2-long",
+    "length_group": "long",
+    "context": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nOur team is growing to twenty people. Which plan includes shared workspaces, and what does it cost?",
+    "question": "Which department should handle the new customer message?",
+    "candidates": {
+      "billing": "Payments, invoices, refunds, and failed payouts.",
+      "technical": "Software bugs, login failures, and broken integrations.",
+      "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+      "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+    }
+  },
+  {
+    "id": "route-3-short",
+    "length_group": "short",
+    "context": "My package was marked delivered yesterday, but it never arrived. Please check the delivery address.",
+    "question": "Which department should handle the new customer message?",
+    "candidates": {
+      "billing": "Payments, invoices, refunds, and failed payouts.",
+      "technical": "Software bugs, login failures, and broken integrations.",
+      "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+      "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+    }
+  },
+  {
+    "id": "route-3-long",
+    "length_group": "long",
+    "context": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nMy package was marked delivered yesterday, but it never arrived. Please check the delivery address.",
+    "question": "Which department should handle the new customer message?",
+    "candidates": {
+      "billing": "Payments, invoices, refunds, and failed payouts.",
+      "technical": "Software bugs, login failures, and broken integrations.",
+      "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+      "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+    }
+  }
+]

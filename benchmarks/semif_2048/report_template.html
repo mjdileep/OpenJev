@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenJev × SemIf — 2048 benchmark</title>
+<style>
+:root{color-scheme:dark;font:15px/1.55 system-ui,sans-serif;color:#ecf2ef;background:#101918}
+*{box-sizing:border-box}body{margin:0}main{max-width:1180px;margin:auto;padding:38px 28px 80px}
+h1{font-size:clamp(28px,4vw,44px);letter-spacing:-1.5px;line-height:1.15;margin:14px 0}
+h2{font-size:22px;letter-spacing:-.4px;margin:0 0 16px}h3{font-size:17px;margin:0}
+p{color:#a6b9b0;max-width:880px}.eyebrow{font-size:11px;letter-spacing:2px;color:#a0ecc0;font-weight:700}
+.tags,.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.tag{border:1px solid #344942;padding:5px 10px;border-radius:6px;color:#b6c6be;font-size:12px}
+section{margin-top:34px;padding-top:26px;border-top:1px solid #2b3a34}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}
+.metric,.player{border:1px solid #344942;border-radius:12px;background:#182623;padding:22px}.metric label,.muted{font-size:12px;color:#9cb0a6}
+.metric strong{display:block;font-size:29px;line-height:1.4}.openjev{color:#a5f3c6}.semif{color:#91cafa}
+.metric p{margin:8px 0 0;font-size:12px}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}td,th{text-align:right;padding:11px 14px;border-bottom:1px solid #2b3a34}td:first-child,th:first-child{text-align:left}th{font-size:12px;color:#a9bcb3;font-weight:500}tbody tr:hover{background:#20302a}tbody tr[data-seed]{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}.title-row{display:flex;align-items:center;justify-content:space-between;gap:16px}.stats{display:flex;gap:30px;margin:14px 0}.stats b{font-size:24px;display:block;line-height:1.3}.stats small{font-size:10px;letter-spacing:1px;color:#9cb0a6}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#293d34;padding:10px;border-radius:9px;max-width:400px;margin:auto}.tile{aspect-ratio:1;display:grid;place-items:center;border-radius:5px;background:#344a3e;font-size:clamp(22px,3vw,37px);font-weight:700;line-height:1;color:#edf4ec}.tile[data-v="2"]{background:#566f50}.tile[data-v="4"]{background:#78964f}.tile[data-v="8"]{background:#9bb347;color:#172117}.tile[data-v="16"]{background:#b9c94c;color:#172117}.tile[data-v="32"]{background:#d0c75d;color:#172117}.tile[data-v="64"]{background:#dfba70;color:#172117}.tile[data-v="128"]{background:#e4a77c;color:#172117}.tile[data-v="256"],.tile[data-v="512"],.tile[data-v="1024"],.tile[data-v="2048"]{background:#e9ca87;color:#172117;font-size:28px}
+button,select{font:inherit;color:inherit;background:#243a30;border:1px solid #46624f;border-radius:7px;padding:8px 14px;cursor:pointer}button.primary{background:#a5f3c6;border-color:#a5f3c6;color:#163122;font-weight:700}input[type=range]{width:100%;accent-color:#a5f3c6;margin:18px 0 4px}label{color:#bbc9c1}.move-line{min-height:28px;font-family:ui-monospace,monospace;font-size:12px;color:#aec4b6;margin-top:16px}.note{font-size:12px}.scroll{overflow:auto}.foot{font-size:12px;white-space:pre-wrap;color:#91a69b}a{color:#a5f3c6}
+@media(max-width:720px){main{padding:24px 16px}.metrics{grid-template-columns:1fr}.two{grid-template-columns:1fr}.metric strong{font-size:25px}.stats{gap:24px}td,th{padding:9px 8px}}
+</style>
+<main>
+<div class="eyebrow">LOCAL BENCHMARK · RECORDED EVIDENCE</div>
+<h1 id="title">OpenJev × SemIf<br>Qwen3.5-0.8B playing 2048</h1>
+<p id="setup-description">Same 4-bit model weights, Mac GPU, game information, and paired random seeds.
+Each project keeps its own prompt and scoring method.</p>
+<div class="tags"><span class="tag" id="hardware">Apple Silicon</span><span class="tag" id="runtime"></span><span class="tag" id="scoring"></span><span class="tag" id="execution"></span><span class="tag">Thinking off</span><span class="tag">0 generated tokens</span></div>
+<div class="metrics"><div class="metric"><label>MEAN GAME SCORE</label><strong id="score-summary"></strong><p>OpenJev / SemIf across the same seeds</p></div><div class="metric"><label>MEDIAN DECISION LATENCY</label><strong id="latency-summary"></strong><p id="latency-note"></p></div><div class="metric"><label>2048 REACHED</label><strong id="wins-summary"></strong><p id="wins-note"></p></div></div>
+<section><h2>Comparison</h2><div class="scroll"><table><thead><tr><th>Metric</th><th class="openjev">OpenJev</th><th class="semif">SemIf</th></tr></thead><tbody id="comparison"></tbody></table></div><p class="note" id="paired-note"></p></section>
+<section><div class="eyebrow">RECORDED REPLAY · NO LIVE INFERENCE</div><h2>Inspect the games</h2>
+<div class="controls"><label for="seed">Seed</label><select id="seed"></select><button class="primary" id="play">Play replay</button><button id="step">One step</button><button id="reset">Reset</button><label for="speed">Pace</label><select id="speed"><option value="250">0.25 s / move</option><option value="100">0.1 s / move</option><option value="500">0.5 s / move</option></select></div>
+<input id="scrub" type="range" min="0" value="0" aria-label="Replay move"><div class="note muted" id="position"></div>
+<p class="note">The replay aligns move numbers, not elapsed time. The original runs executed sequentially.
+Both games start from the same board; different choices produce different later boards.</p>
+<div class="two" id="players"></div></section>
+<section><h2>Every paired seed</h2><p class="note">Click a row to replay that seed. Higher score is better; this small sample does not establish general decision quality.</p><div class="scroll"><table><thead><tr><th>Seed</th><th>OpenJev score</th><th>SemIf score</th><th>OpenJev tile</th><th>SemIf tile</th><th>OpenJev moves</th><th>SemIf moves</th></tr></thead><tbody id="seeds"></tbody></table></div></section>
+<section><h2>Method and limitations</h2><p id="openjev-method"></p><p>SemIf scores one prompt listing all moves and reads the answer-letter logits. Both receive identical strategy instructions and exact one-step previews. Neither uses search or a fallback policy. Forced moves are applied directly for both and excluded from inference timings.</p><p>Latency comes from the same frozen boards, with a full warm-up and alternating method order. Full-game scores use paired random seeds, but different actions change available spawn positions. This single-question workload does not test multi-question caching.</p><p>Both run on SemIf’s pinned MLX-LM 0.32.0 revision containing a Qwen3.5 normalization fix. OpenJev’s normal dependency range is below 0.32; this comparison uses an isolated shared environment. The protocol records source hashes and any local modifications. No claim compares the projects’ different default installations.</p><div class="foot" id="provenance"></div></section>
+</main>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('data').textContent),$=id=>document.getElementById(id);
+const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:1}), O=data.summary.by_method.openjev,S=data.summary.by_method.semif;
+const F=data.summary.matched_boards,n=O.games;
+$('hardware').textContent=data.environment['machdep.cpu.brand_string']?`${data.environment['machdep.cpu.brand_string']} · ${Number(data.environment['hw.memsize'])/1024**3} GiB`:'Apple Silicon';
+$('runtime').textContent=`MLX ${data.protocol.runtime.mlx}`;
+const config=data.protocol.openjev,style=config.prompt_style||'full';
+const differentModels=data.protocol.comparison_type==='different_models';
+if(differentModels){$('title').textContent='OpenJev + Liquid 350M vs SemIf + Qwen 0.8B';$('setup-description').textContent='2048 on the same Mac GPU, with 4-bit MLX weights, identical game information, and paired random seeds. Both the model and scoring method differ.';}
+$('scoring').textContent=`OpenJev: ${style} prompt · ${config.score_mode==='binary'?'yes/no head':'full vocabulary'}`;
+const sharedPrefix=config.cache_strategy==='shared_prefix_batch';
+$('execution').textContent=sharedPrefix?'Shared context → candidate batch':'Complete candidate batch';
+$('openjev-method').textContent=`OpenJev uses the ${style} prompt with all ${config.decoder_layers||24} decoder layers. ${sharedPrefix?'Instructions + user context are prefilled once per decision. All legal-move suffixes are then scored together in one batch using independent copies of attention KV and recurrent state. The saved prefix was checked for mutations on every warm-up board. Cache copies and prefix prefill are included in latency.':'Complete candidate prompts are scored together without a separate prefix prefill.'} ${config.score_mode==='binary'?'Support is normalized over the existing yes and no logits; MLX projects only those vocabulary rows.':'Support is the full-vocabulary probability of yes.'} Candidate supports are then normalized across legal moves. No training or calibration is applied.`;
+$('latency-note').textContent=`${F.openjev.n/data.protocol.fixed_board_repeats} identical boards; ${data.protocol.fixed_board_repeats} repetitions`;
+$('score-summary').textContent=`${fmt(O.mean_score)} / ${fmt(S.mean_score)}`;
+$('latency-summary').textContent=`${fmt(F.openjev.median_ms)} / ${fmt(F.semif.median_ms)} ms`;
+$('wins-summary').textContent=`${O.wins_2048} / ${S.wins_2048}`;$('wins-note').textContent=`OpenJev / SemIf; ${n} games each`;
+function tableRow(parent,values){const tr=document.createElement('tr');for(const v of values){const td=document.createElement('td');td.textContent=v;tr.append(td);}parent.append(tr);return tr;}
+for(const [label,a,b] of [
+ ['Mean game score',fmt(O.mean_score),fmt(S.mean_score)],['Median game score',fmt(O.median_score),fmt(S.median_score)],
+ ['Best tile reached',O.best_tile,S.best_tile],['Mean moves survived',fmt(O.mean_moves),fmt(S.mean_moves)],
+ ['Identical-board median',fmt(F.openjev.median_ms)+' ms',fmt(F.semif.median_ms)+' ms'],
+ ['Identical-board 95th percentile',fmt(F.openjev.p95_ms)+' ms',fmt(F.semif.p95_ms)+' ms'],
+ ['Mean evaluated input tokens',fmt(F.openjev.mean_input_tokens),fmt(F.semif.mean_input_tokens)],
+ ['Games reaching the move cap',O.capped,S.capped]])tableRow($('comparison'),[label,a,b]);
+const paired=data.summary.paired_score_difference_openjev_minus_semif;
+$('paired-note').textContent=`OpenJev scored higher on ${paired.openjev_higher} seeds; SemIf on ${paired.semif_higher}; ties ${paired.ties}. Mean paired score difference (OpenJev − SemIf): ${fmt(paired.mean)}. Bootstrap 95% interval: ${paired.bootstrap_95_percent_interval.map(fmt).join(' to ')}. Small-sample descriptive estimate.`;
+const methods=['openjev','semif'],names=differentModels?{openjev:'OpenJev · LFM2.5-350M',semif:'SemIf · Qwen3.5-0.8B'}:{openjev:'OpenJev',semif:'SemIf'};let current=0,timer=null;
+for(const method of methods){const p=document.createElement('article');p.className='player';p.innerHTML=`<div class="title-row"><h3 class="${method}">${names[method]}</h3><span id="${method}-state" class="muted"></span></div><div class="stats"><div><small>SCORE</small><b id="${method}-score"></b></div><div><small>BEST TILE</small><b id="${method}-tile"></b></div><div><small>MOVE</small><b id="${method}-move"></b></div></div><div class="board" id="${method}-board" aria-label="${names[method]} board"></div><div class="move-line" id="${method}-last"></div>`;$('players').append(p);}
+const seeds=data.protocol.seed_list;
+for(const seed of seeds){const opt=document.createElement('option');opt.value=seed;opt.textContent=seed;$('seed').append(opt);const games=data.games[seed];const row=tableRow($('seeds'),[seed,games.openjev.summary.score,games.semif.summary.score,games.openjev.summary.max_tile,games.semif.summary.max_tile,games.openjev.summary.moves,games.semif.summary.moves]);row.dataset.seed=seed;row.onclick=()=>{$('seed').value=seed;reset();document.getElementById('players').scrollIntoView({behavior:'smooth',block:'center'});};}
+function pause(){clearInterval(timer);timer=null;$('play').textContent='Play replay';}
+function render(){const games=data.games[$('seed').value];const max=Math.max(...methods.map(m=>games[m].history.length));current=Math.min(current,max);$('scrub').max=max;$('scrub').value=current;$('position').textContent=`Move ${current} of ${max}`;
+ for(const method of methods){const g=games[method],i=Math.min(current,g.history.length),r=i?g.history[i-1]:null,board=r?r.after:g.summary.initial_board;$(method+'-score').textContent=r?r.score:0;$(method+'-tile').textContent=Math.max(...board.flat());$(method+'-move').textContent=i;$(method+'-state').textContent=i===g.history.length?(g.summary.won?'2048 reached':g.summary.capped?'Move cap':'Game over'):'Recorded';$(method+'-last').textContent=r?`${r.action.toUpperCase()} · ${r.forced?'forced move':fmt(r.elapsed_seconds*1000)+' ms decision'}`:'Same seeded starting board';const el=$(method+'-board');el.replaceChildren();for(const value of board.flat()){const tile=document.createElement('div');tile.className='tile';tile.dataset.v=value;tile.textContent=value||'';el.append(tile);}}
+ if(current===max)pause();}
+function reset(){pause();current=0;render();}function step(){current++;render();}
+$('play').onclick=()=>{if(timer)pause();else{if(current>=Number($('scrub').max))current=0;timer=setInterval(step,Number($('speed').value));$('play').textContent='Pause replay';}};
+$('step').onclick=()=>{pause();step();};$('reset').onclick=reset;$('seed').onchange=reset;$('scrub').oninput=()=>{pause();current=Number($('scrub').value);render();};$('speed').onchange=pause;
+$('provenance').textContent=`Model: ${data.protocol.model}\nModel revision: ${data.protocol.model_revision}\nOpenJev base commit: ${data.protocol.openjev_revision}${data.protocol.openjev_source_dirty?' + local changes (see source snapshots and hashes)':''}\nSemIf: ${data.protocol.semif_revision}\nMLX-LM: ${data.protocol.mlx_lm_source.vcs_info.commit_id}\nEvidence: protocol.json, model-artifacts.json, fixed-board-decisions.jsonl, game-*-*.jsonl, summary.json\nVerification: ${data.verification.game_transitions} game transitions and ${data.verification.fixed_board_calls} fixed-board calls checked.`;
+if(differentModels){$('provenance').textContent+=`\nSemIf model: ${data.protocol.semif.model}\nSemIf model revision: ${data.protocol.semif.revision}`;}
+reset();
+</script></html>

@@ -29,6 +29,7 @@ def build_parser():
     parser.add_argument("--cache-strategy", choices=["shared", "tree"], default="shared")
     parser.add_argument("--prefill-chunk-size", type=int, default=128)
     parser.add_argument("--score-mode", choices=["full", "binary"], default="full")
+    parser.add_argument("--prompt-style", choices=["full", "short"], default="full")
     parser.add_argument(
         "--image", action="append", default=[], help="Local image; repeat for multiple"
     )
@@ -76,6 +77,7 @@ def benchmark(engine, request, images, iterations):
         "model": results[True].model,
         "backend": engine.backend.name,
         "score_mode": engine.config.score_mode,
+        "prompt_style": engine.config.prompt_style,
         "cache_strategy": results[True].cache_strategy,
         "batch_size": engine.config.batch_size,
         "images": len(images),
@@ -117,6 +119,7 @@ def main(argv=None):
             cache_strategy=args.cache_strategy,
             prefill_chunk_size=args.prefill_chunk_size,
             score_mode=args.score_mode,
+            prompt_style=args.prompt_style,
             vision=args.vision or bool(images),
             load_in_4bit=args.load_in_4bit,
             optimize_head=not args.no_head_optimization,
