@@ -1,0 +1,44 @@
+{
+  "model": "mlx-community/Qwen3.5-0.8B-4bit",
+  "revision": "da28692b5f139cb0ec58a356b437486b7dac7462",
+  "repeats": 5,
+  "modes": [
+    "previous",
+    "tokenization",
+    "cache",
+    "combined"
+  ],
+  "batch_size": 4,
+  "prefill_chunk_size": 128,
+  "cache_strategy": "adaptive",
+  "score_mode": "full",
+  "prompt_style": "full",
+  "hardware": "macOS-27.0-arm64-arm-64bit",
+  "runtime": {
+    "mlx": "0.32.2",
+    "mlx-lm": "0.32.0",
+    "transformers": "5.17.0"
+  },
+  "baseline": "Published adaptive 2048 source at commit 6c7a25b",
+  "timing": "Rotating four-mode order; warmed, synchronized API calls on one model. Load, static-cache initialization, validation, and logging excluded. No extra stage barriers inside inference.",
+  "source_sha256": {
+    "benchmarks/runtime_overhead/run.py": "a718866cb8dfae891f7bf53ec61a822f82288067aaad3e777125c99b4f288452",
+    "src/openjev/__init__.py": "54f4babb8fa344685349a07778858c4100346f34c80c65ac2af03d7bac0e4ef5",
+    "src/openjev/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/openjev/backends/__init__.py": "e4574262cac0876d37f6c31f9025d0b222750e50328982fe73d71f0df4d02ac9",
+    "src/openjev/backends/base.py": "709c489e116c56dd9cf65b0a5cd6e60890035985d977fa36034607d40b34adcc",
+    "src/openjev/backends/gguf.py": "cf786136f1cb3041a313f090a3d720ff5b194e34163ad208fe3a4e1e9982b5f9",
+    "src/openjev/backends/mlx.py": "999d83e94de91588a1e9c60db475ee86b7cdc06d20c9b9d7a68bbcbf467ec82d",
+    "src/openjev/backends/transformers.py": "9a9159643c98f2233c363c7d203e880fe62a7ce1edfcfcd2671ba75b850a8425",
+    "src/openjev/backends/vision.py": "259495458def42f5b905f1dea95c2fe69bb95f9f08cc8fe595668d54dddebe95",
+    "src/openjev/cache_plan.py": "3f736ca9091886f64fcc9ff73c52beed23a7086fb421894a6b1c36b610a7f845",
+    "src/openjev/cli.py": "cbe44124808849e12cf6df0ea83b9085623f08137367f648c13cca3442d152f1",
+    "src/openjev/engine.py": "6d15f1e9cf3ad29429ee28f91d854efad36680bb0bda1e5e5d14a6828eccd27b",
+    "src/openjev/prompt.py": "18e5d355291cd6e8d9de460084248a547d60d3e3aa6e0754330802b47bbbc77f",
+    "src/openjev/types.py": "8a06d6f959fe2655a28cf13a8efc923c5be3c6063f12673581595b96338378c8"
+  },
+  "baseline_sha256": {
+    "src/openjev/prompt.py": "bcea0e2cbdc6fa200c8f002e1f32e022b007c9fb9747db14b420a36f8754bf05",
+    "src/openjev/backends/mlx.py": "915ec171fca57131188dee91367dc27e4991dc8af4e7d7368a1ebd0ecc438bfa"
+  }
+}

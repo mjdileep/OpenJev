@@ -199,6 +199,8 @@ This compares adaptive caching plus batching with independent full-prompt scorin
 It reports latency, actual batch sizes, padding, reused tokens, and score differences.
 [Mixed-question measurements](reports/cache/2026-09-22-mixed-types/report.md) cover
 Noul, Choice, and Score requests, with up to 24 questions and 56 candidates.
+[Tokenization and cache-branching results](reports/cache/2026-09-22-runtime-overhead/report.md)
+measure the latest runtime improvements against the previous version with identical scores.
 Results depend on the model, hardware, and input.
 
 Scores are **not calibrated probabilities of correctness**. Choice distributions

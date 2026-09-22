@@ -1,0 +1,8 @@
+{
+  "exact_prompt_combinations": 164,
+  "exact_answer_requests": 140,
+  "extra_correctness_pairs": 82,
+  "max_score_delta": 0.0,
+  "permanent_cache_unchanged": true,
+  "same_model_object": true
+}

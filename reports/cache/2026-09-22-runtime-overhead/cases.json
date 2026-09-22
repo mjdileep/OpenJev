@@ -1,0 +1,573 @@
+[
+  {
+    "id": "board-0",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          8,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 4,8,2,0/4,0,0,0/0,0,0,0/0,0,0,0; merge points=4; empty cells=12.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,2/0,0,0,4/0,0,0,2/0,0,2,8; merge points=0; empty cells=11.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,0,0,0/4,0,0,0/4,8,2,0; merge points=4; empty cells=12.",
+          "left": "Swipe left. Result before random spawn: 2,0,0,0/4,0,0,0/2,0,0,0/2,8,0,0; merge points=0; empty cells=11."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-12",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          0,
+          0,
+          2
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 2,0,2,4/0,0,0,2/0,0,0,4/0,0,0,2; merge points=0; empty cells=10.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,4/0,0,0,2/0,0,2,4/0,0,0,4; merge points=4; empty cells=11.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,4/0,0,0,2/0,0,0,4/2,0,2,2; merge points=0; empty cells=10.",
+          "left": "Swipe left. Result before random spawn: 4,0,0,0/2,0,0,0/2,4,0,0/4,0,0,0; merge points=4; empty cells=11."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "single-0",
+    "group": "single candidate",
+    "state": "Help! My payouts have been failing for three days. I need the money transferred.",
+    "questions": {
+      "urgent": {
+        "instructions": "Does this require immediate action?",
+        "criteria": {},
+        "type": "noul"
+      }
+    }
+  },
+  {
+    "id": "balanced-3-short-normal",
+    "group": "balanced-3 / short / normal",
+    "profile": "balanced-3",
+    "context_length": "short",
+    "suffix_shape": "normal",
+    "type_counts": {
+      "noul": 1,
+      "choice": 1,
+      "score": 1
+    },
+    "question_count": 3,
+    "candidate_count": 7,
+    "state": "I administer our business account. USD payouts have failed for three days. I retried twice from my laptop and saw error P42. The rest of the account works. Two other team members have the same issue. We need the money today to pay suppliers. I contacted support yesterday and the ticket remains unresolved. This is frustrating. Please fix the payout and email me with an update. I am not requesting a refund or a phone call.",
+    "questions": {
+      "noul_0": {
+        "instructions": "Does the customer need action today?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_0": {
+        "instructions": "Which team should handle this?",
+        "criteria": {
+          "a": "Billing and payments",
+          "b": "Technical support",
+          "c": "Sales"
+        },
+        "type": "choice"
+      },
+      "score_0": {
+        "instructions": "How frustrated is the customer?",
+        "criteria": [
+          "Calm",
+          "Frustrated",
+          "Very angry"
+        ],
+        "type": "score"
+      }
+    }
+  },
+  {
+    "id": "balanced-12-short-normal",
+    "group": "balanced-12 / short / normal",
+    "profile": "balanced-12",
+    "context_length": "short",
+    "suffix_shape": "normal",
+    "type_counts": {
+      "noul": 4,
+      "choice": 4,
+      "score": 4
+    },
+    "question_count": 12,
+    "candidate_count": 28,
+    "state": "I administer our business account. USD payouts have failed for three days. I retried twice from my laptop and saw error P42. The rest of the account works. Two other team members have the same issue. We need the money today to pay suppliers. I contacted support yesterday and the ticket remains unresolved. This is frustrating. Please fix the payout and email me with an update. I am not requesting a refund or a phone call.",
+    "questions": {
+      "noul_0": {
+        "instructions": "Does the customer need action today?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_0": {
+        "instructions": "Which team should handle this?",
+        "criteria": {
+          "a": "Billing and payments",
+          "b": "Technical support",
+          "c": "Sales"
+        },
+        "type": "choice"
+      },
+      "score_0": {
+        "instructions": "How frustrated is the customer?",
+        "criteria": [
+          "Calm",
+          "Frustrated",
+          "Very angry"
+        ],
+        "type": "score"
+      },
+      "noul_1": {
+        "instructions": "Is the request about a payment?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_1": {
+        "instructions": "How should support contact the customer?",
+        "criteria": {
+          "a": "Email",
+          "b": "Phone",
+          "c": "In-app message"
+        },
+        "type": "choice"
+      },
+      "score_1": {
+        "instructions": "How urgent is the request?",
+        "criteria": [
+          "No urgency",
+          "Some urgency",
+          "Immediate urgency"
+        ],
+        "type": "score"
+      },
+      "noul_2": {
+        "instructions": "Does the customer report a software error?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_2": {
+        "instructions": "When does the customer need help?",
+        "criteria": {
+          "a": "Today",
+          "b": "Within a week",
+          "c": "No deadline stated"
+        },
+        "type": "choice"
+      },
+      "score_2": {
+        "instructions": "How specific is the description?",
+        "criteria": [
+          "Vague",
+          "Some details",
+          "Precise details"
+        ],
+        "type": "score"
+      },
+      "noul_3": {
+        "instructions": "Is the customer asking for a refund?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_3": {
+        "instructions": "What is the main payment issue?",
+        "criteria": {
+          "a": "Failed payout",
+          "b": "Duplicate charge",
+          "c": "No payment issue"
+        },
+        "type": "choice"
+      },
+      "score_3": {
+        "instructions": "How serious is the business impact?",
+        "criteria": [
+          "Minor",
+          "Moderate",
+          "Severe"
+        ],
+        "type": "score"
+      }
+    }
+  },
+  {
+    "id": "balanced-24-short-normal",
+    "group": "balanced-24 / short / normal",
+    "profile": "balanced-24",
+    "context_length": "short",
+    "suffix_shape": "normal",
+    "type_counts": {
+      "noul": 8,
+      "choice": 8,
+      "score": 8
+    },
+    "question_count": 24,
+    "candidate_count": 56,
+    "state": "I administer our business account. USD payouts have failed for three days. I retried twice from my laptop and saw error P42. The rest of the account works. Two other team members have the same issue. We need the money today to pay suppliers. I contacted support yesterday and the ticket remains unresolved. This is frustrating. Please fix the payout and email me with an update. I am not requesting a refund or a phone call.",
+    "questions": {
+      "noul_0": {
+        "instructions": "Does the customer need action today?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_0": {
+        "instructions": "Which team should handle this?",
+        "criteria": {
+          "a": "Billing and payments",
+          "b": "Technical support",
+          "c": "Sales"
+        },
+        "type": "choice"
+      },
+      "score_0": {
+        "instructions": "How frustrated is the customer?",
+        "criteria": [
+          "Calm",
+          "Frustrated",
+          "Very angry"
+        ],
+        "type": "score"
+      },
+      "noul_1": {
+        "instructions": "Is the request about a payment?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_1": {
+        "instructions": "How should support contact the customer?",
+        "criteria": {
+          "a": "Email",
+          "b": "Phone",
+          "c": "In-app message"
+        },
+        "type": "choice"
+      },
+      "score_1": {
+        "instructions": "How urgent is the request?",
+        "criteria": [
+          "No urgency",
+          "Some urgency",
+          "Immediate urgency"
+        ],
+        "type": "score"
+      },
+      "noul_2": {
+        "instructions": "Does the customer report a software error?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_2": {
+        "instructions": "When does the customer need help?",
+        "criteria": {
+          "a": "Today",
+          "b": "Within a week",
+          "c": "No deadline stated"
+        },
+        "type": "choice"
+      },
+      "score_2": {
+        "instructions": "How specific is the description?",
+        "criteria": [
+          "Vague",
+          "Some details",
+          "Precise details"
+        ],
+        "type": "score"
+      },
+      "noul_3": {
+        "instructions": "Is the customer asking for a refund?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_3": {
+        "instructions": "What is the main payment issue?",
+        "criteria": {
+          "a": "Failed payout",
+          "b": "Duplicate charge",
+          "c": "No payment issue"
+        },
+        "type": "choice"
+      },
+      "score_3": {
+        "instructions": "How serious is the business impact?",
+        "criteria": [
+          "Minor",
+          "Moderate",
+          "Severe"
+        ],
+        "type": "score"
+      },
+      "noul_4": {
+        "instructions": "Does the customer prefer a phone call?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_4": {
+        "instructions": "What product is involved?",
+        "criteria": {
+          "a": "Business account",
+          "b": "Personal account",
+          "c": "Not stated"
+        },
+        "type": "choice"
+      },
+      "score_4": {
+        "instructions": "How much financial impact is reported?",
+        "criteria": [
+          "None stated",
+          "Limited impact",
+          "Major impact"
+        ],
+        "type": "score"
+      },
+      "noul_5": {
+        "instructions": "Does the customer prefer email?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_5": {
+        "instructions": "What role does the customer have?",
+        "criteria": {
+          "a": "Account administrator",
+          "b": "Team member",
+          "c": "Not stated"
+        },
+        "type": "choice"
+      },
+      "score_5": {
+        "instructions": "How much evidence is provided?",
+        "criteria": [
+          "No evidence",
+          "Some evidence",
+          "Detailed evidence"
+        ],
+        "type": "score"
+      },
+      "noul_6": {
+        "instructions": "Has the issue lasted more than one day?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_6": {
+        "instructions": "Which action is requested?",
+        "criteria": {
+          "a": "Repair the service",
+          "b": "Refund a payment",
+          "c": "Explain pricing"
+        },
+        "type": "choice"
+      },
+      "score_6": {
+        "instructions": "How much has the customer tried already?",
+        "criteria": [
+          "Nothing stated",
+          "One attempt",
+          "Several attempts"
+        ],
+        "type": "score"
+      },
+      "noul_7": {
+        "instructions": "Has the customer contacted support before?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_7": {
+        "instructions": "What is the current ticket status?",
+        "criteria": {
+          "a": "Unresolved",
+          "b": "Resolved",
+          "c": "Not stated"
+        },
+        "type": "choice"
+      },
+      "score_7": {
+        "instructions": "How clear is the requested next action?",
+        "criteria": [
+          "Unclear",
+          "Partly clear",
+          "Explicit"
+        ],
+        "type": "score"
+      }
+    }
+  },
+  {
+    "id": "balanced-12-long-normal",
+    "group": "balanced-12 / long / normal",
+    "profile": "balanced-12",
+    "context_length": "long",
+    "suffix_shape": "normal",
+    "type_counts": {
+      "noul": 4,
+      "choice": 4,
+      "score": 4
+    },
+    "question_count": 12,
+    "candidate_count": 28,
+    "state": "Resolved ticket 1000: The customer confirmed resolution; no further action is needed.\nResolved ticket 1001: The customer confirmed resolution; no further action is needed.\nResolved ticket 1002: The customer confirmed resolution; no further action is needed.\nResolved ticket 1003: The customer confirmed resolution; no further action is needed.\nResolved ticket 1004: The customer confirmed resolution; no further action is needed.\nResolved ticket 1005: The customer confirmed resolution; no further action is needed.\nResolved ticket 1006: The customer confirmed resolution; no further action is needed.\nResolved ticket 1007: The customer confirmed resolution; no further action is needed.\nResolved ticket 1008: The customer confirmed resolution; no further action is needed.\nResolved ticket 1009: The customer confirmed resolution; no further action is needed.\nResolved ticket 1010: The customer confirmed resolution; no further action is needed.\nResolved ticket 1011: The customer confirmed resolution; no further action is needed.\nResolved ticket 1012: The customer confirmed resolution; no further action is needed.\nResolved ticket 1013: The customer confirmed resolution; no further action is needed.\nResolved ticket 1014: The customer confirmed resolution; no further action is needed.\nResolved ticket 1015: The customer confirmed resolution; no further action is needed.\nResolved ticket 1016: The customer confirmed resolution; no further action is needed.\nResolved ticket 1017: The customer confirmed resolution; no further action is needed.\nResolved ticket 1018: The customer confirmed resolution; no further action is needed.\nResolved ticket 1019: The customer confirmed resolution; no further action is needed.\nResolved ticket 1020: The customer confirmed resolution; no further action is needed.\nResolved ticket 1021: The customer confirmed resolution; no further action is needed.\nResolved ticket 1022: The customer confirmed resolution; no further action is needed.\nResolved ticket 1023: The customer confirmed resolution; no further action is needed.\nResolved ticket 1024: The customer confirmed resolution; no further action is needed.\nResolved ticket 1025: The customer confirmed resolution; no further action is needed.\nResolved ticket 1026: The customer confirmed resolution; no further action is needed.\nResolved ticket 1027: The customer confirmed resolution; no further action is needed.\n\nCurrent customer message:\nI administer our business account. USD payouts have failed for three days. I retried twice from my laptop and saw error P42. The rest of the account works. Two other team members have the same issue. We need the money today to pay suppliers. I contacted support yesterday and the ticket remains unresolved. This is frustrating. Please fix the payout and email me with an update. I am not requesting a refund or a phone call.",
+    "questions": {
+      "noul_0": {
+        "instructions": "Does the customer need action today?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_0": {
+        "instructions": "Which team should handle this?",
+        "criteria": {
+          "a": "Billing and payments",
+          "b": "Technical support",
+          "c": "Sales"
+        },
+        "type": "choice"
+      },
+      "score_0": {
+        "instructions": "How frustrated is the customer?",
+        "criteria": [
+          "Calm",
+          "Frustrated",
+          "Very angry"
+        ],
+        "type": "score"
+      },
+      "noul_1": {
+        "instructions": "Is the request about a payment?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_1": {
+        "instructions": "How should support contact the customer?",
+        "criteria": {
+          "a": "Email",
+          "b": "Phone",
+          "c": "In-app message"
+        },
+        "type": "choice"
+      },
+      "score_1": {
+        "instructions": "How urgent is the request?",
+        "criteria": [
+          "No urgency",
+          "Some urgency",
+          "Immediate urgency"
+        ],
+        "type": "score"
+      },
+      "noul_2": {
+        "instructions": "Does the customer report a software error?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_2": {
+        "instructions": "When does the customer need help?",
+        "criteria": {
+          "a": "Today",
+          "b": "Within a week",
+          "c": "No deadline stated"
+        },
+        "type": "choice"
+      },
+      "score_2": {
+        "instructions": "How specific is the description?",
+        "criteria": [
+          "Vague",
+          "Some details",
+          "Precise details"
+        ],
+        "type": "score"
+      },
+      "noul_3": {
+        "instructions": "Is the customer asking for a refund?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "choice_3": {
+        "instructions": "What is the main payment issue?",
+        "criteria": {
+          "a": "Failed payout",
+          "b": "Duplicate charge",
+          "c": "No payment issue"
+        },
+        "type": "choice"
+      },
+      "score_3": {
+        "instructions": "How serious is the business impact?",
+        "criteria": [
+          "Minor",
+          "Moderate",
+          "Severe"
+        ],
+        "type": "score"
+      }
+    }
+  }
+]
