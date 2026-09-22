@@ -5,7 +5,7 @@ on Apple Silicon. This benchmark uses upstream SemIf's native MLX scorer.
 It does not translate SemIf's method into OpenJev or generate answer text.
 
 [Published results, raw evidence, and offline replays](../../reports/2048/README.md)
-include the shared-prefix run and the earlier full-prompt baseline.
+feature the adaptive-cache run, with earlier runs retained as historical evidence.
 
 ## Setup
 
@@ -34,6 +34,7 @@ each project's different default dependency environments.
 ```bash
 HF_HOME="$PWD/.cache/huggingface" \
   .cache/semif-benchmark/venv/bin/python benchmarks/semif_2048/run.py \
+  --openjev-execution adaptive \
   --output .cache/semif-benchmark/runs/my-comparison
 ```
 
@@ -41,6 +42,21 @@ The model downloads on first use. Add `HF_HUB_OFFLINE=1` after it is cached.
 Use a **new output directory** for each run. The runner preserves partial
 evidence if interrupted and never overwrites an earlier run. Avoid running
 other GPU workloads during the comparison.
+
+The featured `adaptive` path computes generic instructions through `State:` once
+at model initialization. For each board, the planner caches the complete shared
+board/question prefix and scores legal-move suffixes together from independent
+copies of attention KV and recurrent state. The complete candidate prompts and
+full-vocabulary `P(yes)` readout are unchanged. Warmup verifies exact prompt
+reconstruction and retained cache immutability. The permanent cache is checked
+again after every game has finished.
+
+Per-request prefill, planning and copying are included in latency. The one-time
+instruction-cache cost is recorded separately in `initialization.json`, outside
+request timings. The normal API exposes this path with
+`DecisionEngine.from_pretrained(cache_strategy="adaptive")`; its default remains
+`shared`. For mixed Noul/Choice/Score timing, see the
+[mixed-question benchmark](../adaptive_cache/README.md#mixed-question-types).
 
 To prefill instructions + user context once, then score all legal moves together
 from independent cache copies, use the experimental shared-prefix path:
@@ -114,8 +130,8 @@ those scores. By default it uses the full prompt and full-vocabulary scoring mod
 and support normalized over the existing `yes` and `no` logits. MLX projects only
 those vocabulary rows in binary mode. Both configurations use at most four
 candidate rows per batch. The default `--openjev-execution current` uses the
-single-question path without prefix prefill; `shared-prefix` enables the
-experimental execution described above.
+single-question path without prefix prefill; `shared-prefix` enables per-board
+context caching, and `adaptive` uses permanent instructions and prefix planning.
 
 SemIf receives one choice question listing all legal moves. Its unmodified
 `mlx_backend.score()` reads the logits for the declared answer-letter tokens

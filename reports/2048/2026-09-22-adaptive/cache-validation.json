@@ -1,0 +1,8 @@
+{
+  "status": "verified",
+  "boards": 24,
+  "check": "exact candidate prompts and immutable complete KV/recurrent parents",
+  "checked_retained_parents": 48,
+  "permanent_cache_unchanged_after_all_games": true,
+  "included_in_timing": false
+}

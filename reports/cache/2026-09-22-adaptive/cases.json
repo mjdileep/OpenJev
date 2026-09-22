@@ -1,0 +1,1460 @@
+[
+  {
+    "id": "board-0",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          8,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 4,8,2,0/4,0,0,0/0,0,0,0/0,0,0,0; merge points=4; empty cells=12.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,2/0,0,0,4/0,0,0,2/0,0,2,8; merge points=0; empty cells=11.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,0,0,0/4,0,0,0/4,8,2,0; merge points=4; empty cells=12.",
+          "left": "Swipe left. Result before random spawn: 2,0,0,0/4,0,0,0/2,0,0,0/2,8,0,0; merge points=0; empty cells=11."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-1",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          4,
+          16,
+          4,
+          2
+        ],
+        [
+          8,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "right",
+        "down"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "right": "Swipe right. Result before random spawn: 4,16,4,2/0,0,0,8/0,0,0,4/0,0,0,2; merge points=0; empty cells=9.",
+          "down": "Swipe down. Result before random spawn: 4,0,0,0/8,0,0,0/4,0,0,0/2,16,4,2; merge points=0; empty cells=9."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-2",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          4,
+          16,
+          4
+        ],
+        [
+          2,
+          0,
+          2,
+          16
+        ],
+        [
+          0,
+          2,
+          16,
+          8
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 2,4,16,2/0,2,2,4/0,0,16,16/0,0,0,8; merge points=0; empty cells=6.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,2/0,4,16,4/0,0,4,16/0,2,16,8; merge points=4; empty cells=7.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,2/0,0,16,4/0,4,2,16/2,2,16,8; merge points=0; empty cells=6.",
+          "left": "Swipe left. Result before random spawn: 2,0,0,0/4,16,4,0/4,16,0,0/2,16,8,0; merge points=4; empty cells=7."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-3",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          4,
+          0,
+          0,
+          2
+        ],
+        [
+          2,
+          8,
+          4,
+          0
+        ],
+        [
+          8,
+          16,
+          32,
+          2
+        ],
+        [
+          4,
+          8,
+          4,
+          8
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 4,8,4,4/2,16,32,8/8,8,4,0/4,0,0,0; merge points=4; empty cells=4.",
+          "right": "Swipe right. Result before random spawn: 0,0,4,2/0,2,8,4/8,16,32,2/4,8,4,8; merge points=0; empty cells=3.",
+          "down": "Swipe down. Result before random spawn: 4,0,0,0/2,8,4,0/8,16,32,4/4,8,4,8; merge points=4; empty cells=4.",
+          "left": "Swipe left. Result before random spawn: 4,2,0,0/2,8,4,0/8,16,32,2/4,8,4,8; merge points=0; empty cells=3."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-4",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          8,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 4,8,2,0/2,0,0,0/0,0,0,0/0,0,0,0; merge points=4; empty cells=12.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,2/0,0,0,2/0,0,0,2/0,0,2,8; merge points=0; empty cells=11.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,0,0,0/2,0,0,0/4,8,2,0; merge points=4; empty cells=12.",
+          "left": "Swipe left. Result before random spawn: 2,0,0,0/2,0,0,0/2,0,0,0/2,8,0,0; merge points=0; empty cells=11."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-5",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          16,
+          4,
+          0,
+          0
+        ],
+        [
+          4,
+          8,
+          2,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 16,4,2,0/4,8,0,0/4,0,0,0/0,0,0,0; merge points=4; empty cells=10.",
+          "right": "Swipe right. Result before random spawn: 0,0,16,4/0,4,8,2/0,0,0,2/0,0,0,2; merge points=0; empty cells=9.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/16,0,0,0/4,4,0,0/4,8,2,0; merge points=4; empty cells=10."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-6",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          2,
+          16,
+          4,
+          0
+        ],
+        [
+          16,
+          8,
+          0,
+          0
+        ],
+        [
+          4,
+          16,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 2,16,4,2/16,8,0,0/4,16,0,0/2,0,0,0; merge points=0; empty cells=7.",
+          "right": "Swipe right. Result before random spawn: 0,2,16,4/0,0,16,8/0,0,4,16/0,0,0,4; merge points=4; empty cells=8.",
+          "down": "Swipe down. Result before random spawn: 2,0,0,0/16,16,0,0/4,8,0,0/2,16,4,2; merge points=0; empty cells=7.",
+          "left": "Swipe left. Result before random spawn: 2,16,4,0/16,8,0,0/4,16,0,0/4,0,0,0; merge points=4; empty cells=8."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-7",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          2,
+          8,
+          0,
+          0
+        ],
+        [
+          2,
+          16,
+          4,
+          0
+        ],
+        [
+          16,
+          4,
+          2,
+          8
+        ],
+        [
+          4,
+          32,
+          2,
+          2
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 4,8,4,8/16,16,4,2/4,4,0,0/0,32,0,0; merge points=8; empty cells=5.",
+          "right": "Swipe right. Result before random spawn: 0,0,2,8/0,2,16,4/16,4,2,8/0,4,32,4; merge points=4; empty cells=4.",
+          "down": "Swipe down. Result before random spawn: 0,8,0,0/4,16,0,0/16,4,4,8/4,32,4,2; merge points=8; empty cells=5.",
+          "left": "Swipe left. Result before random spawn: 2,8,0,0/2,16,4,0/16,4,2,8/4,32,4,0; merge points=4; empty cells=4."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-8",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          4,
+          2,
+          0,
+          0
+        ],
+        [
+          4,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 8,4,0,0/4,0,0,0/0,0,0,0/0,0,0,0; merge points=16; empty cells=13.",
+          "right": "Swipe right. Result before random spawn: 0,0,4,2/0,0,4,2/0,0,0,2/0,0,0,2; merge points=0; empty cells=10.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,0,0,0/8,0,0,0/4,4,0,0; merge points=16; empty cells=13."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-9",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          16,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          8,
+          2,
+          2
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 2,2,2,4/16,8,0,0/2,0,0,0/0,0,0,0; merge points=4; empty cells=9.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,2/0,0,0,2/0,0,16,2/0,2,8,4; merge points=4; empty cells=9.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/2,0,0,0/16,2,0,0/2,8,2,4; merge points=4; empty cells=9.",
+          "left": "Swipe left. Result before random spawn: 2,0,0,0/2,0,0,0/16,2,0,0/2,8,4,0; merge points=4; empty cells=9."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-10",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          4,
+          8,
+          4
+        ],
+        [
+          0,
+          2,
+          8,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 0,4,16,4/0,2,0,32/0,0,0,8/0,0,0,2; merge points=16; empty cells=9.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,4/0,0,0,32/0,4,0,8/0,2,16,2; merge points=16; empty cells=9.",
+          "left": "Swipe left. Result before random spawn: 4,8,4,0/2,8,32,0/8,0,0,0/2,0,0,0; merge points=0; empty cells=8."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-11",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          16,
+          2
+        ],
+        [
+          0,
+          2,
+          8,
+          32
+        ],
+        [
+          2,
+          16,
+          4,
+          2
+        ],
+        [
+          0,
+          8,
+          2,
+          4
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 2,2,16,2/0,16,8,32/0,8,4,2/0,0,2,4; merge points=0; empty cells=4.",
+          "down": "Swipe down. Result before random spawn: 0,0,16,2/0,2,8,32/0,16,4,2/2,8,2,4; merge points=0; empty cells=4.",
+          "left": "Swipe left. Result before random spawn: 16,2,0,0/2,8,32,0/2,16,4,2/8,2,4,0; merge points=0; empty cells=4."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-12",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          0,
+          0,
+          2
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 2,0,2,4/0,0,0,2/0,0,0,4/0,0,0,2; merge points=0; empty cells=10.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,4/0,0,0,2/0,0,2,4/0,0,0,4; merge points=4; empty cells=11.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,4/0,0,0,2/0,0,0,4/2,0,2,2; merge points=0; empty cells=10.",
+          "left": "Swipe left. Result before random spawn: 4,0,0,0/2,0,0,0/2,4,0,0/4,0,0,0; merge points=4; empty cells=11."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-13",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          2,
+          8,
+          2
+        ],
+        [
+          0,
+          4,
+          4,
+          16
+        ],
+        [
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "right": "Swipe right. Result before random spawn: 0,2,8,2/0,0,8,16/0,0,0,4/0,0,0,0; merge points=12; empty cells=10.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,0,8,2/0,2,4,16/0,4,2,2; merge points=0; empty cells=8.",
+          "left": "Swipe left. Result before random spawn: 2,8,2,0/8,16,0,0/4,0,0,0/0,0,0,0; merge points=12; empty cells=10."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-14",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          8,
+          32,
+          4,
+          0
+        ],
+        [
+          2,
+          16,
+          4,
+          0
+        ],
+        [
+          4,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 8,32,8,0/2,16,0,0/4,2,0,0/2,0,0,0; merge points=8; empty cells=8.",
+          "right": "Swipe right. Result before random spawn: 0,8,32,4/0,2,16,4/0,0,4,2/0,0,0,2; merge points=0; empty cells=7.",
+          "down": "Swipe down. Result before random spawn: 8,0,0,0/2,32,0,0/4,16,0,0/2,2,8,0; merge points=8; empty cells=8."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-15",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          8,
+          2,
+          16,
+          0
+        ],
+        [
+          8,
+          16,
+          2,
+          0
+        ],
+        [
+          2,
+          32,
+          8,
+          2
+        ],
+        [
+          8,
+          0,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 16,2,16,2/2,16,2,0/8,32,8,0/0,0,0,0; merge points=16; empty cells=6.",
+          "right": "Swipe right. Result before random spawn: 0,8,2,16/0,8,16,2/2,32,8,2/0,0,0,8; merge points=0; empty cells=5.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/16,2,16,0/2,16,2,0/8,32,8,2; merge points=16; empty cells=6."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-16",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          4,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          2
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 4,4,0,2/4,0,0,0/0,0,0,0/0,0,0,0; merge points=4; empty cells=12.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,2/0,0,0,0/0,0,2,4/0,0,4,2; merge points=0; empty cells=11.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,0,0,0/4,0,0,0/4,4,0,2; merge points=4; empty cells=12.",
+          "left": "Swipe left. Result before random spawn: 2,0,0,0/0,0,0,0/2,4,0,0/4,2,0,0; merge points=0; empty cells=11."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-17",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          2,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          4,
+          2
+        ],
+        [
+          0,
+          4,
+          2,
+          4
+        ],
+        [
+          2,
+          8,
+          4,
+          2
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 2,2,4,4/0,4,2,4/0,8,4,2/0,0,0,0; merge points=4; empty cells=6.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,4/0,0,4,2/0,4,2,4/2,8,4,2; merge points=4; empty cells=6.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,2,4,4/0,4,2,4/2,8,4,2; merge points=4; empty cells=6.",
+          "left": "Swipe left. Result before random spawn: 4,0,0,0/4,2,0,0/4,2,4,0/2,8,4,2; merge points=4; empty cells=6."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-18",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          4,
+          2,
+          0,
+          2
+        ],
+        [
+          4,
+          2,
+          0,
+          0
+        ],
+        [
+          16,
+          4,
+          2,
+          0
+        ],
+        [
+          2,
+          16,
+          16,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 8,4,2,2/16,4,16,0/2,16,0,0/0,0,0,0; merge points=12; empty cells=7.",
+          "right": "Swipe right. Result before random spawn: 0,0,4,4/0,0,4,2/0,16,4,2/0,0,2,32; merge points=36; empty cells=7.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/8,4,0,0/16,4,2,0/2,16,16,2; merge points=12; empty cells=7.",
+          "left": "Swipe left. Result before random spawn: 4,4,0,0/4,2,0,0/16,4,2,0/2,32,0,0; merge points=36; empty cells=7."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-19",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          8,
+          2
+        ],
+        [
+          2,
+          0,
+          2,
+          8
+        ],
+        [
+          2,
+          64,
+          8,
+          4
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 4,64,8,4/0,0,2,8/0,0,8,4/0,0,0,0; merge points=8; empty cells=8.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,2/0,0,8,2/0,0,4,8/2,64,8,4; merge points=4; empty cells=7.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,0,8,4/0,0,2,8/4,64,8,4; merge points=8; empty cells=8.",
+          "left": "Swipe left. Result before random spawn: 2,0,0,0/8,2,0,0/4,8,0,0/2,64,8,4; merge points=4; empty cells=7."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-20",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          2,
+          0,
+          0
+        ],
+        [
+          8,
+          0,
+          0,
+          0
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 4,2,0,0/8,0,0,0/0,0,0,0/0,0,0,0; merge points=0; empty cells=13.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,0/0,0,0,0/0,0,4,2/0,0,0,8; merge points=0; empty cells=13.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,0,0,0/4,0,0,0/8,2,0,0; merge points=0; empty cells=13."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-21",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          0,
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          2,
+          0,
+          0,
+          16
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 2,0,4,8/0,0,0,8/0,0,0,16/0,0,0,0; merge points=8; empty cells=11.",
+          "right": "Swipe right. Result before random spawn: 0,0,0,8/0,0,0,4/0,0,0,8/0,0,2,16; merge points=8; empty cells=11.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,0,0,8/0,0,0,8/2,0,4,16; merge points=8; empty cells=11.",
+          "left": "Swipe left. Result before random spawn: 8,0,0,0/4,0,0,0/8,0,0,0/2,16,0,0; merge points=8; empty cells=11."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-22",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          8,
+          8,
+          2,
+          8
+        ],
+        [
+          8,
+          16,
+          8,
+          0
+        ],
+        [
+          2,
+          4,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down",
+        "left"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 16,8,2,8/2,16,8,2/0,4,4,0/0,0,0,0; merge points=16; empty cells=6.",
+          "right": "Swipe right. Result before random spawn: 0,16,2,8/0,8,16,8/0,0,2,8/0,0,0,2; merge points=24; empty cells=7.",
+          "down": "Swipe down. Result before random spawn: 0,0,0,0/0,8,2,0/16,16,8,8/2,4,4,2; merge points=16; empty cells=6.",
+          "left": "Swipe left. Result before random spawn: 16,2,8,0/8,16,8,0/2,8,0,0/2,0,0,0; merge points=24; empty cells=7."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "board-23",
+    "group": "2048 boards",
+    "state": {
+      "board": [
+        [
+          2,
+          16,
+          2,
+          0
+        ],
+        [
+          4,
+          8,
+          2,
+          0
+        ],
+        [
+          8,
+          16,
+          8,
+          4
+        ],
+        [
+          4,
+          8,
+          4,
+          16
+        ]
+      ],
+      "legal_moves": [
+        "up",
+        "right",
+        "down"
+      ]
+    },
+    "questions": {
+      "move": {
+        "instructions": "Which legal swipe is best for reaching 2048 and keeping the game alive? Combine equal tiles, preserve empty cells, and keep large tiles together at an edge. Compare the possible moves; avoid scattering large tiles. Rows are top to bottom, columns left to right; 0 is empty. After each swipe a random empty cell receives a 2 (90%) or 4 (10%).",
+        "criteria": {
+          "up": "Swipe up. Result before random spawn: 2,16,4,4/4,8,8,16/8,16,4,0/4,8,0,0; merge points=4; empty cells=3.",
+          "right": "Swipe right. Result before random spawn: 0,2,16,2/0,4,8,2/8,16,8,4/4,8,4,16; merge points=0; empty cells=2.",
+          "down": "Swipe down. Result before random spawn: 2,16,0,0/4,8,4,0/8,16,8,4/4,8,4,16; merge points=4; empty cells=3."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "route-0-short",
+    "group": "short context",
+    "state": "Help! My payouts have been failing for three days. I need the money transferred.",
+    "questions": {
+      "decision": {
+        "instructions": "Which department should handle the new customer message?",
+        "criteria": {
+          "billing": "Payments, invoices, refunds, and failed payouts.",
+          "technical": "Software bugs, login failures, and broken integrations.",
+          "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+          "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "route-0-long",
+    "group": "long context",
+    "state": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nHelp! My payouts have been failing for three days. I need the money transferred.",
+    "questions": {
+      "decision": {
+        "instructions": "Which department should handle the new customer message?",
+        "criteria": {
+          "billing": "Payments, invoices, refunds, and failed payouts.",
+          "technical": "Software bugs, login failures, and broken integrations.",
+          "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+          "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "route-1-short",
+    "group": "short context",
+    "state": "The mobile app closes every time I open the settings page after the latest update.",
+    "questions": {
+      "decision": {
+        "instructions": "Which department should handle the new customer message?",
+        "criteria": {
+          "billing": "Payments, invoices, refunds, and failed payouts.",
+          "technical": "Software bugs, login failures, and broken integrations.",
+          "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+          "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "route-1-long",
+    "group": "long context",
+    "state": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nThe mobile app closes every time I open the settings page after the latest update.",
+    "questions": {
+      "decision": {
+        "instructions": "Which department should handle the new customer message?",
+        "criteria": {
+          "billing": "Payments, invoices, refunds, and failed payouts.",
+          "technical": "Software bugs, login failures, and broken integrations.",
+          "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+          "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "route-2-short",
+    "group": "short context",
+    "state": "Our team is growing to twenty people. Which plan includes shared workspaces, and what does it cost?",
+    "questions": {
+      "decision": {
+        "instructions": "Which department should handle the new customer message?",
+        "criteria": {
+          "billing": "Payments, invoices, refunds, and failed payouts.",
+          "technical": "Software bugs, login failures, and broken integrations.",
+          "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+          "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "route-2-long",
+    "group": "long context",
+    "state": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nOur team is growing to twenty people. Which plan includes shared workspaces, and what does it cost?",
+    "questions": {
+      "decision": {
+        "instructions": "Which department should handle the new customer message?",
+        "criteria": {
+          "billing": "Payments, invoices, refunds, and failed payouts.",
+          "technical": "Software bugs, login failures, and broken integrations.",
+          "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+          "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "route-3-short",
+    "group": "short context",
+    "state": "My package was marked delivered yesterday, but it never arrived. Please check the delivery address.",
+    "questions": {
+      "decision": {
+        "instructions": "Which department should handle the new customer message?",
+        "criteria": {
+          "billing": "Payments, invoices, refunds, and failed payouts.",
+          "technical": "Software bugs, login failures, and broken integrations.",
+          "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+          "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "route-3-long",
+    "group": "long context",
+    "state": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nMy package was marked delivered yesterday, but it never arrived. Please check the delivery address.",
+    "questions": {
+      "decision": {
+        "instructions": "Which department should handle the new customer message?",
+        "criteria": {
+          "billing": "Payments, invoices, refunds, and failed payouts.",
+          "technical": "Software bugs, login failures, and broken integrations.",
+          "sales": "Plans, pricing, upgrades, and purchasing a new account.",
+          "shipping": "Parcel tracking, delivery addresses, and missing physical deliveries."
+        },
+        "type": "choice"
+      }
+    }
+  },
+  {
+    "id": "mixed-0",
+    "group": "mixed questions",
+    "state": "Help! My payouts have been failing for three days. I need the money transferred.",
+    "questions": {
+      "department": {
+        "instructions": "Which team handles this?",
+        "criteria": {
+          "billing": "Payments, invoices and refunds",
+          "technical": "Software bugs",
+          "sales": "Plans and upgrades"
+        },
+        "type": "choice"
+      },
+      "urgent": {
+        "instructions": "Does this require immediate action?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "tone": {
+        "instructions": "How frustrated is the customer?",
+        "criteria": [
+          "Calm",
+          "Frustrated",
+          "Very angry"
+        ],
+        "type": "score"
+      }
+    }
+  },
+  {
+    "id": "mixed-2",
+    "group": "mixed questions",
+    "state": "The mobile app closes every time I open the settings page after the latest update.",
+    "questions": {
+      "department": {
+        "instructions": "Which team handles this?",
+        "criteria": {
+          "billing": "Payments, invoices and refunds",
+          "technical": "Software bugs",
+          "sales": "Plans and upgrades"
+        },
+        "type": "choice"
+      },
+      "urgent": {
+        "instructions": "Does this require immediate action?",
+        "criteria": {},
+        "type": "noul"
+      },
+      "tone": {
+        "instructions": "How frustrated is the customer?",
+        "criteria": [
+          "Calm",
+          "Frustrated",
+          "Very angry"
+        ],
+        "type": "score"
+      }
+    }
+  },
+  {
+    "id": "long-policies",
+    "group": "long question groups",
+    "state": "Help! My payouts have been failing for three days. I need the money transferred.",
+    "questions": {
+      "alpha": {
+        "instructions": "A: Assess payment handling. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. ",
+        "criteria": {
+          "refund": "Refund the payment",
+          "retry": "Retry the payment",
+          "hold": "Wait"
+        },
+        "type": "choice"
+      },
+      "zeta": {
+        "instructions": "Z: Assess customer contact. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. ",
+        "criteria": {
+          "email": "Send email",
+          "phone": "Call the customer",
+          "wait": "Wait"
+        },
+        "type": "choice"
+      },
+      "urgent": {
+        "instructions": "Urgent?",
+        "criteria": {},
+        "type": "noul"
+      }
+    }
+  },
+  {
+    "id": "long-policies-long-context",
+    "group": "long question groups",
+    "state": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nHelp! My payouts have been failing for three days. I need the money transferred.",
+    "questions": {
+      "alpha": {
+        "instructions": "A: Assess payment handling. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. Use the ticket facts, never unrelated examples. ",
+        "criteria": {
+          "refund": "Refund the payment",
+          "retry": "Retry the payment",
+          "hold": "Wait"
+        },
+        "type": "choice"
+      },
+      "zeta": {
+        "instructions": "Z: Assess customer contact. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. Use the requested deadline and contact preference. ",
+        "criteria": {
+          "email": "Send email",
+          "phone": "Call the customer",
+          "wait": "Wait"
+        },
+        "type": "choice"
+      },
+      "urgent": {
+        "instructions": "Urgent?",
+        "criteria": {},
+        "type": "noul"
+      }
+    }
+  },
+  {
+    "id": "single-0",
+    "group": "single candidate",
+    "state": "Help! My payouts have been failing for three days. I need the money transferred.",
+    "questions": {
+      "urgent": {
+        "instructions": "Does this require immediate action?",
+        "criteria": {},
+        "type": "noul"
+      }
+    }
+  },
+  {
+    "id": "single-1",
+    "group": "single candidate",
+    "state": "Reference notes from earlier resolved tickets:\nTicket 1000: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1001: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1002: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1003: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1004: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1005: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1006: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1007: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1008: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1009: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1010: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1011: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1012: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1013: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1014: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1015: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1016: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1017: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1018: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1019: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1020: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1021: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1022: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1023: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1024: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1025: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1026: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\nTicket 1027: The customer confirmed resolution, the agent documented the outcome, and no further action was requested.\n\nNew customer message requiring routing:\nHelp! My payouts have been failing for three days. I need the money transferred.",
+    "questions": {
+      "urgent": {
+        "instructions": "Does this require immediate action?",
+        "criteria": {},
+        "type": "noul"
+      }
+    }
+  }
+]

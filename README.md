@@ -3,9 +3,8 @@
 Turn text and images into typed decisions using a small local model.
 
 OpenJev scores each possible answer using the model's probability of the token
-`yes`. Multiple questions share one content cache, then their candidates are scored
-in batches. A single question goes straight to scoring, without a separate cache
-prefill. No generated text, JSON parsing, or API key is needed.
+`yes`. Questions can share cached context while their candidates are scored
+independently in batches. No generated text, JSON parsing, or API key is needed.
 
 The local default is **Qwen3.5-0.8B**, with 4-bit weights for MLX and GGUF.
 Device selection is automatic: **MLX on Apple Silicon, CUDA when available,
@@ -78,6 +77,9 @@ with DecisionEngine.from_pretrained(device="auto") as engine:
 
 `device="auto"` is already the default, so you can omit it. To force CPU, install
 the CPU/NVIDIA dependencies above and set `device="cpu"`.
+For repeated text decisions, add `cache_strategy="adaptive"` to `from_pretrained()`.
+It caches generic instructions at model load and chooses shared prefixes for each
+request. Keep the engine loaded to reuse that instruction cache.
 `Noul` asks a yes/no question; `Choice` picks from your options. Import `Score`
 from `openjev` for ratings such as
 `Score("How frustrated?", ["Calm", "Frustrated", "Very angry"])`.
@@ -190,13 +192,13 @@ and averaged **119 ms per decision**, with zero generated tokens. It did not rea
 ## Check the cache benefit
 
 ```bash
-openjev benchmark examples/triage.json
+openjev benchmark examples/triage.json --cache-strategy adaptive
 ```
 
-This compares shared caching plus batching with independent full-prompt scoring.
+This compares adaptive caching plus batching with independent full-prompt scoring.
 It reports latency, actual batch sizes, padding, reused tokens, and score differences.
-[Local validation results](docs/validation.md) include a seven-candidate MLX run
-at approximately **145 ms batched vs 309 ms independent**.
+[Mixed-question measurements](reports/cache/2026-09-22-mixed-types/report.md) cover
+Noul, Choice, and Score requests, with up to 24 questions and 56 candidates.
 Results depend on the model, hardware, and input.
 
 Scores are **not calibrated probabilities of correctness**. Choice distributions
@@ -212,25 +214,32 @@ Tested on **Apple M3 Pro, 18 GiB**, using identical **Qwen3.5-0.8B 4-bit** weigh
 and the same MLX runtime. Each method played 10 games with seeds 42–51.
 Thinking was disabled; neither method generated answer tokens.
 
-OpenJev used the experimental **shared-prefix** path: compute instructions +
-context once, then score all legal-move candidates in one batch from independent
-cache copies. It keeps the full prompt and full-vocabulary `P(yes)` scoring.
-This experiment is enabled in the benchmark; the normal API defaults are unchanged.
+OpenJev used **adaptive caching**: generic instructions are computed once at model
+load, then each board and shared game question are cached before independently
+scoring all legal moves in one batch. Enable it with
+`DecisionEngine.from_pretrained(cache_strategy="adaptive")`. It retains the full
+prompt and full-vocabulary `P(yes)` scoring; the API default remains `shared`.
+
+OpenJev scored higher on **8/10 seeds**. Latency was measured on **24 identical
+boards, three repetitions each**, including per-request planning, prefill and
+cache copying. Model loading, warm-up and the one-time **54.4 ms** instruction
+cache are excluded. All **4,151 game moves and 144 timed decisions** were verified.
+Ten seeds are a small game experiment, not general decision-accuracy evidence.
+
+Compared with the earlier shared-prefix run, OpenJev's median latency fell
+**39.8%**, while its mean game score fell from **3,402.4 to 2,789.2**.
+Changes in quantized execution can alter scores and game trajectories.
+
+[Full report](reports/2048/2026-09-22-adaptive/report.md) ·
+[Per-game scores](reports/2048/2026-09-22-adaptive/games.csv) ·
+[Recorded replay and raw evidence](reports/2048/README.md) ·
+[Comparison with the previous run](reports/2048/2026-09-22-adaptive/previous-comparison.md) ·
+[Run the benchmark](benchmarks/semif_2048/README.md)
 
 | Metric | OpenJev | SemIf |
 | --- | ---: | ---: |
-| Average score | **3,402.4** | 1,816.8 |
-| Median score | **3,024** | 1,522 |
+| Average score | **2,789.2** | 1,816.8 |
+| Median score | **2,526** | 1,522 |
 | Highest tile | **512** | 256 |
-| Median decision latency | 226.8 ms | **162.9 ms** |
+| Median decision latency | **136.6 ms** | 162.4 ms |
 | Games reaching 2048 | 0/10 | 0/10 |
-
-OpenJev scored higher on **8/10 seeds**. Latency was measured on **24 identical
-boards, three repetitions each**, including cache creation and copying, excluding
-model loading and warm-up. All **4,561 game moves and 144 timed decisions** were
-verified. Ten seeds are a small gameplay benchmark, not general decision-accuracy evidence.
-
-[Full report](reports/2048/2026-09-22-shared-prefix/report.md) ·
-[Per-game scores](reports/2048/2026-09-22-shared-prefix/games.csv) ·
-[Recorded replay and raw evidence](reports/2048/README.md) ·
-[Run the benchmark](benchmarks/semif_2048/README.md)

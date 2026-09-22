@@ -97,7 +97,49 @@ branches. `usage.candidate_batches` reports the actual batch sizes, and
 saved cache storage. Quantization and changes in batch shape can alter scores.
 
 Complete chat prompts are tokenized before computing shared prefixes, avoiding
-BPE boundary errors. Caches are scoped to a single request; model calls from
+BPE boundary errors. With `shared` and `tree`, caches are scoped to a single request; model calls from
 different requests are serialized. Only the candidate rows within a request run
 together. Short, general instructions improve reuse, but sharing also requires
 an identical token prefix, model, and image input.
+
+## Adaptive text caching (opt-in)
+
+```python
+with DecisionEngine.from_pretrained(cache_strategy="adaptive") as engine:
+    result = engine.decide(state=context, questions=questions)
+```
+
+The engine computes the constant instruction/chat-template prefix through `State:`
+once during initialization. This immutable snapshot remains with the loaded engine.
+Each request still tokenizes complete prompts and verifies their exact prefix before
+using the snapshot; an unusual tokenizer/template boundary falls back to computing
+that request from scratch. No user context is retained between requests.
+
+Before inference, a compressed token-prefix tree compares three execution shapes:
+flat suffix batches, a longer common prefill followed by a batch, and recursively
+split subgroups. Short branches that do not justify another cache are pooled at
+their parent. Shared text can include the question, criteria, or any identical
+candidate-prefix tokens. The planner uses token IDs only, without model scores or
+semantic matching. Candidate attention and scores remain independent; normalization
+still happens separately for each question.
+
+The cost heuristic accounts for launches, padded batch lengths, configured batch
+size, and cache copying. Its constants are estimates, not a calibrated hardware
+profile or a guarantee of the globally fastest plan. Selected subgroups run in
+sequence, with candidate rows parallel within each supported backend batch. A
+single candidate uses one scoring pass from the permanent instruction cache,
+without a separate request prefill. Complete KV and recurrent/conv states are
+copied, and only caches along the active branch need to remain live.
+
+`usage.instruction_prefix_tokens` reports the permanent prefix reused by the request.
+`cache_prefill_tokens` lists newly computed shared segments. `scoring_prefix_tokens`
+lists each candidate's retained prefix length, in question/candidate input order.
+`planning_seconds` measures the Python planning step. Initialization cost is exposed
+as `engine.instruction_cache_seconds` and is excluded from per-request timing/token
+counts. `use_cache=False` bypasses both permanent and dynamic caches.
+
+The existing `shared` default remains available for comparison. With `vision=True`,
+`adaptive` uses the existing image-aware `shared`/`single` path; splitting the
+multimodal prefill before image encoding is not enabled. GGUF retains serial
+candidate execution. The benchmark in [adaptive_cache](../benchmarks/adaptive_cache/README.md)
+measures this planner on Qwen 0.8B with MLX.

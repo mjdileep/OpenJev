@@ -1,0 +1,25 @@
+{
+  "unit_tests": {
+    "command": ".cache/semif-benchmark/venv/bin/python -m pytest -q -m 'not integration' tests",
+    "passed": 64,
+    "skipped": 1,
+    "deselected": 12
+  },
+  "strict_mlx_test": {
+    "command": "OPENJEV_TEST_BACKEND=mlx .cache/semif-benchmark/venv/bin/python -m pytest -q tests/test_integration.py::test_real_adaptive_cache_matches_independent_tokenwise_inference",
+    "passed": 1,
+    "elapsed_seconds": 8.86,
+    "batch_size": 1,
+    "prefill_chunk_size": 1,
+    "contexts": 2,
+    "candidates_per_context": 3,
+    "raw_support_difference_assertion": "< 1e-5"
+  },
+  "ruff": "passed on src/openjev, tests and benchmarks/adaptive_cache",
+  "test_source_sha256": {
+    "tests/test_adaptive_cache.py": "a39cf4632a975cd7a0deb47659ce4218d29dc6eec76dcbfeabc83b584908939d",
+    "tests/test_engine.py": "c68a28888baa30f66323db5c5c4e3c7e8d49a86b83265dbbca0d23ad06471f6c",
+    "tests/test_torch_batching.py": "fb25dbcffd4675ab309e3363abd34b92a6eba6218746cffd32d7a4e557f35b4a",
+    "tests/test_integration.py": "78357879f9aa29585eaf5aa578b034a1cdc2c675117c39e3cd968398bd9440b6"
+  }
+}

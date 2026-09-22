@@ -36,6 +36,32 @@ def write_tables(root, summary, protocol):
     interval = " to ".join(f"{value:,.1f}" for value in paired["bootstrap_95_percent_interval"])
     different = protocol.get("comparison_type") == "different_models"
     shared_prefix = protocol["openjev"].get("cache_strategy") == "shared_prefix_batch"
+    adaptive = protocol["openjev"].get("cache_strategy") == "adaptive"
+    execution_description = (
+        "OpenJev computes the generic instruction prefix once during initialization. "
+        "Each decision prefills the board and shared game question, then scores all legal "
+        "candidates in one batch from independent complete KV/recurrent cache copies. "
+        "The planner chooses shared token prefixes without changing the full prompt. "
+        "Retained caches and exact prompt reconstruction were checked on every warm-up board."
+        if adaptive
+        else (
+            "OpenJev prefills instructions + user context once per decision, then scores all "
+            "legal-move suffixes in one batch from independent cache copies. "
+            "Both attention KV and recurrent state are copied; the saved prefix was checked "
+            "for mutations on every warm-up board."
+            if shared_prefix
+            else "OpenJev batches complete candidate prompts without a separate prefix prefill."
+        )
+    )
+    initialization_note = ""
+    if adaptive:
+        initialization = json.loads((root / "initialization.json").read_text())
+        initialization_note = (
+            f"The permanent {len(initialization['instruction_tokens'])}-token prefix took "
+            f"{initialization['instruction_cache_seconds'] * 1000:.1f} ms to initialize once "
+            "after model loading. This is excluded from request timings; see "
+            "[initialization.json](initialization.json)."
+        )
     model_description = (
         [
             f"OpenJev model: `{protocol['openjev']['model']}`.",
@@ -58,14 +84,7 @@ def write_tables(root, summary, protocol):
         f"OpenJev prompt: **{protocol['openjev'].get('prompt_style', 'full')}**; "
         f"score mode: **{protocol['openjev']['score_mode']}**; "
         f"all {protocol['openjev'].get('decoder_layers', 24)} decoder layers.",
-        (
-            "OpenJev prefills instructions + user context once per decision, then scores all "
-            "legal-move suffixes in one batch from independent cache copies. "
-            "Both attention KV and recurrent state are copied; the saved prefix was checked "
-            "for mutations on every warm-up board."
-            if shared_prefix
-            else "OpenJev batches complete candidate prompts without a separate prefix prefill."
-        ),
+        execution_description,
         "",
         "| Metric | OpenJev | SemIf |",
         "| --- | ---: | ---: |",
@@ -79,8 +98,9 @@ def write_tables(root, summary, protocol):
         "Latency is measured on the same frozen boards, excluding loading and warm-up.",
         "The games diverge after different choices. A small game benchmark does not establish",
         "general decision accuracy. This single-question task does not test caching across "
-        "questions or successive decisions.",
+        "questions. The board context changes on every move.",
         "Cache copies and prefix prefill are included in the measured API latency.",
+        initialization_note,
         "",
         "Both use SemIf's pinned MLX-LM 0.32.0 revision, including its Qwen3.5 normalization fix.",
         "OpenJev runs outside its usual `<0.32` dependency range for this test.",
@@ -120,6 +140,9 @@ def build(root):
         "verification": verification,
         "environment": json.loads(environment_path.read_text())
         if environment_path.exists()
+        else {},
+        "initialization": json.loads((root / "initialization.json").read_text())
+        if (root / "initialization.json").exists()
         else {},
     }
     with (root / "report.html").open("x") as file:

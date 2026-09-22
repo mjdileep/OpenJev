@@ -1,0 +1,100 @@
+{
+  "previous_run": "reports/2048/2026-09-22-shared-prefix",
+  "current_run": "reports/2048/2026-09-22-adaptive",
+  "previous_openjev_config": {
+    "batch_size": 4,
+    "score_mode": "full",
+    "prompt_style": "full",
+    "execution": "shared-prefix",
+    "cache_strategy": "shared_prefix_batch",
+    "verify_parent_cache_during_warmup": true,
+    "optimize_head": true,
+    "decoder_layers": 24
+  },
+  "current_openjev_config": {
+    "batch_size": 4,
+    "score_mode": "full",
+    "prompt_style": "full",
+    "execution": "adaptive",
+    "cache_strategy": "adaptive",
+    "verify_parent_cache_during_warmup": true,
+    "permanent_instruction_cache": true,
+    "optimize_head": true,
+    "decoder_layers": 24
+  },
+  "semif_same_actions": true,
+  "semif_same_native_probabilities": true,
+  "openjev_median_latency_reduction_fraction": 0.3976117426506498,
+  "openjev_mean_score_change": -613.2,
+  "openjev_score_change_bootstrap_95_interval": [
+    -1918.4,
+    904
+  ],
+  "pairs": [
+    {
+      "seed": 42,
+      "openjev_previous": 6508,
+      "openjev_current": 3936,
+      "semif_current": 1616
+    },
+    {
+      "seed": 43,
+      "openjev_previous": 4348,
+      "openjev_current": 1580,
+      "semif_current": 1064
+    },
+    {
+      "seed": 44,
+      "openjev_previous": 3144,
+      "openjev_current": 3316,
+      "semif_current": 1336
+    },
+    {
+      "seed": 45,
+      "openjev_previous": 2904,
+      "openjev_current": 3396,
+      "semif_current": 1228
+    },
+    {
+      "seed": 46,
+      "openjev_previous": 2308,
+      "openjev_current": 3204,
+      "semif_current": 1464
+    },
+    {
+      "seed": 47,
+      "openjev_previous": 3576,
+      "openjev_current": 588,
+      "semif_current": 2628
+    },
+    {
+      "seed": 48,
+      "openjev_previous": 4916,
+      "openjev_current": 1848,
+      "semif_current": 1356
+    },
+    {
+      "seed": 49,
+      "openjev_previous": 1708,
+      "openjev_current": 6364,
+      "semif_current": 2564
+    },
+    {
+      "seed": 50,
+      "openjev_previous": 1816,
+      "openjev_current": 1844,
+      "semif_current": 3332
+    },
+    {
+      "seed": 51,
+      "openjev_previous": 2796,
+      "openjev_current": 1816,
+      "semif_current": 1580
+    }
+  ],
+  "fixed_board_comparison": {
+    "openjev_choice_agreement": 0.875,
+    "openjev_max_probability_delta": 0.02625069964210963,
+    "semif_same_probabilities": true
+  }
+}

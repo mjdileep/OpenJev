@@ -1,0 +1,46 @@
+{
+  "model": "mlx-community/Qwen3.5-0.8B-4bit",
+  "revision": "da28692b5f139cb0ec58a356b437486b7dac7462",
+  "repeats": 3,
+  "case_count": 44,
+  "suite": "mixed",
+  "prompt_style": "full",
+  "score_mode": "full",
+  "thinking": false,
+  "generated_tokens": 0,
+  "batch_size": 4,
+  "hardware": "macOS-27.0-arm64-arm-64bit",
+  "cost_model": {
+    "batch_size": 4,
+    "launch": 40.0,
+    "batch_exponent": 0.85,
+    "copy_per_token": 0.01
+  },
+  "runtime": {
+    "mlx": "0.32.2",
+    "mlx-lm": "0.32.0",
+    "transformers": "5.17.0"
+  },
+  "previous": "Published shared-prefix helper for one Choice; previous shared API otherwise",
+  "timing": "Alternating synchronized API calls, full corpus warmup, load excluded",
+  "source_sha256": {
+    "benchmarks/adaptive_cache/run.py": "c100299400139a43955ffcd20b3cd921ca35723507c39011c9f84bc9c3c3fcce",
+    "benchmarks/adaptive_cache/mixed.py": "4e6084272a70a4b843bf4ea8f8841961052cfa1ead3f3a969cc3720b8f5c9a45",
+    "benchmarks/adaptive_cache/verify.py": "92a2ebab2f389bb9ca9424941374749ca256a86d8a4b39c9f321364b95bc450d",
+    "benchmarks/cache_reuse_qwen/engine.py": "9f7d206b880e9cb223de0af00febf967a3d13c021b9d9764223be4deed47fabc",
+    "examples/game_2048/game.py": "05b1a69c6c43406b82236792f1b77b8e5506307fc232feff813538b825464909",
+    "src/openjev/__init__.py": "54f4babb8fa344685349a07778858c4100346f34c80c65ac2af03d7bac0e4ef5",
+    "src/openjev/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/openjev/backends/__init__.py": "e4574262cac0876d37f6c31f9025d0b222750e50328982fe73d71f0df4d02ac9",
+    "src/openjev/backends/base.py": "9d42f9b88196b2a158d9b61bec04a2696af7434ea46747a6f2ae95f8bb4a7a6b",
+    "src/openjev/backends/gguf.py": "cf786136f1cb3041a313f090a3d720ff5b194e34163ad208fe3a4e1e9982b5f9",
+    "src/openjev/backends/mlx.py": "915ec171fca57131188dee91367dc27e4991dc8af4e7d7368a1ebd0ecc438bfa",
+    "src/openjev/backends/transformers.py": "9a9159643c98f2233c363c7d203e880fe62a7ce1edfcfcd2671ba75b850a8425",
+    "src/openjev/backends/vision.py": "259495458def42f5b905f1dea95c2fe69bb95f9f08cc8fe595668d54dddebe95",
+    "src/openjev/cache_plan.py": "3f736ca9091886f64fcc9ff73c52beed23a7086fb421894a6b1c36b610a7f845",
+    "src/openjev/cli.py": "cbe44124808849e12cf6df0ea83b9085623f08137367f648c13cca3442d152f1",
+    "src/openjev/engine.py": "6d15f1e9cf3ad29429ee28f91d854efad36680bb0bda1e5e5d14a6828eccd27b",
+    "src/openjev/prompt.py": "bcea0e2cbdc6fa200c8f002e1f32e022b007c9fb9747db14b420a36f8754bf05",
+    "src/openjev/types.py": "8a06d6f959fe2655a28cf13a8efc923c5be3c6063f12673581595b96338378c8"
+  }
+}

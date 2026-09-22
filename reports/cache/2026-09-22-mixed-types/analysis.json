@@ -1,0 +1,7 @@
+{
+  "analysis_source": "analysis-source/benchmarks/adaptive_cache/mixed_report.py",
+  "analysis_source_sha256": "45221794246ba53065f278f77f194225a187c940f705c9c0e269f52de3b25537",
+  "per_question_output_math_verified": true,
+  "production_source_identical_to": "../2026-09-22-adaptive/protocol.json",
+  "timing_scope": "Synthetic workload timings; no labeled accuracy measurement"
+}

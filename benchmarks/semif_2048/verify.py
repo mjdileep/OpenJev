@@ -42,11 +42,16 @@ def verify(root):
             assert hashlib.sha256((root / "source" / relative).read_bytes()).hexdigest() == expected
     corpus = json.loads((root / "fixed-boards.json").read_text())
     assert digest(corpus) == protocol["fixed_board_sha256"]
-    if protocol["openjev"].get("cache_strategy") == "shared_prefix_batch":
+    if protocol["openjev"].get("cache_strategy") in {"shared_prefix_batch", "adaptive"}:
         cache_check = json.loads((root / "cache-validation.json").read_text())
         assert cache_check["status"] == "verified"
         assert cache_check["boards"] == len(corpus)
         assert not cache_check["included_in_timing"]
+        if protocol["openjev"]["cache_strategy"] == "adaptive":
+            assert cache_check["permanent_cache_unchanged_after_all_games"]
+            initialization = json.loads((root / "initialization.json").read_text())
+            assert initialization["instruction_tokens"]
+            assert not initialization["included_in_request_timing"]
     fixed = records(root / "fixed-board-decisions.jsonl")
     assert len(fixed) == len(corpus) * protocol["fixed_board_repeats"] * 2
     expected_games = {(seed, method) for seed in protocol["seed_list"] for method in METHODS}
@@ -155,6 +160,22 @@ def verify_decision(row, board, protocol):
             assert (
                 usage["evaluated_input_tokens"] + usage["reused_input_tokens"]
                 == (usage["uncached_input_tokens"])
+            )
+        elif strategy == "adaptive":
+            usage = row["native"]["usage"]
+            assert usage["instruction_prefix_tokens"] > 0
+            assert usage["question_prefix_tokens"]["move"] > 0
+            assert usage["candidate_batches"] == [len(legal)]
+            assert usage["candidates"] == len(legal)
+            assert len(usage["scoring_prefix_tokens"]) == len(legal)
+            assert len(set(usage["scoring_prefix_tokens"])) == 1
+            assert usage["evaluated_input_tokens"] == (
+                usage["uncached_input_tokens"]
+                - sum(usage["scoring_prefix_tokens"])
+                + sum(usage["cache_prefill_tokens"])
+            )
+            assert usage["reused_input_tokens"] == (
+                usage["uncached_input_tokens"] - usage["evaluated_input_tokens"]
             )
         assert row["native"]["answers"]["move"]["choice"] == row["action"]
         assert row["native"]["answers"]["move"]["probabilities"] == row["probabilities"]

@@ -1,0 +1,8 @@
+{
+  "warmup_requests": 76,
+  "timed_requests": 228,
+  "exact_original_prompt_tokens": true,
+  "checked_retained_parents": 118,
+  "permanent_cache_unchanged_after_all_requests": true,
+  "same_model_object": true
+}

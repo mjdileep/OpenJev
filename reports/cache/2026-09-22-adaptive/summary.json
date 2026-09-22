@@ -1,0 +1,152 @@
+{
+  "2048 boards": {
+    "previous": {
+      "calls": 72,
+      "median_ms": 225.80602100060787,
+      "p95_ms": 239.7953750041779,
+      "mean_evaluated_tokens": 754.625,
+      "mean_padding_tokens": 0.4166666666666667,
+      "median_planning_ms": 0.0
+    },
+    "adaptive": {
+      "calls": 72,
+      "median_ms": 134.73716699809302,
+      "p95_ms": 151.72158399946056,
+      "mean_evaluated_tokens": 426.4583333333333,
+      "mean_padding_tokens": 0.4166666666666667,
+      "median_planning_ms": 0.05433298065327108
+    },
+    "comparison": {
+      "speedup": 1.6759000209927508,
+      "choice_matches": 63,
+      "choice_comparisons": 72,
+      "max_probability_delta": 0.02625069964210963,
+      "max_raw_support_delta": 0.05984645024924584
+    }
+  },
+  "long context": {
+    "previous": {
+      "calls": 12,
+      "median_ms": 311.98077100270893,
+      "p95_ms": 340.2642909786664,
+      "mean_evaluated_tokens": 1065.75,
+      "mean_padding_tokens": 4,
+      "median_planning_ms": 0.0
+    },
+    "adaptive": {
+      "calls": 12,
+      "median_ms": 272.6186250074534,
+      "p95_ms": 294.16829100227915,
+      "mean_evaluated_tokens": 913.75,
+      "mean_padding_tokens": 4,
+      "median_planning_ms": 0.11556300160009414
+    },
+    "comparison": {
+      "speedup": 1.1443853881743384,
+      "choice_matches": 12,
+      "choice_comparisons": 12,
+      "max_probability_delta": 0.011341877223053465,
+      "max_raw_support_delta": 0.03107077489483423
+    }
+  },
+  "long question groups": {
+    "previous": {
+      "calls": 6,
+      "median_ms": 848.7858954904368,
+      "p95_ms": 998.2070830010343,
+      "mean_evaluated_tokens": 2835,
+      "mean_padding_tokens": 315,
+      "median_planning_ms": 0.0
+    },
+    "adaptive": {
+      "calls": 6,
+      "median_ms": 417.12810400349554,
+      "p95_ms": 538.8601669983473,
+      "mean_evaluated_tokens": 1299,
+      "mean_padding_tokens": 7,
+      "median_planning_ms": 0.5188750074012205
+    },
+    "comparison": {
+      "speedup": 2.034832674528504,
+      "choice_matches": 12,
+      "choice_comparisons": 12,
+      "max_probability_delta": 0.011884746222508846,
+      "max_raw_support_delta": 0.037095956658110274
+    }
+  },
+  "mixed questions": {
+    "previous": {
+      "calls": 6,
+      "median_ms": 142.53531298891176,
+      "p95_ms": 154.7031250083819,
+      "mean_evaluated_tokens": 425,
+      "mean_padding_tokens": 27,
+      "median_planning_ms": 0.0
+    },
+    "adaptive": {
+      "calls": 6,
+      "median_ms": 122.91245849337429,
+      "p95_ms": 136.10029200208373,
+      "mean_evaluated_tokens": 321,
+      "mean_padding_tokens": 27,
+      "median_planning_ms": 0.1814794959500432
+    },
+    "comparison": {
+      "speedup": 1.1596490277394886,
+      "choice_matches": 6,
+      "choice_comparisons": 6,
+      "max_probability_delta": 0.0361489321494049,
+      "max_raw_support_delta": 0.03160893695562428
+    }
+  },
+  "short context": {
+    "previous": {
+      "calls": 12,
+      "median_ms": 99.71177099214401,
+      "p95_ms": 112.36008300329559,
+      "mean_evaluated_tokens": 321.25,
+      "mean_padding_tokens": 4,
+      "median_planning_ms": 0.0
+    },
+    "adaptive": {
+      "calls": 12,
+      "median_ms": 64.3924585019704,
+      "p95_ms": 76.4423749933485,
+      "mean_evaluated_tokens": 169.25,
+      "mean_padding_tokens": 4,
+      "median_planning_ms": 0.04883299698121846
+    },
+    "comparison": {
+      "speedup": 1.5485007609872956,
+      "choice_matches": 12,
+      "choice_comparisons": 12,
+      "max_probability_delta": 0.020556825698779146,
+      "max_raw_support_delta": 0.03159644364137437
+    }
+  },
+  "single candidate": {
+    "previous": {
+      "calls": 6,
+      "median_ms": 139.6201875031693,
+      "p95_ms": 242.77370801428333,
+      "mean_evaluated_tokens": 525,
+      "mean_padding_tokens": 0,
+      "median_planning_ms": 0.0
+    },
+    "adaptive": {
+      "calls": 6,
+      "median_ms": 121.37968800379895,
+      "p95_ms": 222.52529198885895,
+      "mean_evaluated_tokens": 451,
+      "mean_padding_tokens": 0,
+      "median_planning_ms": 0.017895494238473475
+    },
+    "comparison": {
+      "speedup": 1.1502763748972518,
+      "choice_matches": 0,
+      "choice_comparisons": 0,
+      "max_probability_delta": 0,
+      "max_raw_support_delta": 0.049314678800867595
+    }
+  }
+}

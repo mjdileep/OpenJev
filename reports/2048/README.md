@@ -1,84 +1,80 @@
-# OpenJev versus SemIf: published 2048 results
+# OpenJev versus SemIf: 2048 results
 
-These are recorded local experiments on an Apple M3 Pro with 18 GiB memory.
-Both methods use the same pinned Qwen3.5-0.8B 4-bit weights and shared MLX runtime.
-The reports retain the original measurements and protocols.
+The current featured run uses **adaptive caching** on an Apple M3 Pro with 18 GiB
+memory. Both methods use the same pinned Qwen3.5-0.8B 4-bit weights and shared MLX
+runtime. Generic instructions stay cached with the OpenJev model; each request
+prefills the shared board/question prefix and independently scores legal moves.
 
-| Run | OpenJev execution | Mean score: OpenJev / SemIf | Median latency: OpenJev / SemIf |
-| --- | --- | ---: | ---: |
-| [Shared prefix, September 22, 2026](2026-09-22-shared-prefix/report.md) | One context prefill, then independent candidate suffixes in one batch | 3,402.4 / 1,816.8 | 226.8 / 162.9 ms |
-| [Earlier full-prompt baseline](2026-09-22-full-prompt-baseline/report.md) | Complete candidate prompts in one batch | 2,940.0 / 1,816.8 | 340.2 / 163.1 ms |
+[Full report](2026-09-22-adaptive/report.md) ·
+[Recorded replay](2026-09-22-adaptive/report.html) ·
+[Per-game scores](2026-09-22-adaptive/games.csv) ·
+[Raw summary](2026-09-22-adaptive/summary.json)
 
-Each run has ten games per method, seeds 42–51, and 24 frozen timing boards with
-three repetitions. Neither method reached 2048. OpenJev scored higher on eight
-seeds in the shared-prefix run. This is a small game experiment, not a general
-accuracy ranking or a calibrated probability of winning.
+| Metric | OpenJev adaptive | SemIf |
+| --- | ---: | ---: |
+| Mean game score | 2,789.2 | 1,816.8 |
+| Median game score | 2,526 | 1,522 |
+| Largest tile | 512 | 256 |
+| Identical-board median latency | 136.6 ms | 162.4 ms |
+| Games reaching 2048 | 0/10 | 0/10 |
 
-The [comparison with the earlier run](2026-09-22-shared-prefix/previous-comparison.md)
-shows a 33.3% reduction in OpenJev's median latency. Historical timings come from
-separate runs. Old/new OpenJev choices agree on 23 of 24 frozen boards; quantized
-execution differences can change scores and later game trajectories. SemIf
-reproduced every earlier game action and choice distribution.
+Each method played ten games, seeds 42–51. Timing used 24 frozen boards with three
+repetitions, alternating method order. OpenJev scored higher on 8 seeds and SemIf
+on 2. This is a small local game experiment, not a general accuracy ranking.
+The one-time 54.4 ms instruction-cache initialization is reported separately;
+per-request prefill, planning, copying and scoring are included in timing.
+
+## What changed from the previous run
+
+The [comparison with the previous shared-prefix run](2026-09-22-adaptive/previous-comparison.md)
+shows **39.8% lower OpenJev median latency**, while average game score decreased
+from **3,402.4 to 2,789.2**. Old/new OpenJev moves agree on **21/24** frozen boards.
+Quantized execution changes can alter scores and later game trajectories. SemIf
+reproduced every previous game action and probability distribution exactly.
+Historical timing comparisons come from separate runs.
 
 ## Watch the recorded games
 
-After cloning this repository, open
-[the standalone replay](2026-09-22-shared-prefix/report.html) in your browser.
-On macOS, from the repository root:
+After cloning the repository, open the standalone HTML replay. On macOS:
 
 ```bash
-open reports/2048/2026-09-22-shared-prefix/report.html
+open reports/2048/2026-09-22-adaptive/report.html
 ```
 
-On other systems, double-click that HTML file. It works offline without model
-weights or Python packages. GitHub displays HTML as source; download the file or
-clone the repository to play it. Pick a seed, then play, pause, step, or scrub.
-This is a recorded replay; move numbers are aligned, rather than elapsed time.
+On other systems, double-click that file. It works offline without model weights
+or Python packages. GitHub shows HTML source; clone or download the file to play
+it. Pick a seed, then play, pause, step, or scrub. Playback aligns move numbers,
+not elapsed time. This is a recorded replay, not live inference.
 
-## Verify the evidence
+## Verify and reproduce
 
-From the repository root, using Python 3.11 or newer:
+From the repository root, with Python 3.11 or newer:
 
 ```bash
-python3 benchmarks/semif_2048/verify.py reports/2048/2026-09-22-shared-prefix
-python3 benchmarks/semif_2048/verify.py reports/2048/2026-09-22-full-prompt-baseline
+python3 -S benchmarks/semif_2048/verify.py reports/2048/2026-09-22-adaptive
 ```
 
-Verification uses the standard library and this checkout's source. It loads no
-models and requires no GPU. The shared-prefix run verifies 20 games, 4,561 moves,
-and 144 fixed-board decisions. The baseline verifies 20 games, 4,267 moves, and
-144 fixed-board decisions.
+Verification uses only the standard library and this checkout. It loads no models
+and requires no GPU. The current run verifies **20 games, 4,151 moves and 144 timed
+decisions**. Warmup also checked full prompt reconstruction and immutable retained
+KV/recurrent caches; the permanent instruction cache stayed unchanged after all games.
 
-Each run contains:
+Each run contains full Markdown/HTML reports, CSV scores, raw game transitions,
+fixed-board decisions, protocol, source snapshots, model artifact hashes and
+verification results. The new run also records `initialization.json` and
+`cache-validation.json`. Model weights are not committed.
 
-- `report.md`, `report.html`, `games.csv`, and `summary.json`: readable reports,
-  replay, every seed's result, and aggregate statistics.
-- `game-*-*.jsonl` and `game-*-*-summary.json`: every board, move, tile spawn,
-  native score, measured latency, and game outcome.
-- `fixed-boards.json` and `fixed-board-decisions.jsonl`: the frozen timing corpus
-  and all timed decisions.
-- `protocol.json`, `model-artifacts.json`, and `environment-validation.json`:
-  model revisions, parameter-identity checks, model artifact hashes, runtime,
-  hardware, and measurement settings.
-- `source/`: the source files identified by the frozen protocol's SHA-256 hashes.
-  The baseline snapshots were recovered from its recorded Git commit and saved
-  runner, and checked against those original hashes.
-- `verification.json`: the result of verifying the published evidence.
+Follow the [benchmark setup](../../benchmarks/semif_2048/README.md) and use
+`--openjev-execution adaptive` to reproduce this execution path. Both methods use
+SemIf's pinned MLX-LM 0.32.0 revision, outside OpenJev's normal `<0.32` dependency
+range. The API's default remains unchanged; opt in with `cache_strategy="adaptive"`.
 
-The shared-prefix run also includes `cache-validation.json`, recording the
-unchanged saved prefix on all 24 warm-up boards. Model weights are downloaded
-separately and are not part of these results. The original `.cache/...` names in
-`previous-comparison.json` identify the local runs; the folders above are their
-published copies.
+For requests containing several question types, see the
+[mixed Noul/Choice/Score report](../cache/2026-09-22-mixed-types/report.md).
 
-## Run a new comparison
+## Historical runs
 
-Follow the [benchmark setup and commands](../../benchmarks/semif_2048/README.md).
-Use `--openjev-execution shared-prefix` for the new path or
-`--openjev-execution current` for the original full-prompt batch. Always write to
-a new output directory. Both use full prompts and full-vocabulary scoring by default.
+These retain their original evidence and are no longer the featured results:
 
-The benchmark uses SemIf's pinned MLX-LM 0.32.0 commit, outside OpenJev's normal
-MLX dependency range. This is documented in both reports. Shared-prefix scoring
-is an experiment-only path for this single `Choice` question; production defaults
-are unchanged. Candidate rows score independently; they do not attend to each other.
+- [Previous shared-prefix run](2026-09-22-shared-prefix/report.md)
+- [Original full-prompt batch baseline](2026-09-22-full-prompt-baseline/report.md)
